@@ -15,16 +15,6 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import('../views/About.vue')
-    },
-    {
-      path: '/map',
-      name: 'map',
-      component: () => import('../views/Map.vue')
-    },
-    {
-      path: '/map2',
-      name: 'map2',
-      component: () => import('../views/Map2.vue')
-    },
+    } 
   ]
 })

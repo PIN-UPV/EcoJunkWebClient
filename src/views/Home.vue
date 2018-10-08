@@ -1,18 +1,22 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <l-map >
+      <l-mark :lat="39.4697992" :long="-0.3791969" />
+      <l-mark :lat="39.4907311" :long="-0.4019578" />
+    </l-map>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import LMAP from "@/components/LMap";
+import LMARKER from "@/components/LMarker";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    HelloWorld
+    "l-map": LMAP,
+    "l-mark": LMARKER
   }
-}
+};
 </script>
