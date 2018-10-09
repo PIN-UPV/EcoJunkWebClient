@@ -15,6 +15,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import('../views/About.vue')
+    } ,
+    {
+      path: '/form',
+      name: 'form',
+      component: () => import('../views/FormularioAcuerdo.vue')
     } 
   ]
 })
