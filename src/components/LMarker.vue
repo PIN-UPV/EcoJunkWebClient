@@ -30,7 +30,14 @@ export default {
 
     L.marker([this.lat, this.long])
       .addTo(this.lmap)
-      .bindPopup("A pretty CSS3 popup.<br> Easily customizable.");
+      .on('click', this.changePage)
+  
+  }, 
+  methods: {
+    changePage(){
+      this.$router.push('/markinfo')
+    
+    }
   }
 };
 </script>
