@@ -1,12 +1,24 @@
 <template>
   <div>
-    <Countdown deadline="October 12, 2018"></Countdown>
+      <flip-countdown deadline="2018-10-11 00:00:00"></flip-countdown>
   </div>
 </template>
+
+
 <script>
-import Countdown from 'vuejs-countdown'
+import FlipCountdown from "vue2-flip-countdown";
 
 export default {
-  components: { Countdown }
-}
+  name: "CountDown",
+  components: { FlipCountdown }
+};
 </script>
+
+
+
+<style scoped>
+small {
+  display: block;
+}
+</style>
+
