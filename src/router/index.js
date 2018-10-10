@@ -16,5 +16,6 @@ export default new Router({
       name: 'about',
       component: () => import('../views/About.vue')
     } 
-  ]
+  ],
+  mode: 'history'
 })

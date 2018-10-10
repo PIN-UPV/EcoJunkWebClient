@@ -22,15 +22,22 @@ export default {
       ready: false,
       lmap: null,
       zoom: 12
-    }
+    };
   },
   mounted() {
-    this.lmap = L.map("lmap").setView([39.4520498, -0.440134], this.zoom);
+    this.lmap = L.map("lmap", {
+      zoomControl: false,
+      minZoom: 5,
+      zoom: this.zoom
+    }).setView([39.4520498, -0.440134]);
+
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.lmap);
     this.ready = true;
+
+    L.control.zoom({position:'topright'}).addTo(this.lmap);
   }
 };
 </script>
