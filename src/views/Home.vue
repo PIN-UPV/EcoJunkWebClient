@@ -1,23 +1,32 @@
+<style scoped>
+.home{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
 <template>
   <div class="home">
-    
-    <l-map >
-      <l-mark :lat="39.4697992" :long="-0.3791969" />
-      <l-mark :lat="39.4907311" :long="-0.4019578" />
-    </l-map>
-
+    <s-toolbar @openDrawer="openDrawer"/>
+    <h1>Bienvenido a Home</h1>
   </div>
 </template>
 
 <script>
-import LMAP from "@/components/LMap";
-import LMARKER from "@/components/LMarker";
+import SToolbar from "@/components/SearchToolbar";
 
 export default {
   name: "home",
   components: {
-    "l-map": LMAP,
-    "l-mark": LMARKER
+    's-toolbar': SToolbar
+  },
+  props: {
+    value: Boolean
+  },
+  methods: {
+    openDrawer() {
+      this.$emit('input', true);
+    }
   }
 };
 </script>
