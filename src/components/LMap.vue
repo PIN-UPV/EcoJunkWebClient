@@ -8,7 +8,7 @@
 
 <template>
     <div id="lmap">
-      <slot v-if="ready" />
+      <slot v-if="ready"/>
     </div>
 </template>
 
@@ -35,9 +35,26 @@ export default {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.lmap);
-    this.ready = true;
 
-    L.control.zoom({position:'topright'}).addTo(this.lmap);
+    L.control.zoom({ position: "topright" }).addTo(this.lmap);
+    var userIcon = L.icon({
+      iconUrl: '/icons/user_point.png',
+      iconSize: [50,50]
+    })
+    this.lmap
+      .locate({
+        setView: false,
+        maxZoom: 120
+      })
+      .on("locationfound", e => {
+        L.marker([e.latitude, e.longitude], {
+          icon: userIcon
+        })
+          .bindPopup("Ubicación actual")
+          .addTo(this.lmap);
+      });
+      this.lmap.invalidateSize();
+      this.ready = true;
   }
 };
 </script>
