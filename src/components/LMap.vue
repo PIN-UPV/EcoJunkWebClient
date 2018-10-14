@@ -71,13 +71,7 @@ export default {
         this.lmap.setView([e.latitude, e.longitude]);
       });
     this.lmap.invalidateSize();
-
-    L.Routing.control({
-      waypoints: [
-        L.latLng(39.4394438, -1.6543355),
-        L.latLng(39.4697992, -0.3791969)
-      ]
-    }).addTo(this.lmap);
+  
     this.ready = true;
   }
 };

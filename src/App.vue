@@ -36,14 +36,19 @@
         </md-toolbar>
 
         <md-list>
-          <md-list-item to="/">
+          <md-list-item to="/" @click="showNavigation=false">
             <md-icon>move_to_inbox</md-icon>
             <span class="md-list-item-text">Map</span>
           </md-list-item>
 
-          <md-list-item to="/about">
+          <md-list-item to="/about" @click="showNavigation=false">
             <md-icon>send</md-icon>
             <span class="md-list-item-text">About</span>
+          </md-list-item>
+
+          <md-list-item to="/agreements" @click="showNavigation=false">
+            <md-icon>assignment</md-icon>
+            <span class="md-list-item-text">Agreements</span>
           </md-list-item>
         </md-list>
       </md-drawer>
