@@ -24,7 +24,6 @@
     background-color: whitesmoke;
   }
 }
-
 </style>
 
 <template>

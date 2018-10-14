@@ -7,12 +7,8 @@
 
 <template>
   <div class="home">
-    <Menu />
-    <l-map >
-      <l-mark :lat="39.4697992" :long="-0.3791969" />
-      <l-mark :lat="39.4907311" :long="-0.4019578" />
-    </l-map>
-
+    <s-toolbar @openDrawer="openDrawer"/>
+    <h1>Bienvenido a Home</h1>
   </div>
 </template>
 
