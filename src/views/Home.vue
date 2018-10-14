@@ -1,3 +1,10 @@
+<style scoped>
+.home{
+  width: 100%;
+  height: 100%;
+}
+</style>
+
 <template>
   <div class="home">
     <Menu />
@@ -10,14 +17,20 @@
 </template>
 
 <script>
-import LMAP from "@/components/LMap";
-import LMARKER from "@/components/LMarker";
+import SToolbar from "@/components/SearchToolbar";
 
 export default {
   name: "home",
   components: {
-    "l-map": LMAP,
-    "l-mark": LMARKER
+    's-toolbar': SToolbar
+  },
+  props: {
+    value: Boolean
+  },
+  methods: {
+    openDrawer() {
+      this.$emit('input', true);
+    }
   }
 };
 </script>
