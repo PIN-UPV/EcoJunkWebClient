@@ -15,11 +15,17 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import('../views/About.vue')
-    } ,
+    },
+    {
+      path: '/agreements',
+      name: 'agreements',
+      component: () => import('../views/Agreements.vue')
+    },
     {
       path: '/form',
       name: 'form',
       component: () => import('../views/FormularioAcuerdo.vue')
-    } 
-  ]
+    }
+  ],
+  mode: 'history'
 })

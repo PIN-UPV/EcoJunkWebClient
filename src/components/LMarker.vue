@@ -17,20 +17,18 @@ export default {
     };
   },
   mounted() {
-    /*var greenIcon = L.icon({
-      iconUrl: "../assets/clip.png",
-      shadowUrl: "../assets/clip.png",
-
+    var customIcon = L.icon({
+      iconUrl: "/icons/eco_point.png",
       iconSize: [38, 95], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
       shadowAnchor: [4, 62], // the same for the shadow
       popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-    });*/
-
-    L.marker([this.lat, this.long])
+    });
+    
+    L.marker([this.lat, this.long], { icon: customIcon })
       .addTo(this.lmap)
-      .bindPopup("A pretty CSS3 popup.<br> Easily customizable.");
+      .bindPopup("TEXTO A INTRODUCIR");
   }
 };
 </script>

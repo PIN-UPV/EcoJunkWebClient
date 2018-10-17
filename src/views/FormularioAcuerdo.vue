@@ -20,12 +20,13 @@
       <md-textarea v-model="description" md-autogrow md-counter="200"></md-textarea>
     </md-field>
 
+    <timer :md-active.sync="showTimer">
+      </timer>
 
     <md-button class="md-raised md-primary">Aceptar</md-button>
-    <md-button class="md-raised md-accent">Cancelar</md-button>
+    <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
   
-    <timer>
-      </timer>
+    
 
     
     
@@ -45,7 +46,8 @@ export default {
     location: null,
     price: null,
     description: null,
-    textarea: null
+    textarea: null,
+    showTimer: false
   }),
   components: {
     timer: TIMER

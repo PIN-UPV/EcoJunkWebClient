@@ -1,40 +1,34 @@
-<style >
-#app .page-container {
-  overflow: hidden;
-  position: relative;
-  border: 1px solid rgba(#000, 0.12);
-
-  height: 100vh;
-}
-
-#app .md-drawer {
-  width: 230px;
-  max-width: calc(100vw - 125px);
-  z-index: 1001;
-}
-
-#app .page-container .md-overlay {
-  z-index: 1000
-}
-
-#app .md-content {
-  z-index: 0;
+<style lang="scss">
+#app {
+  .page-container {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(#000, 0.12);
+  }
+  .md-drawer {
+    width: 25%;
+    max-width: calc(100vw - 125px);
+    z-index: 1001;
+  }
+  .page-container .md-overlay {
+    z-index: 1000;
+  }
+  .md-content {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 35%;
+    height: 100%;
+    z-index: 999;
+    background-color: whitesmoke;
+  }
 }
 </style>
 
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <div class="page-container md-layout-column">
-      <md-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="showNavigation = true">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <span class="md-title">Index</span>
-      </md-toolbar>
 
       <md-drawer :md-active.sync="showNavigation">
         <md-toolbar class="md-transparent" md-elevation="0">
@@ -42,33 +36,52 @@
         </md-toolbar>
 
         <md-list>
-          <md-list-item to="/">
+          <md-list-item to="/" @click="showNavigation=false">
             <md-icon>move_to_inbox</md-icon>
             <span class="md-list-item-text">Map</span>
           </md-list-item>
 
-          <md-list-item to="/about">
+          <md-list-item to="/about" @click="showNavigation=false">
             <md-icon>send</md-icon>
             <span class="md-list-item-text">About</span>
           </md-list-item>
+
+          <md-list-item to="/agreements" @click="showNavigation=false">
+            <md-icon>assignment</md-icon>
+            <span class="md-list-item-text">Agreements</span>
+          </md-list-item>
         </md-list>
+
+          
       </md-drawer>
 
       <md-content>
-        <router-view/>
+        <router-view v-model="showNavigation" />
       </md-content>
       
+      <l-map >
+        <l-mark :lat="39.4697992" :long="-0.3791969" />
+        <l-mark :lat="39.4907311" :long="-0.4019578" />
+      </l-map>
+
     </div>
   </div>
 </template>
 
 <script>
+import LMAP from "@/components/LMap";
+import LMARKER from "@/components/LMarker";
+
 export default {
   name: "App",
   data() {
     return {
       showNavigation: false
     };
+  },
+  components: {
+    "l-map": LMAP,
+    "l-mark": LMARKER
   }
 };
 </script>
