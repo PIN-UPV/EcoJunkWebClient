@@ -50,16 +50,20 @@
             <md-icon>assignment</md-icon>
             <span class="md-list-item-text">Agreements</span>
           </md-list-item>
+
         </md-list>
       </md-drawer>
 
-      <md-content>
+      <md-content class="md-elevation-8">
         <router-view v-model="showNavigation" />
       </md-content>
       
       <l-map >
         <l-mark :lat="39.4697992" :long="-0.3791969" />
         <l-mark :lat="39.4907311" :long="-0.4019578" />
+        <l-mark :lat="39.479172" :long="-0.390297" />
+        <l-mark :lat="39.475496" :long="-0.375662" />
+        <l-mark :lat="39.478688" :long="-0.365236" />
       </l-map>
 
     </div>

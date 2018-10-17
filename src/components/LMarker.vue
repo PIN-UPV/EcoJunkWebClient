@@ -28,7 +28,7 @@ export default {
     
     L.marker([this.lat, this.long], { icon: customIcon })
       .addTo(this.lmap)
-      .bindPopup("TEXTO A INTRODUCIR");
+      .bindPopup(this.lat + " " + this.long);
   }
 };
 </script>

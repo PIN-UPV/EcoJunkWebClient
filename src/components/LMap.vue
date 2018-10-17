@@ -71,7 +71,9 @@ export default {
         this.lmap.setView([e.latitude, e.longitude]);
       });
     this.lmap.invalidateSize();
-  
+
+    this.$store.dispatch("changeMap", this.lmap);
+
     this.ready = true;
   }
 };
