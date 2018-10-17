@@ -33,7 +33,7 @@
             <md-icon>menu</md-icon>
         </md-button>
 
-        <input type="text" placeholder="Buscar en EcoJunk" />
+        <input type="text" v-bind:placeholder="msg" />
 
         <md-button class="md-icon-button" >
             <md-icon>search</md-icon>
@@ -44,6 +44,9 @@
 <script>
 export default {
   name: "SearchToolbar",
+  props: {
+    msg: ""
+  },
   methods: {
     openDrawer() {
       this.$emit("openDrawer");

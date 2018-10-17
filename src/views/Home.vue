@@ -7,7 +7,7 @@
 
 <template>
   <div class="home">
-    <s-toolbar @openDrawer="openDrawer"/>
+    <s-toolbar @openDrawer="openDrawer" msg="Buscar en Home"/>
     <h1>Bienvenido a Home</h1>
   </div>
 </template>

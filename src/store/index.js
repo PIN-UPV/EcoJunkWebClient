@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { markerModule } from './marker';
+import { agreementModule} from './agreement';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
 
   },
-  mutations: {
-
-  },
-  actions: {
-
+  modules: {
+    marker: markerModule,
+    agreement: agreementModule
   }
 })
