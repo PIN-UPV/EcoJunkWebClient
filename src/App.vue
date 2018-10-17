@@ -59,11 +59,7 @@
       </md-content>
       
       <l-map >
-        <l-mark :lat="39.4697992" :long="-0.3791969" />
-        <l-mark :lat="39.4907311" :long="-0.4019578" />
-        <l-mark :lat="39.479172" :long="-0.390297" />
-        <l-mark :lat="39.475496" :long="-0.375662" />
-        <l-mark :lat="39.478688" :long="-0.365236" />
+        <l-mark v-for="item in store.markers" :key="item.id" :lat="item.latitude" :long="item.longitude" :img="item.junkPointType.name"></l-mark>
       </l-map>
 
     </div>
@@ -78,7 +74,8 @@ export default {
   name: "App",
   data() {
     return {
-      showNavigation: false
+      showNavigation: false,
+      store: this.$store.state.marker
     };
   },
   components: {

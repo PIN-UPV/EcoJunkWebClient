@@ -14,24 +14,7 @@
 
 <template>
   <div class="home">
-    <s-toolbar @openDrawer="openDrawer" msg="Buscar en Home"/>
-    
-    <!--<md-card v-for="item in store.markers" :key="item.id">
-      <md-card-header>
-        <md-card-header-text>
-          <div class="md-title">{{ item.junkPointType.name }}</div>
-          <div class="md-subhead">{{ item.junkPointType.description }}</div>
-        </md-card-header-text>
-        
-        <md-card-media>
-          <img src='https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png' alt="People">
-        </md-card-media>
-      </md-card-header> 
-      
-      <md-actions>
-        <md-button>Ir</md-button>
-      </md-actions>
-    </md-card> -->
+    <s-toolbar @openDrawer="openDrawer" msg="Buscar contenedor" v-model="tipo"/>
 
     <md-card v-for="item in store.markers" :key="item.id">
       <md-card-header>
@@ -41,7 +24,7 @@
         </md-card-header-text>
 
         <md-card-media>
-          <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png" alt="People">
+          <img :src="imageSrc(item.junkPointType.name)">
         </md-card-media>
       </md-card-header>
 
@@ -70,6 +53,9 @@ export default {
     },
     setView(lat, long) {
       this.store.map.setView([lat,long]);
+    },
+    imageSrc(type) {
+      return 'icons/' + type + '.png';
     }
   },
   data() {

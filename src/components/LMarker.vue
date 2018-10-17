@@ -9,7 +9,8 @@ export default {
   name: "LMarker",
   props: {
     lat: Number,
-    long: Number
+    long: Number,
+    img: String
   },
   data() {
     return {
@@ -18,7 +19,7 @@ export default {
   },
   mounted() {
     var customIcon = L.icon({
-      iconUrl: "/icons/eco_point.png",
+      iconUrl: "/icons/" + this.img + ".png",
       iconSize: [35, 40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [17, 40], // point of the icon which will correspond to marker's location

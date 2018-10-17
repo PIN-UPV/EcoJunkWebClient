@@ -4,110 +4,83 @@ export default {
         map: null,
         markers: [{
                 id: 1,
-                latitude: 39.478688,
-                longitude: -0.365236,
+                latitude: 39.4925663,
+                longitude: -0.3352995000000192,
                 junkPointType: {
-                    name: "Jardin de Monforte",
-                    description: "Ubicación del jardín de Monforte"
+                    name: "baterías",
+                    description: "Baterías"
                 }
             },
             {
                 id: 2,
-                latitude: 39.475496,
-                longitude: -0.375662,
+                latitude: 39.47195019999999,
+                longitude: -0.37658250000004045,
                 junkPointType: {
-                    name: "Catedral de Valencia",
-                    description: "Ubicación de la catedral de Valencia"
+                    name: "aparatos electrónicos",
+                    description: "Aparatos electrónicos"
                 }
             },
             {
                 id: 3,
-                latitude: 39.479172,
-                longitude: -0.390297,
+                latitude: 39.5121979,
+                longitude: -0.34500600000001214,
                 junkPointType: {
-                    name: "Nuevo Centro",
-                    description: "Ubicación de Nuevo Centro"
+                    name: "vidrio",
+                    description: "Vidrio"
                 }
             },
             {
-                id: 1,
-                latitude: 39.478688,
-                longitude: -0.365236,
+                id: 4,
+                latitude: 39.4265636,
+                longitude: -0.37924729999997453,
                 junkPointType: {
-                    name: "Jardin de Monforte",
-                    description: "Ubicación del jardín de Monforte"
+                    name: "aceite",
+                    description: "Aceite"
                 }
             },
             {
-                id: 2,
-                latitude: 39.475496,
-                longitude: -0.375662,
+                id: 5,
+                latitude: 39.4551991,
+                longitude: -0.4086612999999488,
                 junkPointType: {
-                    name: "Catedral de Valencia",
-                    description: "Ubicación de la catedral de Valencia"
+                    name: "papel",
+                    description: "Papel"
                 }
             },
             {
-                id: 3,
-                latitude: 39.479172,
-                longitude: -0.390297,
+                id: 6,
+                latitude: 39.4593852,
+                longitude: -0.4402628000000277,
                 junkPointType: {
-                    name: "Nuevo Centro",
-                    description: "Ubicación de Nuevo Centro"
+                    name: "plástico",
+                    description: "Plástico"
                 }
             },
             {
-                id: 1,
-                latitude: 39.478688,
-                longitude: -0.365236,
+                id: 7,
+                latitude: 39.3652727,
+                longitude: -0.4212844999999561,
                 junkPointType: {
-                    name: "Jardin de Monforte",
-                    description: "Ubicación del jardín de Monforte"
+                    name: "raider",
+                    description: "Raider"
                 }
             },
             {
-                id: 2,
-                latitude: 39.475496,
-                longitude: -0.375662,
+                id: 8,
+                latitude: 39.3893925,
+                longitude: -0.3979825000000119,
                 junkPointType: {
-                    name: "Catedral de Valencia",
-                    description: "Ubicación de la catedral de Valencia"
+                    name: "user",
+                    description: "User"
                 }
             },
             {
-                id: 3,
-                latitude: 39.479172,
-                longitude: -0.390297,
+                id: 9,
+                latitude: 39.4500605,
+                longitude: -0.4736546000000317,
                 junkPointType: {
-                    name: "Nuevo Centro",
-                    description: "Ubicación de Nuevo Centro"
-                }
-            },
-            {
-                id: 1,
-                latitude: 39.478688,
-                longitude: -0.365236,
-                junkPointType: {
-                    name: "Jardin de Monforte",
-                    description: "Ubicación del jardín de Monforte"
-                }
-            },
-            {
-                id: 2,
-                latitude: 39.475496,
-                longitude: -0.375662,
-                junkPointType: {
-                    name: "Catedral de Valencia",
-                    description: "Ubicación de la catedral de Valencia"
-                }
-            },
-            {
-                id: 3,
-                latitude: 39.479172,
-                longitude: -0.390297,
-                junkPointType: {
-                    name: "Nuevo Centro",
-                    description: "Ubicación de Nuevo Centro"
+                    name: "Ecoparque Alaquàs Aldaia",
+                    description: "Ubicación del Ecoparque Alaquàs Aldaia"
                 }
             }
         ]
