@@ -1,9 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 
-Vue.use(Vuex)
 
-export const markerModule = new Vuex.Store({
+export default {
+  namespace: true,
   state: {
 
   },
@@ -12,4 +10,4 @@ export const markerModule = new Vuex.Store({
   },
   actions: {
   }
-})
+}
