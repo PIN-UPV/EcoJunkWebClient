@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export const agreementModule = new Vuex.Store({
+export default new Vuex.Store({
   state: {
 
   },
