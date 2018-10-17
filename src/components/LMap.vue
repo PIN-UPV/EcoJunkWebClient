@@ -54,7 +54,7 @@ export default {
     L.control.zoom({ position: "topright" }).addTo(this.lmap);
     var userIcon = L.icon({
       iconUrl: "/icons/user_point.png",
-      iconSize: [50, 50]
+      iconSize: [35, 40]
     });
     this.lmap
       .locate({
