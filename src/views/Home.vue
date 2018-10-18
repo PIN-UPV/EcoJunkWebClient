@@ -3,7 +3,9 @@
   width: 100%;
   height: 100%;
 }
-
+.search-toolbar {
+  margin: 5%;
+}
 .md-card {
   margin: 5px;
   border-style: solid;

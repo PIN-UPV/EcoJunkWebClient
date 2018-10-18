@@ -19,7 +19,10 @@
     top: 0px;
     left: 0px;
     width: 35%;
-    height: 100%;
+    height: 100vh;
+    min-width: 340px;
+    
+    overflow: auto;
     z-index: 999;
     background-color: whitesmoke;
   }
@@ -54,7 +57,7 @@
         </md-list>
       </md-drawer>
 
-      <md-content class="md-elevation-8">
+      <md-content class="md-scrollbar md-elevation-8">
         <router-view v-model="showNavigation" />
       </md-content>
       
