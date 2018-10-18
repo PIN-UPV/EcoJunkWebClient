@@ -66,7 +66,8 @@ export default {
       })
       .on("locationfound", e => {
         if (this.currentLocationMarker != null) {
-          this.currentLocationMarker.setLatLng(L.latLng(e.latitude,e.longitude));
+          var x = Math.random(39, 40);
+          this.currentLocationMarker.setLatLng([e.latitude,e.longitude]);
         } else {
           this.currentLocationMarker = L.marker([e.latitude, e.longitude], {
             icon: userIcon
