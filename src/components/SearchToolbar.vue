@@ -1,8 +1,8 @@
 <style lang="scss" scoped>
 .md-toolbar.search-toolbar {
   width: 90%;
+  min-width: 310px;
   min-height: 50px;
-  margin: 5%;
   padding: 0;
   background-color: white;
   display: flex;
