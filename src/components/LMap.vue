@@ -53,8 +53,8 @@ export default {
 
     L.control.zoom({ position: "topright" }).addTo(this.lmap);
     var userIcon = L.icon({
-      iconUrl: "/icons/user_point.png",
-      iconSize: [50, 50]
+      iconUrl: "/icons/user.png",
+      iconSize: [35, 40]
     });
     this.lmap
       .locate({
@@ -71,7 +71,9 @@ export default {
         this.lmap.setView([e.latitude, e.longitude]);
       });
     this.lmap.invalidateSize();
-  
+
+    this.$store.dispatch("changeMap", this.lmap);
+
     this.ready = true;
   }
 };

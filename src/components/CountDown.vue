@@ -10,7 +10,12 @@ import FlipCountdown from "vue2-flip-countdown";
 
 export default {
   name: "CountDown",
-  components: { FlipCountdown }
+  components: { FlipCountdown },
+  data() {
+    return{
+      
+    }
+  }
 };
 </script>
 

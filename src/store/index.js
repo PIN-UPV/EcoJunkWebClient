@@ -1,16 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import  markerModule  from './marker';
-import  agreementModule from './agreement';
+import markerModule from './marker';
+import agreementModule from './agreement';
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-  state: {
-
-  },
-  modules: {
-    marker: markerModule,
-    agreement: agreementModule
-  }
+    state: {},
+    modules: {
+        marker: markerModule,
+        agreement: agreementModule
+    },
+    mutations: {
+        changeMap(state, map) {
+            state.marker.map = map;
+        }
+    },
+    actions: {
+        changeMap(context, map) {
+            context.commit('changeMap', map);
+        }
+    }
 })

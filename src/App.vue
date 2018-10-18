@@ -50,18 +50,18 @@
             <md-icon>assignment</md-icon>
             <span class="md-list-item-text">Agreements</span>
           </md-list-item>
+
         </md-list>
 
           
       </md-drawer>
 
-      <md-content>
+      <md-content class="md-elevation-8">
         <router-view v-model="showNavigation" />
       </md-content>
       
       <l-map >
-        <l-mark :lat="39.4697992" :long="-0.3791969" />
-        <l-mark :lat="39.4907311" :long="-0.4019578" />
+        <l-mark v-for="item in store.markers" :key="item.id" :lat="item.latitude" :long="item.longitude" :img="item.junkPointType.name"></l-mark>
       </l-map>
 
     </div>
@@ -76,7 +76,8 @@ export default {
   name: "App",
   data() {
     return {
-      showNavigation: false
+      showNavigation: false,
+      store: this.$store.state.marker
     };
   },
   components: {

@@ -25,6 +25,11 @@ export default new Router({
       path: '/form',
       name: 'form',
       component: () => import('../views/FormularioAcuerdo.vue')
+    },
+    {
+      path: '/info',
+      name: 'info',
+      component: () => import('../views/Info.vue')
     }
   ],
   mode: 'history'
