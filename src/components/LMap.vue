@@ -66,7 +66,6 @@ export default {
       })
       .on("locationfound", e => {
         if (this.currentLocationMarker != null) {
-          var x = Math.random(39, 40);
           this.currentLocationMarker.setLatLng([e.latitude,e.longitude]);
         } else {
           this.currentLocationMarker = L.marker([e.latitude, e.longitude], {
