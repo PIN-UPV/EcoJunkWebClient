@@ -3,20 +3,34 @@
   width: 100%;
   height: 100%;
 }
-
+.search-toolbar {
+  margin: 5%;
+}
 .md-card {
   margin: 5px;
   border-style: solid;
   border-width: 1px;
 }
 
+.h2 {
+  margin-left: 10px;
+}
 </style>
 
 <template>
   <div class="home">
-    <s-toolbar @openDrawer="openDrawer" msg="Buscar contenedor" v-model="tipo"/>
-
-    <md-card v-for="item in store.markers" :key="item.id">
+    <s-toolbar @openDrawer="openDrawer" msg="Buscar contenedor"/>
+    <select v-model="filter">
+      <option selected="selected" value="">Seleccione una</option>
+      <option value="aparatos electrónicos">Aparatos electrónicos</option>
+      <option value="baterías">Baterías</option>
+      <option value="aceite">Aceite</option>
+      <option value="papel">Papel</option>
+      <option value="plástico">Plástico</option>
+      <option value="vidrio">Vidrio</option>
+    </select>
+    <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
+    <md-card v-for="item in filteredItems" :key="item.id">
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{ item.junkPointType.name }}</div>
@@ -44,6 +58,12 @@ export default {
   components: {
     "s-toolbar": SToolbar
   },
+  data() {
+    return {
+      store: this.$store.state.marker,
+      filter: ''
+    };
+  },
   props: {
     value: Boolean
   },
@@ -52,16 +72,18 @@ export default {
       this.$emit("input", true);
     },
     setView(lat, long) {
-      this.store.map.setView([lat,long]);
+      this.store.map.setView([lat, long]);
     },
     imageSrc(type) {
-      return 'icons/' + type + '.png';
+      return "icons/" + type + ".png";
     }
   },
-  data() {
-    return {
-      store: this.$store.state.marker
-    };
+  computed: {
+    filteredItems() {
+      return this.store.markers.filter(item => {
+        return item.junkPointType.name.indexOf(this.filter.toLowerCase()) > -1;
+      });
+    }
   }
 };
 </script>

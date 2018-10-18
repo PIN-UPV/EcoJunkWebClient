@@ -1,8 +1,8 @@
 <style lang="scss" scoped>
 .md-toolbar.search-toolbar {
   width: 90%;
+  min-width: 310px;
   min-height: 50px;
-  margin: 5%;
   padding: 0;
   background-color: white;
   display: flex;
@@ -35,7 +35,7 @@
 
         <input type="text" v-bind:placeholder="msg" v-model="filter"/>
 
-        <md-button class="md-icon-button" >
+        <md-button class="md-icon-button">
             <md-icon>search</md-icon>
         </md-button>    
     </md-toolbar>
@@ -45,20 +45,15 @@
 export default {
   name: "SearchToolbar",
   props: {
-    msg: "",
+    msg: String
   },
   methods: {
     openDrawer() {
       this.$emit("openDrawer");
-    },
-    getFilter() {
-      return this.filter;
     }
   },
   data() {
-    return {
-      filter: ''
-    }
+    return { filter: '' };
   }
 };
 </script>

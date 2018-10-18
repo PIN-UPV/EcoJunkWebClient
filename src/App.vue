@@ -19,7 +19,10 @@
     top: 0px;
     left: 0px;
     width: 35%;
-    height: 100%;
+    height: 100vh;
+    min-width: 340px;
+    
+    overflow: auto;
     z-index: 999;
     background-color: whitesmoke;
   }
@@ -38,7 +41,7 @@
         <md-list>
           <md-list-item to="/" @click="showNavigation=false">
             <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Map</span>
+            <span class="md-list-item-text">Home</span>
           </md-list-item>
 
           <md-list-item to="/about" @click="showNavigation=false">
@@ -56,7 +59,7 @@
           
       </md-drawer>
 
-      <md-content class="md-elevation-8">
+      <md-content class="md-scrollbar md-elevation-8">
         <router-view v-model="showNavigation" />
       </md-content>
       
