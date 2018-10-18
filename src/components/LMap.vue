@@ -21,7 +21,8 @@ export default {
     return {
       ready: false,
       lmap: null,
-      zoom: 12
+      zoom: 12,
+      currentLocationMarker: null
     };
   },
   mounted() {
@@ -56,20 +57,27 @@ export default {
       iconUrl: "/icons/user.png",
       iconSize: [35, 40]
     });
+
     this.lmap
       .locate({
         setView: false,
+        watch: true,
         maxZoom: 120
       })
       .on("locationfound", e => {
-        L.marker([e.latitude, e.longitude], {
-          icon: userIcon
-        })
-          .bindPopup(e.latitude + " " + e.longitude)
-          .addTo(this.lmap);
+        if (this.currentLocationMarker != null) {
+          this.currentLocationMarker.setLatLng(L.latLng(e.latitude,e.longitude));
+        } else {
+          this.currentLocationMarker = L.marker([e.latitude, e.longitude], {
+            icon: userIcon
+          })
+            .bindPopup(e.latitude + " " + e.longitude)
+            .addTo(this.lmap);
 
-        this.lmap.setView([e.latitude, e.longitude]);
+          this.lmap.setView([e.latitude, e.longitude]);
+        }
       });
+
     this.lmap.invalidateSize();
 
     this.$store.dispatch("changeMap", this.lmap);

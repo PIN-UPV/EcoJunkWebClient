@@ -10,13 +10,17 @@
   border-width: 1px;
 }
 
+.h2 {
+  margin-left: 10px;
+}
 </style>
 
 <template>
   <div class="home">
-    <s-toolbar @openDrawer="openDrawer" msg="Buscar contenedor" v-model="tipo"/>
+    <s-toolbar @openDrawer="openDrawer" msg="Buscar contenedor"/>
 
-    <md-card v-for="item in store.markers" :key="item.id">
+    <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
+    <md-card v-for="item in filteredItems" :key="item.id">
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{ item.junkPointType.name }}</div>
@@ -44,6 +48,12 @@ export default {
   components: {
     "s-toolbar": SToolbar
   },
+  data() {
+    return {
+      store: this.$store.state.marker,
+      filter: ""
+    };
+  },
   props: {
     value: Boolean
   },
@@ -52,16 +62,18 @@ export default {
       this.$emit("input", true);
     },
     setView(lat, long) {
-      this.store.map.setView([lat,long]);
+      this.store.map.setView([lat, long]);
     },
     imageSrc(type) {
-      return 'icons/' + type + '.png';
+      return "icons/" + type + ".png";
     }
   },
-  data() {
-    return {
-      store: this.$store.state.marker
-    };
+  computed: {
+    filteredItems() {
+      return this.store.markers.filter(item => {
+        return item.junkPointType.name.indexOf(this.filter.toLowerCase()) > -1;
+      });
+    }
   }
 };
 </script>

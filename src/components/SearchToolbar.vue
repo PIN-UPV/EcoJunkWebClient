@@ -45,7 +45,7 @@
 export default {
   name: "SearchToolbar",
   props: {
-    msg: "",
+    msg: String
   },
   methods: {
     openDrawer() {

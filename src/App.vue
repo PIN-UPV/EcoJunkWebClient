@@ -38,7 +38,7 @@
         <md-list>
           <md-list-item to="/" @click="showNavigation=false">
             <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Map</span>
+            <span class="md-list-item-text">Home</span>
           </md-list-item>
 
           <md-list-item to="/about" @click="showNavigation=false">

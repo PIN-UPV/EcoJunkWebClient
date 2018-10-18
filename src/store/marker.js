@@ -70,7 +70,7 @@ export default {
                 latitude: 39.3893925,
                 longitude: -0.3979825000000119,
                 junkPointType: {
-                    name: "user",
+                    name: "raider",
                     description: "User"
                 }
             },
