@@ -18,7 +18,15 @@
 <template>
   <div class="home">
     <s-toolbar @openDrawer="openDrawer" msg="Buscar contenedor"/>
-
+    <select v-model="filter">
+      <option selected="selected" value="">Seleccione una</option>
+      <option value="aparatos electrónicos">Aparatos electrónicos</option>
+      <option value="baterías">Baterías</option>
+      <option value="aceite">Aceite</option>
+      <option value="papel">Papel</option>
+      <option value="plástico">Plástico</option>
+      <option value="vidrio">Vidrio</option>
+    </select>
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
     <md-card v-for="item in filteredItems" :key="item.id">
       <md-card-header>
@@ -51,7 +59,7 @@ export default {
   data() {
     return {
       store: this.$store.state.marker,
-      filter: ""
+      filter: ''
     };
   },
   props: {

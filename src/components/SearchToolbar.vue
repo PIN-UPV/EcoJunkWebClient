@@ -35,7 +35,7 @@
 
         <input type="text" v-bind:placeholder="msg" v-model="filter"/>
 
-        <md-button class="md-icon-button" >
+        <md-button class="md-icon-button">
             <md-icon>search</md-icon>
         </md-button>    
     </md-toolbar>
@@ -50,15 +50,10 @@ export default {
   methods: {
     openDrawer() {
       this.$emit("openDrawer");
-    },
-    getFilter() {
-      return this.filter;
     }
   },
   data() {
-    return {
-      filter: ''
-    }
+    return { filter: '' };
   }
 };
 </script>
