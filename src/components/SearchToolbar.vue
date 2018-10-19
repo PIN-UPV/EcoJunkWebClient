@@ -33,7 +33,7 @@
             <md-icon>menu</md-icon>
         </md-button>
 
-        <input type="text" v-bind:placeholder="msg" v-model="filter"/>
+        <input type="text" :value="value" :placeholder="msg" @input="updateText" ref="mytext"/>
 
         <md-button class="md-icon-button">
             <md-icon>search</md-icon>
@@ -45,15 +45,16 @@
 export default {
   name: "SearchToolbar",
   props: {
+    value: String,
     msg: String
   },
   methods: {
     openDrawer() {
       this.$emit("openDrawer");
+    },
+    updateText: function() {
+      this.$emit("input", this.$refs.mytext.value);
     }
-  },
-  data() {
-    return { filter: '' };
   }
 };
 </script>

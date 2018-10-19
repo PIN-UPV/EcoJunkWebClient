@@ -38,18 +38,18 @@
           <span class="md-title">EcoJunk</span>
         </md-toolbar>
 
-        <md-list>
-          <md-list-item to="/" @click="showNavigation=false">
+        <md-list @click="showNavigation=false">
+          <md-list-item to="/">
             <md-icon>move_to_inbox</md-icon>
             <span class="md-list-item-text">Home</span>
           </md-list-item>
 
-          <md-list-item to="/about" @click="showNavigation=false">
+          <md-list-item to="/about">
             <md-icon>send</md-icon>
             <span class="md-list-item-text">About</span>
           </md-list-item>
 
-          <md-list-item to="/agreements" @click="showNavigation=false">
+          <md-list-item to="/agreements">
             <md-icon>assignment</md-icon>
             <span class="md-list-item-text">Agreements</span>
           </md-list-item>

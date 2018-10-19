@@ -8,10 +8,9 @@
 }
 .md-card {
   margin: 5px;
-  border-style: solid;
+  border-style: solid 1px lightgrey;
   border-width: 1px;
 }
-
 .h2 {
   margin-left: 10px;
 }
@@ -19,8 +18,8 @@
 
 <template>
   <div class="home">
-    <s-toolbar @openDrawer="openDrawer" msg="Buscar contenedor"/>
-    <select v-model="filter">
+    <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
+    <!-- <select v-model="filter">
       <option selected="selected" value="">Seleccione una</option>
       <option value="aparatos electrónicos">Aparatos electrónicos</option>
       <option value="baterías">Baterías</option>
@@ -28,7 +27,7 @@
       <option value="papel">Papel</option>
       <option value="plástico">Plástico</option>
       <option value="vidrio">Vidrio</option>
-    </select>
+    </select> -->
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
     <md-card v-for="item in filteredItems" :key="item.id">
       <md-card-header>
@@ -61,6 +60,7 @@ export default {
   data() {
     return {
       store: this.$store.state.marker,
+      search: '', 
       filter: ''
     };
   },
@@ -80,9 +80,7 @@ export default {
   },
   computed: {
     filteredItems() {
-      return this.store.markers.filter(item => {
-        return item.junkPointType.name.indexOf(this.filter.toLowerCase()) > -1;
-      });
+      return this.$store.getters['marker/filterMarksByName'](this.filter)
     }
   }
 };
