@@ -1,34 +1,43 @@
 <template>
   <div>
-    <h1>datos</h1>
-    <md-table>
 
-      <md-table-row v-for="item in store.agreements" :key="item.id">
-        <md-table-cell md-label="ID">{{ item.id }}</md-table-cell>
-        <!--<md-table-cell md-label="User">{{ item.user.name }}</md-table-cell>
-        <md-table-cell md-label="Rider">{{ item.rider.name }}</md-table-cell>
-        <md-table-cell md-label="Junk">{{ item.junk.name }}</md-table-cell>
-        <md-table-cell md-label="Date">{{ item.date}}</md-table-cell>-->
-      </md-table-row>
-    </md-table>
-    <md-button to="/agreements" class="md-raised md-primary">
-           Return
-    </md-button>
+    <md-card md-with-hover>
+      <md-ripple>
+        <md-card-header>
+          <div class="md-title">{{id.id}}</div>
+          <div class="md-subhead">User: {{id.user.name}}</div>
+        </md-card-header>
+
+        <md-card-content>
+          Description: {{id.junk.name}} 
+          Date: {{id.date}}
+          Price: {{id.price}}
+        </md-card-content>
+
+        <md-card-actions>
+        <md-button to="/">Aceptar Acuerdo</md-button>
+        <md-button to="/agreements">Rechazar Acuerdo</md-button>
+      </md-card-actions>
+      </md-ripple>
+    </md-card>
   </div>
 </template>
 
+
+
+
 <script>
   export default {
-    name: 'TableTemplate',
+    name: 'info',
     data(){
         return{
-            store: this.$store.state.agreement
+            store: this.$store.state.agreement,
+            id: 0
         }
     },
-    methods: {
-       getInfo() {
-      this.$emit("index", true);
-    }
+        created() {
+            this.id = this.$route.params.id;
+
     }
   }
 </script>

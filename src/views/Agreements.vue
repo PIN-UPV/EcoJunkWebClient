@@ -3,14 +3,20 @@
   width: 100%;
   height: 100%;
 }
+.md-dialog{
+  position: fixed;
+  top: 300px;
+  right: 500px;
+  width: 100%;
+  height: 100%;
+}
 </style>
 
 <template>
   <div class="agreements">
     <s-toolbar @openDrawer="openDrawer" msg="Buscar acuerdo"/>
-    <h1>Bienvenido a Agreements</h1>
     
-    <md-card v-for="item in store.agreements" :key="item.id">
+    <md-card v-for="item in store.agreements" :key="item.id" v-bind:index="item.id">
       
       <md-card-header>
         <md-card-header-text>
@@ -19,7 +25,7 @@
         </md-card-header-text>
 
         <md-card-actions>
-          <md-button to="/info" class="md-raised md-primary" @click="getInfo">
+          <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary" @click="getInfo">
            info
           </md-button>
         </md-card-actions>
@@ -30,6 +36,7 @@
       <md-button to="/form" class="md-fab md-accent">
         <md-icon>add</md-icon>
       </md-button>  
+
       </div>
 </template>
 
@@ -50,14 +57,11 @@ export default {
     "s-toolbar": SToolbar
   },
   props: {
-    value: String
+    index: Number
   },
   methods: {
     openDrawer() {
       this.$emit("input", true);
-    },
-    getInfo() {
-      this.$emit("index");
     }
   },
   data() {

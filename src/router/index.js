@@ -27,7 +27,7 @@ export default new Router({
       component: () => import('../views/FormularioAcuerdo.vue')
     },
     {
-      path: '/info',
+      path: '/info/:id',
       name: 'info',
       component: () => import('../views/Info.vue')
     }
