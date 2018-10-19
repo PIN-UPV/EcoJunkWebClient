@@ -20,6 +20,16 @@ export default new Router({
       path: '/agreements',
       name: 'agreements',
       component: () => import('../views/Agreements.vue')
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: () => import('../views/FormularioAcuerdo.vue')
+    },
+    {
+      path: '/info/:id',
+      name: 'info',
+      component: () => import('../views/Info.vue')
     }
   ],
   mode: 'history'
