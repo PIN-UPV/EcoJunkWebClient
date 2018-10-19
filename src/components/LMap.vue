@@ -80,7 +80,7 @@ export default {
 
     this.lmap.invalidateSize();
 
-    this.$store.dispatch("changeMap", this.lmap);
+    this.$store.dispatch("marker/CHANGE_MAP", this.lmap);
 
     this.ready = true;
   }

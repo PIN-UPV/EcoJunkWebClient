@@ -60,9 +60,14 @@ export default {
   data() {
     return {
       store: this.$store.state.marker,
-      search: '', 
-      filter: ''
+      search: "",
+      filter: ""
     };
+  },
+  computed: {
+    filteredItems() {
+      return this.$store.getters["marker/filterMarksByName"](this.filter);
+    }
   },
   props: {
     value: Boolean
@@ -78,10 +83,8 @@ export default {
       return "icons/" + type + ".png";
     }
   },
-  computed: {
-    filteredItems() {
-      return this.$store.getters['marker/filterMarksByName'](this.filter)
-    }
+  created() {
+    this.$store.dispatch("marker/LOAD_MARKS");
   }
 };
 </script>
