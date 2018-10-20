@@ -4,7 +4,8 @@ export default {
     namespaced: true,
     state: {
         map: null,
-        markers: [{
+        markers: []
+        /*{
                 id: 1,
                 latitude: 39.4925663,
                 longitude: -0.3352995000000192,
@@ -84,8 +85,7 @@ export default {
                     name: "Ecoparque Alaquàs Aldaia",
                     description: "Ubicación del Ecoparque Alaquàs Aldaia"
                 }
-            }
-        ]
+            }*/
     },
     getters: {
         filterMarksByName: (state) => (filter) => {
@@ -96,7 +96,7 @@ export default {
     },
     mutations: {
         ['LOAD_MARKS']: (state, marks) => {
-            state.markers.concat(marks);
+            state.markers = state.markers.concat(marks);
         },
         ['CHANGE_MAP']: (state, map) => {
             state.map = map;
@@ -109,9 +109,8 @@ export default {
         ['LOAD_MARKS']: ({ commit, rootState}) => {{
                 commit('STATUS_LOADING',null,{root: true})
                 axios({
-                        url: rootState.apiPath + '/junk_points', 
-                        method: 'GET',
-                        crossDomain: true,
+                        url: rootState.apiPath + '/junk_points/', 
+                        method: 'GET'
                     })
                     .then(resp => {
                         commit('STATUS_SUCCES',null,{root: true})
