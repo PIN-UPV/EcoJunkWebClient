@@ -89,7 +89,7 @@ export default {
     getters: {
         filterMarksByName: (state) => (filter) => {
             return state.markers.filter((mark) => {
-                return mark.junkPointType.name.indexOf(filter.toLowerCase()) > -1;
+                return mark.junkPointType.description.toLowerCase().indexOf(filter.toLowerCase()) > -1;
             });
         }
     },

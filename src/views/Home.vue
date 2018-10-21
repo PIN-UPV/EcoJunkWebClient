@@ -33,7 +33,7 @@
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{ item.junkPointType.description }}</div>
-          <div class="md-subhead">{{item.junkPointType.direction}}</div>
+          <div class="md-subhead">{{ item.junkPointType.direction }}</div>
         </md-card-header-text>
       </md-card-header>
     </md-card>
