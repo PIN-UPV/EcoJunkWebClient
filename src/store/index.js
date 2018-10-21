@@ -6,6 +6,7 @@ import agreementModule from './agreement';
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
+    //strict: true,
     state: {
         apiPath: 'http://localhost:8000/api/v1',
         status: '',
@@ -16,8 +17,8 @@ export const store = new Vuex.Store({
         agreement: agreementModule
     },
     mutations: {
-        ['STATUS_SUCCES']: (state) => {
-            state.status = 'succes'
+        ['STATUS_SUCCESS']: (state) => {
+            state.status = 'success'
         },
         ['STATUS_LOADING']: (state) => {
             state.status = 'loading'

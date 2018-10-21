@@ -113,7 +113,7 @@ export default {
                         method: 'GET'
                     })
                     .then(resp => {
-                        commit('STATUS_SUCCES',null,{root: true})
+                        commit('STATUS_SUCCESS',null,{root: true})
                         commit('LOAD_MARKS', resp.data.results)
                     })
                     .catch(err => {
