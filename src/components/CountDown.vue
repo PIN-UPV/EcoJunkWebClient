@@ -1,6 +1,6 @@
 <template>
   <div>
-      <flip-countdown deadline="2019-10-11 00:00:00"></flip-countdown>
+      <flip-countdown :deadline="deadline"></flip-countdown>
   </div>
 </template>
 
@@ -11,10 +11,8 @@ import FlipCountdown from "vue2-flip-countdown";
 export default {
   name: "CountDown",
   components: { FlipCountdown },
-  data() {
-    return{
-      
-    }
+  props: {
+      deadline: String
   }
 };
 </script>

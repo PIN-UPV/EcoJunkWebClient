@@ -20,15 +20,10 @@
       <md-textarea v-model="description" md-autogrow md-counter="200"></md-textarea>
     </md-field>
 
-    <timer :md-active.sync="showTimer">
-      </timer>
-
-    <md-button class="md-raised md-primary">Aceptar</md-button>
+    <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
     <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
-  
-    
 
-    
+    <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
     
   </div>
 </template>
@@ -47,10 +42,33 @@ export default {
     price: null,
     description: null,
     textarea: null,
-    showTimer: false
+    showTimer: false,
+    deadline: null
   }),
   components: {
     timer: TIMER
+  },
+  methods: {
+    //2019-10-11 00:00:00
+    addAgreement() {
+      var now = new Date();
+      now.setTime(now.getTime() + 1000 * 60 * 60 * 24);
+
+      this.deadline =
+        now.getFullYear() +
+        "-" +
+        (now.getMonth() + 1) +
+        "-" +
+        now.getDate() +
+        " " +
+        now.getHours() +
+        ":" +
+        now.getMinutes() +
+        ":" +
+        now.getSeconds();
+
+      this.showTimer = true;
+    }
   }
 };
 </script>
