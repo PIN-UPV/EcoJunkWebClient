@@ -84,7 +84,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("marker/LOAD_MARKS");
+    //this.$store.dispatch("marker/LOAD_MARKS");
   }
 };
 </script>

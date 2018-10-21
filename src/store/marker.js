@@ -1,11 +1,11 @@
-import axios from 'axios'
+//import axios from 'axios'
 
 export default {
     namespaced: true,
     state: {
         map: null,
-        markers: []
-        /*{
+        markers: [
+        {
                 id: 1,
                 latitude: 39.4925663,
                 longitude: -0.3352995000000192,
@@ -85,7 +85,7 @@ export default {
                     name: "Ecoparque Alaquàs Aldaia",
                     description: "Ubicación del Ecoparque Alaquàs Aldaia"
                 }
-            }*/
+            }]
     },
     getters: {
         filterMarksByName: (state) => (filter) => {
@@ -105,8 +105,8 @@ export default {
     actions: {        
         ['CHANGE_MAP']: ({ commit }, map) => {
             commit('CHANGE_MAP', map);
-        },
-        ['LOAD_MARKS']: ({ commit, rootState}) => {{
+        }
+        /*['LOAD_MARKS']: ({ commit, rootState}) => {{
                 commit('STATUS_LOADING',null,{root: true})
                 axios({
                         url: rootState.apiPath + '/junk_points/', 
@@ -120,6 +120,6 @@ export default {
                         commit('STATUS_ERROR', err,{root: true})
                     })
             }
-        }
+        }*/
     }
 }
