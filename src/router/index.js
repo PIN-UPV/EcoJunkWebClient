@@ -15,15 +15,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import('../views/About.vue')
-<<<<<<< HEAD
     }, 
     {
       path: '/markinfo',
       name: 'markInfo',
       component: () => import('../views/MarkInfo.vue')
-    } 
-  ]
-=======
     },
     {
       path: '/agreements',
@@ -42,5 +38,4 @@ export default new Router({
     }
   ],
   mode: 'history'
->>>>>>> master
 })
