@@ -3,19 +3,30 @@
   width: 100%;
   height: 100%;
 }
-.md-dialog{
-  position: fixed;
-  top: 300px;
-  right: 500px;
-  width: 100%;
-  height: 100%;
+.agreements .fixed-right {
+  float: right;
 }
 </style>
 
 <template>
   <div class="agreements">
-    <s-toolbar @openDrawer="openDrawer" msg="Buscar acuerdo"/>
-    
+    <!-- <s-toolbar @openDrawer="openDrawer" msg="Buscar acuerdo"/> -->
+    <md-toolbar class="md-large md-primary">
+      <div class="md-toolbar-row">
+        <div class="md-toolbar-section-start">
+          <md-button @click="openDrawer" class="md-icon-button">
+            <md-icon>menu</md-icon>
+          </md-button>
+        </div>
+
+      </div>
+
+      <div class="md-toolbar-row md-toolbar-offset">
+        
+      </div>
+    </md-toolbar>
+
+    <!-- -->
     <md-card v-for="item in store.agreements" :key="item.id" v-bind:index="item.id">
       
       <md-card-header>
@@ -33,18 +44,13 @@
       </md-card-header>
     </md-card>
 
-      <md-button to="/form" class="md-fab md-accent">
+      <md-button to="/form" class="md-fab md-accent fixed-right">
         <md-icon>add</md-icon>
       </md-button>  
 
       </div>
 </template>
 
-<style lang="scss" scoped>
-.md-card {
-  margin: 5px;
-}
-</style>
 
 <script>
 import SToolbar from "@/components/SearchToolbar";

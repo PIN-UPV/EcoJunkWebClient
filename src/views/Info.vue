@@ -1,5 +1,15 @@
 <template>
   <div>
+    <md-toolbar class="md-dense md-primary">
+      <div class="md-toolbar-row">
+        <div class="md-toolbar-section-start">
+          <md-button @click="openDrawer" class="md-icon-button">
+            <md-icon>menu</md-icon>
+          </md-button>
+        </div>
+
+      </div>
+    </md-toolbar>
 
     <md-card md-with-hover>
       <md-ripple>
