@@ -15,6 +15,7 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: () => import('../views/About.vue')
+<<<<<<< HEAD
     }, 
     {
       path: '/markinfo',
@@ -22,4 +23,24 @@ export default new Router({
       component: () => import('../views/MarkInfo.vue')
     } 
   ]
+=======
+    },
+    {
+      path: '/agreements',
+      name: 'agreements',
+      component: () => import('../views/Agreements.vue')
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: () => import('../views/FormularioAcuerdo.vue')
+    },
+    {
+      path: '/info/:id',
+      name: 'info',
+      component: () => import('../views/Info.vue')
+    }
+  ],
+  mode: 'history'
+>>>>>>> master
 })
