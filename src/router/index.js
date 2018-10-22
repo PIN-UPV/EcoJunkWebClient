@@ -30,6 +30,16 @@ export default new Router({
       path: '/info/:id',
       name: 'info',
       component: () => import('../views/Info.vue')
+    }, 
+    {
+      path: '/acepted',
+      name: 'acepted',
+      component: () => import('../views/Acepted.vue')
+    },
+    {
+      path: '/rejected',
+      name: 'rejected',
+      component: () => import('../views/Rejected.vue')
     }
   ],
   mode: 'history'
