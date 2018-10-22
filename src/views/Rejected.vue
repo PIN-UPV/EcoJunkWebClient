@@ -1,5 +1,5 @@
 <style scoped>
-.agreements {
+.rejected {
   width: 100%;
   height: 95%;
 }
@@ -15,8 +15,15 @@
 }
 </style>
 
+<style lang="scss" scoped>
+.md-card {
+  margin: 5px;
+}
+</style>
+
+
 <template>
-  <div class="agreements">
+  <div class="rejected">
     <s-toolbar @openDrawer="openDrawer" msg="Buscar acuerdo"/>
     
     <md-tabs md-sync-route>
@@ -24,7 +31,7 @@
       <md-tab id="tab-pages" md-label="Accepted" to="/acepted"></md-tab>
       <md-tab id="tab-posts" md-label="Rejected" to="/rejected"></md-tab>
     </md-tabs>
-    <md-card v-for="item in store.agreements" :key="item.id" v-bind:index="item.id">
+    <md-card v-for="item in store.agreementsRejected" :key="item.id" v-bind:index="item.id">
       
       <md-card-header>
         <md-card-header-text>
@@ -32,7 +39,7 @@
           <div class="md-subhead">Acuerdo del usuario: {{ item.user.name }}</div>
         </md-card-header-text>
 
-        <md-card-actions>
+      <md-card-actions>
           <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
            info
           </md-button>
@@ -46,14 +53,8 @@
       </md-button>  
     
 
-      </div>
+  </div>
 </template>
-
-<style lang="scss" scoped>
-.md-card {
-  margin: 5px;
-}
-</style>
 
 <script>
 import SToolbar from "@/components/SearchToolbar";
@@ -61,7 +62,7 @@ import { store } from "@/store/index.js";
 
 export default {
   store,
-  name: "agreements",
+  name: "rejected",
   components: {
     "s-toolbar": SToolbar
   },

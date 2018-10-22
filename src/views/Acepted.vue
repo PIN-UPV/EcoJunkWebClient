@@ -1,5 +1,5 @@
 <style scoped>
-.agreements {
+.acepted {
   width: 100%;
   height: 95%;
 }
@@ -13,10 +13,16 @@
 .search-toolbar {
   margin: 5%;
 }
+.md-card {
+  margin: 5px;
+}
 </style>
 
+
+
+
 <template>
-  <div class="agreements">
+  <div class="acepted">
     <s-toolbar @openDrawer="openDrawer" msg="Buscar acuerdo"/>
     
     <md-tabs md-sync-route>
@@ -24,7 +30,7 @@
       <md-tab id="tab-pages" md-label="Accepted" to="/acepted"></md-tab>
       <md-tab id="tab-posts" md-label="Rejected" to="/rejected"></md-tab>
     </md-tabs>
-    <md-card v-for="item in store.agreements" :key="item.id" v-bind:index="item.id">
+    <md-card v-for="item in store.agreementsAcepted" :key="item.id" v-bind:index="item.id">
       
       <md-card-header>
         <md-card-header-text>
@@ -46,14 +52,8 @@
       </md-button>  
     
 
-      </div>
+  </div>
 </template>
-
-<style lang="scss" scoped>
-.md-card {
-  margin: 5px;
-}
-</style>
 
 <script>
 import SToolbar from "@/components/SearchToolbar";
@@ -61,7 +61,7 @@ import { store } from "@/store/index.js";
 
 export default {
   store,
-  name: "agreements",
+  name: "acepted",
   components: {
     "s-toolbar": SToolbar
   },
