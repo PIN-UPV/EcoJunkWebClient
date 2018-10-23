@@ -20,7 +20,7 @@
         </md-card-header>
 
         <md-card-content>
-          Description: {{id.junk.name}} 
+          Description: {{id.junk.name}}
           Date: {{id.date}}
           Price: {{id.price}}
           Location: {{id.location}}

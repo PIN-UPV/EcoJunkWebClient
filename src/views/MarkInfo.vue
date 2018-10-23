@@ -9,14 +9,16 @@
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
-          <div class="md-title">{{id.name}}</div>
+          <div class="md-title">Punto de Recogida {{query.id}}</div>
         </md-card-header>
 
         <md-card-content>
-          <p>Description:</p>
-          <p>Date:</p> 
-          <p>Price:</p> 
-          <p>Location:</p> 
+          <b>Nombre</b> 
+          <p>{{junkPoint.description}}</p>
+          <b>Descripción </b> 
+          <p>Este punto recoge y procesa {{junkPoint.description}}</p> 
+          <b>Localización </b>
+          <p>{{junkPoint.direction}}</p> 
         </md-card-content>
 
       </md-ripple>
@@ -30,11 +32,12 @@
     name: 'DialogCustom',
     data: () => ({
       showDialog: true,
-      value: this.$store.state.marker,
-      id: 1
+      query: 0,
+      junkPoint: 0
     }), 
     created(){
-      this.id = this.$route.params.id
+      this.query = this.$route.query
+      this.junkPoint = this.$route.query.junkPointType
     },
     methods: {
       returnToMap(){
