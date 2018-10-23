@@ -12,8 +12,8 @@
     </md-field>
 
     <md-field>
-      <label>Raider</label>
-      <md-input v-model="newAgreement.raider.name" md-counter="30"></md-input>
+      <label>Rider</label>
+      <md-input v-model="newAgreement.rider.name" md-counter="30"></md-input>
     </md-field>
 
     <md-field>
@@ -60,7 +60,7 @@ export default {
     user: {
       name: null
       },
-    raider:{
+    rider:{
       name: null
     },
     junk:{
@@ -84,7 +84,7 @@ export default {
    clearForm: function(){
         this.newAgreement.id= ''
         this.newAgreement.user= ''
-        this.newAgreement.raider.name= ''
+        this.newAgreement.rider.name= ''
         this.newAgreement.user.name= ''
         this.newAgreement.junk.name= ''
         this.newAgreement.date= ''
