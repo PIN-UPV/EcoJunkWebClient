@@ -20,6 +20,32 @@ export default new Router({
       path: '/markinfo',
       name: 'markInfo',
       component: () => import('../views/MarkInfo.vue')
-    } 
-  ]
+    },
+    {
+      path: '/agreements',
+      name: 'agreements',
+      component: () => import('../views/Agreements.vue')
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: () => import('../views/FormularioAcuerdo.vue')
+    },
+    {
+      path: '/info/:id',
+      name: 'info',
+      component: () => import('../views/Info.vue')
+    }, 
+    {
+      path: '/acepted',
+      name: 'acepted',
+      component: () => import('../views/Acepted.vue')
+    },
+    {
+      path: '/rejected',
+      name: 'rejected',
+      component: () => import('../views/Rejected.vue')
+    }
+  ],
+  mode: 'history'
 })
