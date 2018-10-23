@@ -2,37 +2,37 @@
   <div id = "form">
 
     <md-field>
-      <label>Id</label>
+      <label>Nombre</label>
       <md-input v-model="newAgreement.id" md-counter="30"></md-input>
     </md-field>
 
     <md-field>
-      <label>User</label>
+      <label>Usuario</label>
       <md-input v-model="newAgreement.user.name" md-counter="30"></md-input>
     </md-field>
 
     <md-field>
-      <label>Raider</label>
-      <md-input v-model="newAgreement.raider.name" md-counter="30"></md-input>
+      <label>Rider</label>
+      <md-input v-model="newAgreement.rider.name" md-counter="30"></md-input>
     </md-field>
 
     <md-field>
-      <label>Junk</label>
+      <label>Residuo</label>
       <md-input v-model="newAgreement.junk.name" md-counter="30"></md-input>
     </md-field>
 
     <md-field>
-      <label>Date</label>
+      <label>Fecha</label>
       <md-input v-model="newAgreement.date" md-counter="30"></md-input>
     </md-field>
 
     <md-field :md-counter="false">
-      <label>Price €</label>
+      <label>Precio (€)</label>
       <md-input v-model="newAgreement.price" maxlength="10"></md-input>
     </md-field>
 
     <md-field>
-      <label>Location</label>
+      <label>Ubicación</label>
       <md-input v-model="newAgreement.location" maxlength="30"></md-input>
     </md-field>
 
@@ -56,41 +56,52 @@ export default {
   name: "Counters",
   data: () => ({
     newAgreement:{
-    id: null,
+    id: '',
     user: {
-      name: null
+      name: ''
       },
-    raider:{
-      name: null
+    rider:{
+      name: ''
     },
     junk:{
-      name: null
+      name: ''
     },
-    date: null,
-    location: null,
-    price: null,
+    date: '',
+    location: '',
+    price: '',
     },
-    textarea: null,
-    deadline: null
+    textarea: '',
+    deadline: ''
   }),
   methods: {
    ...mapMutations([
      'ADD_AGREEMENT'
    ]),
    addAgreement: function(){
+        if ( this.newAgreement.id == '' ||
+            this.newAgreement.user == '' ||
+            this.newAgreement.rider.name == '' ||
+            this.newAgreement.user.name == '' ||
+            this.newAgreement.junk.name == '' ||
+            this.newAgreement.date == '' ||
+            this.newAgreement.location == '' ||
+            this.newAgreement.price == ''
+        ) {
+          alert("Campos vacíos");
+          return;
+        }
         this.ADD_AGREEMENT(this.newAgreement);
-        this.$router.push('/agreements')
+        this.$router.push('agreements')
    },
    clearForm: function(){
         this.newAgreement.id= ''
         this.newAgreement.user= ''
-        this.newAgreement.raider.name= ''
+        this.newAgreement.rider.name= ''
         this.newAgreement.user.name= ''
         this.newAgreement.junk.name= ''
         this.newAgreement.date= ''
         this.newAgreement.location= ''
         this.newAgreement.price= ''
-
    }
   }
 };

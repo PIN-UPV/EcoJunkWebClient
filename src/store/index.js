@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     //strict: true,
     state: {
-        apiPath: 'http://localhost:8000/api/v1',
+        apiPath: 'http://192.168.99.100:8000/api/v1',
         status: '',
         errorMsg: ''
     },

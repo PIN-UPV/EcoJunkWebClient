@@ -1,4 +1,4 @@
-//import axios from 'axios'
+import axios from 'axios'
 
 export default {
     namespaced: true,
@@ -119,22 +119,23 @@ export default {
     },
     actions: {
         ['CHANGE_MAP']: ({ commit }, map) => {
-                commit('CHANGE_MAP', map);
+            commit('CHANGE_MAP', map);
+        },
+        ['LOAD_MARKS']: ({ commit, rootState }) => {
+            {
+                commit('STATUS_LOADING', null, { root: true })
+                axios({
+                        url: rootState.apiPath + '/junk_points/',
+                        method: 'GET'
+                    })
+                    .then(resp => {
+                        commit('STATUS_SUCCESS', null, { root: true })
+                        commit('LOAD_MARKS', resp.data.results)
+                    })
+                    .catch(err => {
+                        commit('STATUS_ERROR', err, { root: true })
+                    })
             }
-            /*['LOAD_MARKS']: ({ commit, rootState}) => {{
-                    commit('STATUS_LOADING',null,{root: true})
-                    axios({
-                            url: rootState.apiPath + '/junk_points/', 
-                            method: 'GET'
-                        })
-                        .then(resp => {
-                            commit('STATUS_SUCCESS',null,{root: true})
-                            commit('LOAD_MARKS', resp.data.results)
-                        })
-                        .catch(err => {
-                            commit('STATUS_ERROR', err,{root: true})
-                        })
-                }
-            }*/
+        }
     }
 }

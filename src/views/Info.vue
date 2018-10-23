@@ -11,7 +11,6 @@
       </div>
     </md-toolbar>
 
-
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
@@ -20,10 +19,10 @@
         </md-card-header>
 
         <md-card-content>
-          Description: {{id.junk.name}} 
-          Date: {{id.date}}
-          Price: {{id.price}}
-          Location: {{id.location}}
+          <p>Descripción: {{id.junk.name}}</p>
+          <p>Fecha: {{id.date}}</p>
+          <p>Precio: {{id.price}}</p>
+          <p>Ubicación: {{id.location}}</p>
         </md-card-content>
 
         <md-card-actions>
@@ -34,12 +33,8 @@
       <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
     </md-card>
 
-    
   </div>
 </template>
-
-
-
 
 <script>
 import { mapMutations } from "vuex";
