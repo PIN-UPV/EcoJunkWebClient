@@ -19,7 +19,24 @@ export default new Router({
     {
       path: '/agreements',
       name: 'agreements',
-      component: () => import('../views/Agreements.vue')
+      component: () => import('../views/Agreements/Container.vue'),
+      children: [
+        {
+          path: '',
+          name: 'allAgreements',
+          component: () => import('../views/Agreements/AllAgreements.vue')
+        },
+        {
+          path: '/acepted',
+          name: 'acepted',
+          component: () => import('../views/Agreements/Acepted.vue')
+        },
+        {
+          path: '/rejected',
+          name: 'rejected',
+          component: () => import('../views/Agreements/Rejected.vue')
+        }
+      ]
     },
     {
       path: '/form',
@@ -30,17 +47,8 @@ export default new Router({
       path: '/info/:id',
       name: 'info',
       component: () => import('../views/Info.vue')
-    }, 
-    {
-      path: '/acepted',
-      name: 'acepted',
-      component: () => import('../views/Acepted.vue')
     },
-    {
-      path: '/rejected',
-      name: 'rejected',
-      component: () => import('../views/Rejected.vue')
-    }
+
   ],
   mode: 'history'
 })

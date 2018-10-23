@@ -20,10 +20,10 @@
         </md-card-header>
 
         <md-card-content>
-          Description: {{id.junk.name}} 
-          Date: {{id.date}}
-          Price: {{id.price}}
-          Location: {{id.location}}
+          <p>Description: {{id.junk.name}}</p>
+          <p>Date: {{id.date}}</p>
+          <p>Price: {{id.price}}</p>
+          <p>Location: {{id.location}}</p>
         </md-card-content>
 
         <md-card-actions>
