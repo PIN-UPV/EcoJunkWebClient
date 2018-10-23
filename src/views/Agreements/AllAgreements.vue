@@ -1,7 +1,6 @@
 <style scoped>
 .allAgreements {
   width: 100%;
-
 }
 .md-dialog {
   position: fixed;
@@ -23,28 +22,19 @@
 
 <template>
   <div class="allAgreements">
-    
-
     <md-card v-for="item in store.agreements" :key="item.id" v-bind:index="item.id">
-      
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>
           <div class="md-subhead">Acuerdo del usuario: {{ item.user.name }}</div>
         </md-card-header-text>
-
         <md-card-actions>
           <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
            info
           </md-button>
-        </md-card-actions>
-
-        
+        </md-card-actions>  
       </md-card-header>
     </md-card>
-
-
-
   </div>
 </template>
 

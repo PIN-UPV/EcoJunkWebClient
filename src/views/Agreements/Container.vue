@@ -39,9 +39,8 @@
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>
-          <div class="md-subhead">Acuerdo entre {{ item.user.name }} y {{item.rider.name}}</div>
+          <div class="md-subhead">Acuerdo entre {{ item.user.name }} y {{ item.rider.name }}</div>
         </md-card-header-text>
-
         <md-card-actions>
           <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
            info

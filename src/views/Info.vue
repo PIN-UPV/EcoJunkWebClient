@@ -11,7 +11,6 @@
       </div>
     </md-toolbar>
 
-
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
@@ -34,12 +33,8 @@
       <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
     </md-card>
 
-    
   </div>
 </template>
-
-
-
 
 <script>
 import { mapMutations } from "vuex";
