@@ -5,83 +5,99 @@ export default {
     state: {
         map: null,
         markers: [{
-                id: 1,
-                latitude: 39.4925663,
-                longitude: -0.3352995000000192,
-                junkPointType: {
-                    name: "baterías",
-                    description: "Contenedor de baterías",
-                    direction: "Calle Partida Calvet, 4, 46120 Alboraya, Valencia"
+                street_name: "Calle Partida Calvet, 4, 46120 Alboraya, Valencia",
+                description: "Contenedor de baterías",
+                location: {
+                    type: "Point",
+                    coordinates: [39.4925663, -0.3352995000000192]
+                },
+                type: {
+                    name: 'baterías',
+                    description: 'Contenedor de baterías'
                 }
             },
             {
-                id: 2,
-                latitude: 39.47195019999999,
-                longitude: -0.37658250000004045,
-                junkPointType: {
-                    name: "aparatos electrónicos",
-                    description: "Contenedor de aparatos electrónicos",
-                    direction: "Plaza del Ayuntamiento, 9, 46002 Valencia"
+                street_name: "Plaza del Ayuntamiento,9,46002 Valencia",
+                description: "Contenedor de aparatos electrónicos",
+                location: {
+                    type: "Point",
+                    coordinates: [39.47195019999999, -0.37658250000004045]
+                },
+                type: {
+                    name: 'aparatos electrónicos',
+                    description: 'Contenedor de aparatos electrónicos'
                 }
             },
             {
-                id: 3,
-                latitude: 39.5121979,
-                longitude: -0.34500600000001214,
-                junkPointType: {
-                    name: "vidrio",
-                    description: "Contenedor de vidrio",
-                    direction: "Partida de la Mar, 45, 46132 Almàssera, València"
+                street_name: "Partida de la Mar, 45, 46132 Almàssera, València",
+                description: "Contenedor de vidrio",
+                location: {
+                    type: "Point",
+                    coordinates: [39.5121979, -0.34500600000001214]
+                },
+                type: {
+                    name: 'vidrio',
+                    description: 'Contenedor de vidrio'
                 }
             },
             {
-                id: 4,
-                latitude: 39.4265636,
-                longitude: -0.37924729999997453,
-                junkPointType: {
-                    name: "aceite",
-                    description: "Contenedor de aceite",
-                    direction: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València"
+                street_name: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València",
+                description: "Contenedor de aceite",
+                location: {
+                    type: "Point",
+                    coordinates: [39.4265636, -0.37924729999997453]
+                },
+                type: {
+                    name: 'aceite',
+                    description: 'Contenedor de aceite'
                 }
             },
             {
-                id: 5,
-                latitude: 39.4551991,
-                longitude: -0.4086612999999488,
-                junkPointType: {
-                    name: "papel",
-                    description: "Contenedor de papel",
-                    direction: "Camino Alqueria Aiguamolls, 46014 Valencia"
+                street_name: "Camino Alqueria Aiguamolls, 46014 Valencia",
+                description: "Contenedor de papel",
+                location: {
+                    type: "Point",
+                    coordinates: [39.4551991, -0.4086612999999488]
+                },
+                type: {
+                    name: 'papel',
+                    description: 'Contenedor de papel'
                 }
             },
             {
-                id: 6,
-                latitude: 39.4593852,
-                longitude: -0.4402628000000277,
-                junkPointType: {
-                    name: "plástico",
-                    description: "Contenedor de plástico",
-                    direction: "Calle dels Seders, 4, 46950 Chirivella"
+                street_name: "Calle dels Seders, 4, 46950 Chirivella",
+                description: "Contenedor de plástico",
+                location: {
+                    type: "Point",
+                    coordinates: [39.4593852, -0.4402628000000277]
+                },
+                type: {
+                    name: 'plástico',
+                    description: 'Contenedor de plástico'
                 }
             },
             {
-                id: 7,
-                latitude: 39.3652727,
-                longitude: -0.4212844999999561,
-                junkPointType: {
-                    name: "raider",
-                    description: "Ubicación de raider",
-                    direction: "Avinguda d'Espioca, 70, 46460 Silla, València"
+                street_name: "Avinguda d'Espioca, 70, 46460 Silla, València",
+                description: "Ubicación de rider",
+                location: {
+                    type: "Point",
+                    coordinates: [39.3652727, -0.4212844999999561]
+                },
+                type: {
+                    name: 'rider',
+                    description: 'Ubicación de rider'
                 }
             },
             {
-                id: 8,
-                latitude: 39.3893925,
-                longitude: -0.3979825000000119,
-                junkPointType: {
-                    name: "raider",
-                    description: "Ubicación de raider",
-                    direction: "Carrer Riu Turia, 46470 Albal"
+                street_name: "Carrer Riu Turia, 46470 Albal",
+                description: "Ubicación de rider",
+                location: {
+                    type: "Point",
+                    coordinates: [39.3893925, -0.3979825000000119]
+                },
+                type: {
+                    name: 'rider',
+                    description: 'Ubicación de rider'
                 }
             }
         ]
@@ -89,7 +105,7 @@ export default {
     getters: {
         filterMarksByName: (state) => (filter) => {
             return state.markers.filter((mark) => {
-                return mark.junkPointType.description.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+                return mark.type.description.toLowerCase().indexOf(filter.toLowerCase()) > -1;
             });
         }
     },

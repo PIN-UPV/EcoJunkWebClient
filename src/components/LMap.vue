@@ -71,7 +71,7 @@ export default {
           this.currentLocationMarker = L.marker([e.latitude, e.longitude], {
             icon: userIcon
           })
-            .bindPopup(e.latitude + " " + e.longitude)
+            .bindPopup("Ubicación Actual")
             .addTo(this.lmap);
 
           this.lmap.setView([e.latitude, e.longitude]);

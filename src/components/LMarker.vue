@@ -29,7 +29,6 @@ export default {
     
     L.marker([this.lat, this.long], { icon: customIcon })
       .addTo(this.lmap)
-      .bindPopup(this.lat + " " + this.long);
   }
 };
 </script>

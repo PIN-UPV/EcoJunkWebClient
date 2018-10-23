@@ -92,7 +92,7 @@
       </md-content>
       
       <l-map >
-        <l-mark v-for="item in store.markers" :key="item.id" :lat="item.latitude" :long="item.longitude" :img="item.junkPointType.name"></l-mark>
+        <l-mark v-for="item in store.markers" :key="item.id" :lat="item.location.coordinates[0]" :long="item.location.coordinates[1]" :img="item.type.name"></l-mark>
       </l-map>
 
     </div>

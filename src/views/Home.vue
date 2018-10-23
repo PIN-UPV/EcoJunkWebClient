@@ -27,13 +27,13 @@
 
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
-      @mousedown="setView(item.latitude,item.longitude)"
+      @mousedown="setView(item.location.coordinates[0],item.location.coordinates[1])"
       @mouseover="changeCursor">
     <md-card>
       <md-card-header>
         <md-card-header-text>
-          <div class="md-title">{{ item.junkPointType.description }}</div>
-          <div class="md-subhead">{{ item.junkPointType.direction }}</div>
+          <div class="md-title">{{ item.description }}</div>
+          <div class="md-subhead">{{ item.street_name }}</div>
         </md-card-header-text>
       </md-card-header>
     </md-card>
