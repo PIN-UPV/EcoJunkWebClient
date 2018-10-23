@@ -32,12 +32,10 @@
     name: 'DialogCustom',
     data: () => ({
       showDialog: true,
-      query: 0,
-      junkPoint: 0
-    }), 
-    created(){
-      this.query = this.$route.query
-      this.junkPoint = this.$route.query.junkPointType
+    }),
+    computed: {
+      query: function() {return this.$route.query},
+      junkPoint: function() {return this.$route.query.junkPointType}
     },
     methods: {
       returnToMap(){
