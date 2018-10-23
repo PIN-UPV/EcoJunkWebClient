@@ -1,16 +1,28 @@
 <style scoped>
-.agreements {
+.acepted {
+  width: 100%;
+  height: 95%;
+}
+.md-dialog {
+  position: fixed;
+  top: 300px;
+  right: 500px;
   width: 100%;
   height: 100%;
 }
-.agreements .fixed-right {
+.search-toolbar {
+  margin: 5%;
+}
+.md-card {
+  margin: 5px;
+}
+.acepted .fixed-right {
   float: right;
 }
 </style>
 
 <template>
-  <div class="agreements">
-    <!-- <s-toolbar @openDrawer="openDrawer" msg="Buscar acuerdo"/> -->
+  <div class="acepted">
     <md-toolbar class="md-large md-primary">
       <div class="md-toolbar-row">
         <div class="md-toolbar-section-start">
@@ -25,24 +37,22 @@
         <!-- tabs -->
       </div>
     </md-toolbar>
-
-    <!-- -->
-     <md-tabs md-sync-route>
+    
+    <md-tabs md-sync-route>
       <md-tab id="tab-home" md-label="Agreements" to="/agreements"></md-tab>
       <md-tab id="tab-pages" md-label="Accepted" to="/acepted"></md-tab>
       <md-tab id="tab-posts" md-label="Rejected" to="/rejected"></md-tab>
     </md-tabs>
-
-    <md-card v-for="item in store.agreements" :key="item.id" v-bind:index="item.id">
+    <md-card v-for="item in store.agreementsAcepted" :key="item.id" v-bind:index="item.id">
       
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>
-          <div class="md-subhead">Acuerdo entre {{ item.user.name }} y {{item.rider.name}}</div>
+          <div class="md-subhead">Acuerdo del usuario: {{ item.user.name }}</div>
         </md-card-header-text>
 
         <md-card-actions>
-          <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary" @click="getInfo">
+          <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
            info
           </md-button>
         </md-card-actions>
@@ -53,17 +63,17 @@
       <md-button to="/form" class="md-fab md-accent fixed-right">
         <md-icon>add</md-icon>
       </md-button>  
+    
 
-      </div>
+  </div>
 </template>
-
 
 <script>
 import { store } from "@/store/index.js";
 
 export default {
   store,
-  name: "agreements",
+  name: "acepted",
   props: {
     index: Number
   },

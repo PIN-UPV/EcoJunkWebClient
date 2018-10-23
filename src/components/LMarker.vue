@@ -8,9 +8,7 @@ import L from "leaflet";
 export default {
   name: "LMarker",
   props: {
-    lat: Number,
-    long: Number,
-    img: String
+    value: Object
   },
   data() {
     return {
@@ -19,7 +17,7 @@ export default {
   },
   mounted() {
     var customIcon = L.icon({
-      iconUrl: "/icons/" + this.img + ".png",
+      iconUrl: "/icons/" + this.value.junkPointType.name + ".png",
       iconSize: [35, 40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [17, 40], // point of the icon which will correspond to marker's location
@@ -27,15 +25,14 @@ export default {
       popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
     
-    L.marker([this.lat, this.long], { icon: customIcon })
+    L.marker([this.value.latitude, this.value.longitude], { icon: customIcon })
       .addTo(this.lmap)
       .on('click', this.changePage)
-      .bindPopup(this.lat + " " + this.long);
   
   }, 
   methods: {
     changePage(){
-      this.$router.push('/markinfo')
+      this.$router.push({path:'/markinfo', query: this.value})
     
     }
 

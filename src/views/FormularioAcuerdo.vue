@@ -1,29 +1,46 @@
 <template>
   <div id = "form">
+
     <md-field>
-      <label>Residuo</label>
-      <md-input v-model="residuo" md-counter="30"></md-input>
+      <label>Id</label>
+      <md-input v-model="newAgreement.id" md-counter="30"></md-input>
     </md-field>
 
     <md-field>
-      <label>Localización</label>
-      <md-input v-model="location" maxlength="30"></md-input>
+      <label>User</label>
+      <md-input v-model="newAgreement.user.name" md-counter="30"></md-input>
+    </md-field>
+
+    <md-field>
+      <label>Raider</label>
+      <md-input v-model="newAgreement.raider.name" md-counter="30"></md-input>
+    </md-field>
+
+    <md-field>
+      <label>Junk</label>
+      <md-input v-model="newAgreement.junk.name" md-counter="30"></md-input>
+    </md-field>
+
+    <md-field>
+      <label>Date</label>
+      <md-input v-model="newAgreement.date" md-counter="30"></md-input>
     </md-field>
 
     <md-field :md-counter="false">
-      <label>Precio €</label>
-      <md-input v-model="price" maxlength="10"></md-input>
+      <label>Price €</label>
+      <md-input v-model="newAgreement.price" maxlength="10"></md-input>
     </md-field>
 
     <md-field>
-      <label>Descripción</label>
-      <md-textarea v-model="description" md-autogrow md-counter="200"></md-textarea>
+      <label>Location</label>
+      <md-input v-model="newAgreement.location" maxlength="30"></md-input>
     </md-field>
+
 
     <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
     <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
 
-    <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
+    
     
   </div>
 </template>
@@ -32,43 +49,49 @@
 
 
 <script>
-import TIMER from "@/components/CountDown";
+
+import { mapMutations} from 'vuex';
 
 export default {
   name: "Counters",
   data: () => ({
-    residuo: null,
+    newAgreement:{
+    id: null,
+    user: {
+      name: null
+      },
+    raider:{
+      name: null
+    },
+    junk:{
+      name: null
+    },
+    date: null,
     location: null,
     price: null,
-    description: null,
+    },
     textarea: null,
-    showTimer: false,
     deadline: null
   }),
-  components: {
-    timer: TIMER
-  },
   methods: {
-    //2019-10-11 00:00:00
-    addAgreement() {
-      var now = new Date();
-      now.setTime(now.getTime() + 1000 * 60 * 60 * 24);
+   ...mapMutations([
+     'ADD_AGREEMENT'
+   ]),
+   addAgreement: function(){
+        this.ADD_AGREEMENT(this.newAgreement);
+        this.$router.push('/agreements')
+   },
+   clearForm: function(){
+        this.newAgreement.id= ''
+        this.newAgreement.user= ''
+        this.newAgreement.raider.name= ''
+        this.newAgreement.user.name= ''
+        this.newAgreement.junk.name= ''
+        this.newAgreement.date= ''
+        this.newAgreement.location= ''
+        this.newAgreement.price= ''
 
-      this.deadline =
-        now.getFullYear() +
-        "-" +
-        (now.getMonth() + 1) +
-        "-" +
-        now.getDate() +
-        " " +
-        now.getHours() +
-        ":" +
-        now.getMinutes() +
-        ":" +
-        now.getSeconds();
-
-      this.showTimer = true;
-    }
+   }
   }
 };
 </script>
