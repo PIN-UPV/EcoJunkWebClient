@@ -21,7 +21,7 @@ export default {
             return new Promise((resolve, reject) => { // The Promise used for router redirect in login
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
-                    url: rootState.apiPath + '/users/login',
+                    url: rootState.apiPath + '/users/login/',
                     data: user,
                     method: 'POST',
                     crossDomain: true,
