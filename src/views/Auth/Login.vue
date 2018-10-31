@@ -1,12 +1,12 @@
 <style scoped>
 .login {
-    background-color: white;
+  background-color: white;
 }
 form {
-    padding: 10px;
+  padding: 10px;
 }
 .submit {
-    float: right;
+  float: right;
 }
 </style>
 <template>
@@ -22,41 +22,65 @@ form {
         </div>
         </md-toolbar>
 
-        <form novalidate @submit.prevent="login">
-            <md-field>
+        <form novalidate @submit.prevent="validateForm('form', login)">
+            <md-field :class="getValidationClass('form','email')">
                 <label>Email</label>
-                <md-input type="email" v-model="email" md-counter="30"></md-input>
+                <md-input :disabled="ifLoading" type="email" v-model="form.email" md-counter="30"></md-input>
+                <span class="md-error" v-if="!$v.form.email.required">Se requiere email</span>
+                <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
             </md-field>
 
-            <md-field>
+            <md-field :class="getValidationClass('form','password')">
                 <label>Password</label>
-                <md-input type="password" v-model="password" md-counter="30"></md-input>
+                <md-input :disabled="ifLoading" type="password" v-model="form.password" md-counter="30"></md-input>
+                <span class="md-error" v-if="!$v.form.password.required">Se requiere contraseña</span>
+                <span class="md-error" v-else-if="!$v.form.password.minlength">Contraseña debe tener minimo 8 carácteres</span>
             </md-field>
 
-            <md-button type="submit" class="md-primary right" :disabled="sending">Iniciar Sesion</md-button>
+            <md-button :disabled="ifLoading" type="submit" class="md-primary right" >Iniciar Sesion</md-button>
         </form>
 
     </div>
 </template>
 <script>
+import { validationMixin } from "vuelidate";
+import { required, minLength, email } from "vuelidate/lib/validators";
+
 export default {
   name: "Login",
+  mixins: [validationMixin],
   data: function() {
     return {
-      email: null,
-      password: null,
-      sending: false
+      form: {
+        email: null,
+        password: null
+      }
     };
+  },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required,
+        minLength: minLength(8)
+      }
+    }
+  },
+  computed: {
+    ifLoading: function() {
+      return this.$store.state.status == "loading";
+    }
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
     login: function() {
-      this.sending = true;
-      const { email, password } = this;
+      const { email, password } = this.form;
       this.$store.dispatch("auth/AUTH_LOGIN", { email, password }).then(() => {
-        this.sending = false;
         this.$router.go(-1);
       });
     },
@@ -70,6 +94,26 @@ export default {
             alert("See your inbox!");
             //this.$router.push("/intranet");
           });
+      }
+    },
+    // New Actions
+    getValidationClass(form, fieldName) {
+      const field = this.$v[form][fieldName];
+      if (field) {
+        return {
+          "md-invalid": field.$invalid && field.$dirty
+        };
+      }
+    },
+    validateForm(form, callback) {
+      this.$v.$touch();
+      if (!this.$v[form].$invalid) {
+        callback();
+      }
+    },
+    clearForm(form) {
+      for (var key in form) {
+        form[key] = "";
       }
     }
   }
