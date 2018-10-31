@@ -11,8 +11,26 @@
     max-width: calc(100vw - 125px);
     z-index: 1001;
 
+    .img-logo {
+      height: 150px;
+      margin: 0 auto;
+    }
+
     .md-divider.md-inset {
       margin-left: 0px;
+    }
+    .auth {
+      background-color: #6b7752;
+      .login, .register {
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: white;
+      }
+      .md-list-item-content {
+        color: white;
+      }
     }
   }
   .page-container .md-overlay {
@@ -59,12 +77,23 @@
 
       <md-drawer :md-active.sync="showNavigation">
         <md-toolbar class="md-transparent" md-elevation="0">
-          <span class="md-title">EcoJunk</span>
+          <!-- <span class="md-title">EcoJunk</span> -->
+          <img class="img-logo" src="/ecojunk-logo.jpeg" alt="logo">
         </md-toolbar>
 
         <md-divider class="md-inset"></md-divider>
 
         <md-list @click="showNavigation=false">
+          
+          <md-list-item class="auth">
+            <router-link class="md-list-item-text login" to="/login">
+              <span>Iniciar sesión</span>
+            </router-link> |
+            <router-link class="md-list-item-text register" to="/register">
+              <span>Registro</span>
+            </router-link>
+          </md-list-item>
+
           <md-list-item to="/">
             <md-icon>move_to_inbox</md-icon>
             <span class="md-list-item-text">Inicio</span>

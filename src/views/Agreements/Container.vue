@@ -22,6 +22,8 @@
         </div>
         <h3>Acuerdos</h3>
       </div>
+
+
     </md-toolbar>
      <md-tabs md-sync-route>
       <md-tab id="tab-home" md-label="Todos" to="/agreements"></md-tab>
