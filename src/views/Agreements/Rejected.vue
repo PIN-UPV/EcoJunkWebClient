@@ -20,22 +20,19 @@
 
 <template>
   <div>
-
     <md-card v-for="item in store.agreementsRejected" :key="item.id" v-bind:index="item.id">
-      
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>
           <div class="md-subhead">Acuerdo del usuario: {{ item.user.name }}</div>
         </md-card-header-text>
-
-
-        
+        <md-card-actions>
+          <md-button :to="{ name: 'infoR', params: { id:item } }" class="md-raised md-primary">
+           info
+          </md-button>
+        </md-card-actions>  
       </md-card-header>
     </md-card>
-
-    
-
   </div>
 </template>
 
