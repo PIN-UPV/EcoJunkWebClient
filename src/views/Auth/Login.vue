@@ -27,7 +27,7 @@ form {
                 <label>Email</label>
                 <md-input :disabled="ifLoading" type="email" v-model="form.email" md-counter="30"></md-input>
                 <span class="md-error" v-if="!$v.form.email.required">Se requiere email</span>
-                <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
+                <span class="md-error" v-else-if="!$v.form.email.email">Email invalido</span>
             </md-field>
 
             <md-field :class="getValidationClass('form','password')">
