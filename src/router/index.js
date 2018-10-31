@@ -14,36 +14,36 @@ export default new Router({
             path: '/about',
             name: 'about',
             component: () =>
-                import ('../views/About.vue')
+                import('../views/About.vue')
         },
         {
             path: '/markinfo',
             name: 'markInfo',
             component: () =>
-                import ('../views/MarkInfo.vue')
+                import('../views/MarkInfo.vue')
         },
         {
             path: '/agreements',
             name: 'agreements',
             component: () =>
-                import ('../views/Agreements/Container.vue'),
+                import('../views/Agreements/Container.vue'),
             children: [{
                     path: '',
                     name: 'allAgreements',
                     component: () =>
-                        import ('../views/Agreements/AllAgreements.vue')
+                        import('../views/Agreements/AllAgreements.vue')
                 },
                 {
                     path: '/acepted',
                     name: 'acepted',
                     component: () =>
-                        import ('../views/Agreements/Acepted.vue')
+                        import('../views/Agreements/Acepted.vue')
                 },
                 {
                     path: '/rejected',
                     name: 'rejected',
                     component: () =>
-                        import ('../views/Agreements/Rejected.vue')
+                        import('../views/Agreements/Rejected.vue')
                 }
             ]
         },
@@ -51,15 +51,26 @@ export default new Router({
             path: '/form',
             name: 'form',
             component: () =>
-                import ('../views/FormularioAcuerdo.vue')
+                import('../views/FormularioAcuerdo.vue')
         },
         {
             path: '/info/:id',
             name: 'info',
             component: () =>
-                import ('../views/Info.vue')
+                import('../views/Info.vue')
         },
-
+        {
+            path: '/login',
+            name: 'Login',
+            component: () =>
+                import('../views/Auth/Login.vue')
+        },
+        {
+            path: '/register',
+            name: 'Login',
+            component: () =>
+                import('../views/Auth/Login.vue')
+        }
     ],
     mode: 'history'
 })
