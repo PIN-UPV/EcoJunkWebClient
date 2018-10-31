@@ -7,32 +7,23 @@
             <md-icon>arrow_back</md-icon>
           </md-button>
         </div>
-
       </div>
     </md-toolbar>
-
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
           <div class="md-title">{{id.id}}</div>
           <div class="md-subhead">User: {{id.user.name}}</div>
         </md-card-header>
-
         <md-card-content>
           <p>Descripción: {{id.junk.name}}</p>
           <p>Fecha: {{id.date}}</p>
           <p>Precio: {{id.price}}</p>
           <p>Ubicación: {{id.location}}</p>
         </md-card-content>
-
-        <md-card-actions>
-        <md-button v-if="showAccept" @click="aceptAgreement(),date()">Aceptar Acuerdo</md-button>
-        <md-button v-if="showCancel" @click="rejectAgreement">Rechazar Acuerdo</md-button>
-      </md-card-actions>
       </md-ripple>
-      <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
+      <timer v-if="showTimer" v-bind:deadline="id.countDown"></timer>
     </md-card>
-
   </div>
 </template>
 
@@ -41,14 +32,13 @@ import { mapMutations } from "vuex";
 import TIMER from "@/components/CountDown";
 
 export default {
-  name: "info",
+  name: "infoAR",
   data() {
     return {
       store: this.$store.state.agreement,
       id: 0,
-      showTimer: false,
-      showAccept: true,
-      showCancel: true
+      showTimer: true,
+
     };
   },
   components: {
@@ -58,27 +48,6 @@ export default {
     this.id = this.$route.params.id;
   },
   methods: {
-    date() {
-      var now = new Date();
-      now.setTime(now.getTime() + 1000 * 60 * 60 * 24);
-
-      this.deadline =
-        now.getFullYear() +
-        "-" +
-        (now.getMonth() + 1) +
-        "-" +
-        now.getDate() +
-        " " +
-        now.getHours() +
-        ":" +
-        now.getMinutes() +
-        ":" +
-        now.getSeconds();
-
-      this.showTimer = true;
-      this.showAccept = false;
-      this.showCancel = false;
-    },
     goBack() {
       this.$router.go(-1);
     },

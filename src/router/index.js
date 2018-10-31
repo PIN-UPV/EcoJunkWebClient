@@ -57,8 +57,20 @@ export default new Router({
             path: '/info/:id',
             name: 'info',
             component: () =>
-                import ('../views/Info.vue')
+                import ('../views/Info/Info.vue')
         },
+        {
+            path: '/infoAR/:id',
+            name: 'infoAR',
+            component: () =>
+                import ('../views/Info/InfoAR.vue')
+        },
+        {
+            path: '/infoR/:id',
+            name: 'infoR',
+            component: () =>
+                import ('../views/Info/InfoR.vue')
+        }
 
     ],
     mode: 'history'

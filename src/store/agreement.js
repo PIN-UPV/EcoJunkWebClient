@@ -11,7 +11,8 @@ export default {
         junk: { name: "Botellas de vidrio" },
         date: "27/01/2016",
         price: "5€",
-        location: "Partida de la Mar, 45, 46132 Almàssera, València"
+        location: "Partida de la Mar, 45, 46132 Almàssera, València",
+        countDown: null
         
       },
 
@@ -22,7 +23,8 @@ export default {
         junk: { name: "Aceite de motor" },
         date: "17/08/2017",
         price:"7,5€",
-        location: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València"
+        location: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València",
+        countDown: null
       },
 
       {
@@ -32,7 +34,8 @@ export default {
         junk: { name: "Periodicos Viejos" },
         date: "01/12/2018",
         price:"2,5€",
-        location:"Camino Alqueria Aiguamolls, 46014 Valencia"
+        location:"Camino Alqueria Aiguamolls, 46014 Valencia",
+        countDown: null
       },
     ],
     agreementsAcepted: [
@@ -43,7 +46,8 @@ export default {
         junk: { name: "Placa Base" },
         date: "18/06/2016",
         price: "5'5€",
-        location: "Partida de la Mar, 45, 46132 Almàssera, València"
+        location: "Partida de la Mar, 45, 46132 Almàssera, València",
+        countDown: "2018-12-1 9:19:18"
         
       },
 
@@ -54,7 +58,8 @@ export default {
         junk: { name: "Cajas de cartón" },
         date: "02/10/2018",
         price:"3€",
-        location: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València"
+        location: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València",
+        countDown: "2018-12-1 9:19:18"
       },
 
       {
@@ -64,7 +69,8 @@ export default {
         junk: { name: "Pilas" },
         date: "01/12/2018",
         price:"1€",
-        location:"Camino Alqueria Aiguamolls, 46014 Valencia"
+        location:"Camino Alqueria Aiguamolls, 46014 Valencia",
+        countDown: "2018-12-1 9:19:18"
       },
     ],
       agreementsRejected: [
@@ -75,7 +81,8 @@ export default {
           junk: { name: "Televisor" },
           date: "30/03/2018",
           price: "10€",
-          location: "Partida de la Mar, 45, 46132 Almàssera, València"
+          location: "Partida de la Mar, 45, 46132 Almàssera, València",
+          countDown: null
           
         },
   
@@ -86,7 +93,8 @@ export default {
           junk: { name: "Ventilador" },
           date: "17/08/2017",
           price:"6€",
-          location: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València"
+          location: "Carrer Metge Andreu Minguet, 2-4, 46910 Sedaví, València",
+          countDown: null
         },
   
         {
@@ -96,7 +104,8 @@ export default {
           junk: { name: "Altavoces" },
           date: "17/06/2018",
           price:"7,99€",
-          location:"Camino Alqueria Aiguamolls, 46014 Valencia"
+          location:"Camino Alqueria Aiguamolls, 46014 Valencia",
+          countDown: null
         },
     ]
 
