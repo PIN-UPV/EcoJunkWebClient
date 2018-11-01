@@ -19,11 +19,48 @@
   cursor: pointer
 }
 
+.h1 {
+  text-align: center
+}
+
 </style>
 
 <template>
   <div class="home">
+    <md-toolbar class="md-large md-primary">
+        <h1 class="h1">Inicio</h1>
+      </md-toolbar>
     <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
+    
+    <md-card-content>
+      <md-checkbox v-model="boolean" value="Eco">EcoParques</md-checkbox>
+      <md-checkbox v-model="boolean" value="Oil">Aceite</md-checkbox>
+      <md-checkbox v-model="boolean" value="Elec">Aparatos Electrónicos</md-checkbox>
+      <md-checkbox v-model="boolean" value="Bateries">Baterias</md-checkbox>
+      <md-checkbox v-model="boolean" value="Paper">Papel</md-checkbox>
+      <md-checkbox v-model="boolean" value="Plastic">Plástico</md-checkbox>
+      <md-checkbox v-model="boolean" value="Glass">Vidrio</md-checkbox>
+      <md-checkbox v-model="bollean" value="Rider">Riders</md-checkbox>
+
+      <table>
+      <tr>
+        <th>EcoParques</th>
+        <th>Aceite</th>
+        <th>Baterias</th>
+        <th>Riders</th>
+      </tr>
+
+      <tr>
+        <td>{{ boolean }}</td>
+        <td>{{ boolean }}</td>
+        <td>{{ boolean }}</td>
+        <td>{{ boolean }}</td>
+        <td>{{ boolean }}</td>
+      </tr>
+    </table>
+
+
+    </md-card-content>
 
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
