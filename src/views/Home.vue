@@ -5,12 +5,10 @@
 }
 .search-toolbar {
   margin: 5%;
+  color: #448AFF;
 }
 .md-card {
-  margin: 5px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: gray
+  margin: 10px;
 }
 .h2 {
   margin-left: 10px;

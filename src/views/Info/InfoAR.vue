@@ -20,8 +20,10 @@
           <p>Fecha: {{id.date}}</p>
           <p>Precio: {{id.price}}</p>
           <p>Ubicación: {{id.location}}</p>
+          <a target="_blank" :href="getUrl(id.location)">¿Cómo llegar?</a>
         </md-card-content>
       </md-ripple>
+
       <timer v-if="showTimer" v-bind:deadline="id.countDown"></timer>
     </md-card>
   </div>
@@ -37,8 +39,7 @@ export default {
     return {
       store: this.$store.state.agreement,
       id: 0,
-      showTimer: true,
-
+      showTimer: true
     };
   },
   components: {
@@ -62,6 +63,10 @@ export default {
       this.REJECT_AGREEMENT(this.id);
       this.showAccept = false;
       this.showCancel = false;
+    },
+    getUrl(street_name) {
+      //var res = "https://www.google.es/maps/dir/current+location/Plaza del Ayuntamiento,9,46002 Valencia";
+      return "https://www.google.es/maps/dir/current+location/" + street_name;
     }
   }
 };
