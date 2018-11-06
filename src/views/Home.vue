@@ -29,37 +29,33 @@
   <div class="home">
     <md-toolbar class="md-large md-primary">
         <h1 class="h1">Inicio</h1>
-      </md-toolbar>
-    <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
-    
-    <md-card-content>
-      <md-checkbox v-model="boolean" value="Eco">EcoParques</md-checkbox>
-      <md-checkbox v-model="boolean" value="Oil">Aceite</md-checkbox>
-      <md-checkbox v-model="boolean" value="Elec">Aparatos Electrónicos</md-checkbox>
-      <md-checkbox v-model="boolean" value="Bateries">Baterias</md-checkbox>
-      <md-checkbox v-model="boolean" value="Paper">Papel</md-checkbox>
-      <md-checkbox v-model="boolean" value="Plastic">Plástico</md-checkbox>
-      <md-checkbox v-model="boolean" value="Glass">Vidrio</md-checkbox>
-      <md-checkbox v-model="bollean" value="Rider">Riders</md-checkbox>
+    </md-toolbar>
 
+    <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
+    <md-card-content>
+      <md-checkbox v-model="filter" value="Eco">EcoParque</md-checkbox>
+      <md-checkbox v-model="filter" value="Aceite">Aceite</md-checkbox>
+      <md-checkbox v-model="filter" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
+      <md-checkbox v-model="filter" value="Baterías">Baterias</md-checkbox>
+      <md-checkbox v-model="filter" value="Papel">Papel</md-checkbox>
+      <md-checkbox v-model="filter" value="Plástico">Plástico</md-checkbox>
+      <md-checkbox v-model="filter" value="Vidrio">Vidrio</md-checkbox>
+      <md-checkbox v-model="filter" value="Rider">Riders</md-checkbox>
       <table>
       <tr>
-        <th>EcoParques</th>
+        <th>EcoParque</th>
         <th>Aceite</th>
         <th>Baterias</th>
         <th>Riders</th>
       </tr>
 
       <tr>
-        <td>{{ boolean }}</td>
-        <td>{{ boolean }}</td>
-        <td>{{ boolean }}</td>
-        <td>{{ boolean }}</td>
-        <td>{{ boolean }}</td>
+        <td>{{ str4 }}</td>
+        <td>{{ str2 }}</td>
+        <td>{{ str4 }}</td>
+        <td>{{ str8 }}</td>
       </tr>
     </table>
-
-
     </md-card-content>
 
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
@@ -88,6 +84,14 @@ export default {
   },
   data() {
     return {
+     /* str1: null,
+      str2: null,
+      str3: null,
+      str4: null,
+      str5: null,
+      str6: null,
+      str7: null,
+      str8: null,*/
       store: this.$store.state.marker,
       filter: ""
     };
@@ -102,7 +106,7 @@ export default {
   },
   methods: {
     openDrawer() {
-      this.$emit("input", true);
+      this.$emit("input", true); 
     },
     setView(lat, long) {
 
