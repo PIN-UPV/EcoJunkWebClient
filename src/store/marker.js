@@ -1,4 +1,4 @@
-//import axios from 'axios'
+import axios from 'axios'
 
 export default {
     namespaced: true,
@@ -121,7 +121,7 @@ export default {
         ['CHANGE_MAP']: ({ commit }, map) => {
             commit('CHANGE_MAP', map);
         },
-        /*['LOAD_MARKS']: ({ commit, rootState }) => {
+        ['LOAD_MARKS']: ({ commit, rootState }) => {
             {
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
@@ -136,6 +136,6 @@ export default {
                         commit('STATUS_ERROR', err, { root: true })
                     })
             }
-        }*/
+        }
     }
 }
