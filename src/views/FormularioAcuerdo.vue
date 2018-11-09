@@ -2,28 +2,28 @@
   <div id = "formulario">
 
     <form novalidate @submit.prevent="validateForm('form')">
-    <md-field :class="getValidationClass('form','id')">
+    <!--<md-field :class="getValidationClass('form','id')">
       <label>Nombre</label>
       <md-input v-model="form.id" md-counter="30"></md-input>
       <span class="md-error" v-if="!$v.form.id.required">Se requiere nombre para el acuerdo</span>
       <span class="md-error" v-else-if="!$v.form.id.maxlength">Exceso de carácteres</span>
-    </md-field>
+    </md-field>-->
 
     <md-field>
       <label>Usuario</label>
-      <md-input v-model="form.user.name" md-counter="30"></md-input>
+      <md-input v-model="form.customer" md-counter="30"></md-input>
     </md-field>
 
     <md-field>
       <label>Rider</label>
-      <md-input v-model="form.rider.name" md-counter="30"></md-input>
+      <md-input v-model="form.rider" md-counter="30"></md-input>
     </md-field>
 
-    <md-field :class="getValidationClass('form','junk')">
+    <!--<md-field :class="getValidationClass('form','junks')">
       <label>Residuo</label>
       <md-input v-model="form.junk.name" md-counter="30"></md-input>
-      <span class="md-error" v-if="!$v.form.junk.required">Se requiere nombre del residuo</span>
-      <span class="md-error" v-else-if="!$v.form.junk.maxlength">Exceso de carácteres</span>
+      <span class="md-error" v-if="!$v.form.junks.required">Se requiere nombre del residuo</span>
+      <span class="md-error" v-else-if="!$v.form.junks.maxlength">Exceso de carácteres</span>
     </md-field>
 
     <md-field :class="getValidationClass('form','date')">
@@ -38,13 +38,13 @@
       <md-input v-model="form.price" maxlength="10"></md-input>
       <span class="md-error" v-if="!$v.form.price.required">Se requiere establecer un precio</span>
       <span class="md-error" v-else-if="!$v.form.price.decimal">Se requiere un número decimal</span>
-    </md-field>
+    </md-field>-->
 
-    <md-field :class="getValidationClass('form','location')">
+     <md-field :class="getValidationClass('form','junk_point')">
       <label>Ubicación</label>
-      <md-input v-model="form.location" maxlength="50"></md-input>
-      <span class="md-error" v-if="!$v.form.location.required">Se requiere poner una localización</span>
-      <span class="md-error" v-else-if="!$v.form.location.maxlength">Exceso de carácteres</span>
+      <md-input v-model="form.junk_point" md-counter="60"></md-input>
+      <span class="md-error" v-if="!$v.form.junk_point.required">Se requiere una localización</span>
+      <span class="md-error" v-else-if="!$v.form.junk_point.maxlength">Exceso de carácteres</span>
     </md-field>
 
 
@@ -64,25 +64,14 @@ import { mapMutations } from "vuex";
 import { validationMixin } from "vuelidate";
 import { required, maxLength, decimal } from "vuelidate/lib/validators";
 
-
 export default {
   name: "Counters",
   mixins: [validationMixin],
   data: () => ({
     form: {
-      id: "",
-      user: {
-        name: ""
-      },
-      rider: {
-        name: ""
-      },
-      junk: {
-        name: ""
-      },
-      date: "",
-      location: "",
-      price: ""
+      customer: "",
+      rider: "",
+      junk_point: ""
     },
     textarea: "",
     deadline: ""
@@ -93,7 +82,7 @@ export default {
         required,
         maxLength: maxLength(30)
       },
-      junk: {
+      junks: {
         required,
         maxLength: maxLength(30)
       },
@@ -105,7 +94,7 @@ export default {
         required,
         decimal
       },
-      location: {
+      junk_point: {
         required,
         maxLength: maxLength(40)
       }
@@ -115,31 +104,28 @@ export default {
     ...mapMutations(["ADD_AGREEMENT"]),
     addAgreement: function() {
       if (
-        this.form.id == "" ||
-        this.form.user == "" ||
-        this.form.rider.name == "" ||
-        this.form.user.name == "" ||
-        this.form.junk.name == "" ||
-        this.form.date == "" ||
-        this.form.location == "" ||
-        this.form.price == ""
+        this.form.customer == "" ||
+        this.form.rider == "" ||
+        this.form.junk_point == ""
       ) {
         return;
       }
-      this.ADD_AGREEMENT(this.form);
-      this.$router.push("agreements");
+      const { customer, rider, junk_point } = this.form;
+      const agreement = {
+        "customer": customer,
+        "rider": rider,
+        "junk_point": junk_point
+      };
+      this.$store.dispatch("agreement/AGREE_ADD", agreement).then(() => {
+        this.$router.push("agreements");
+      });
     },
     clearForm: function() {
-      this.form.id = "";
-      this.form.user = "";
-      this.form.rider.name = "";
-      this.form.user.name = "";
-      this.form.junk.name = "";
-      this.form.date = "";
-      this.form.location = "";
-      this.form.price = "";
+      this.form.customer = "";
+      this.form.rider = "";
+      this.form.junk_point = "";
     },
-     getValidationClass(form, fieldName) {
+    getValidationClass(form, fieldName) {
       const field = this.$v[form][fieldName];
       if (field) {
         return {

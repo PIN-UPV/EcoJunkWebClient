@@ -34,6 +34,7 @@
       <md-button to="/form" class="md-fab md-accent fixed-right">
         <md-icon>add</md-icon>
       </md-button>  
+       <md-button @click="refresh">Refresh</md-button>
       </div>
 </template>
 
@@ -50,6 +51,11 @@ export default {
   methods: {
     openDrawer() {
       this.$emit("input", true);
+    },
+    refresh(){
+      this.$store.dispatch("agreement/AGREE_GET").then(() => {
+        this.$router.push("agreements");
+      });
     }
   },
   data() {

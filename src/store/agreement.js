@@ -1,9 +1,10 @@
-
+import axios from 'axios'
 
 export default {
+  namespaced: true,
   state: {
-
-    agreements: [
+      results: []
+    /*agreements: [
       {
         id: "Acuerdo 1",
         user: { name: "Antonio López" },
@@ -107,7 +108,7 @@ export default {
           location:"Camino Alqueria Aiguamolls, 46014 Valencia",
           countDown: null
         },
-    ]
+    ]*/
 
   },
   mutations: {
@@ -119,10 +120,54 @@ export default {
       state.agreementsRejected.push(newAgreement);
       state.agreements.splice(state.agreements.indexOf(newAgreement), 1);
     },
-    ['ADD_AGREEMENT']: (state, newAgreement) => {
-      state.agreements.push(newAgreement);
+    ['AGREE_GETALL']: (state,res) => {
+      state.results = res
     }
   },
   actions: {
+    ['AGREE_GET']: ({ commit, rootState },user ) => {
+      return new Promise((resolve, reject) => { // The Promise used for router redirect in login
+          commit('STATUS_LOADING', null, { root: true })
+          axios({
+              url: rootState.apiPath + '/deals/',
+              data: user,
+              method: 'GET',
+              crossDomain: true,
+          }).then(resp => {
+              const res = resp.data.results
+              //localStorage.setItem('user-token', token) // store the token in localstorage
+              // Save Authorization header for all futur request
+              //axios.defaults.headers.common['Authorization'] = token
+              commit('AGREE_GETALL', res)
+              commit('STATUS_SUCCESS', null, { root: true })
+              // you have your token, now log in your user :)
+              //dispatch('user/USER_REQUEST', null, { root: true })
+              resolve(resp)
+          }).catch(err => {
+              commit('STATUS_ERROR', err.response.data.message, { root: true })
+              //localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
+              reject(err)
+          })
+      })
+     },
+     ['AGREE_ADD']: ({commit, rootState}, Agreement ) => {
+      return new Promise((resolve, reject) => { 
+        commit('STATUS_LOADING', null, { root: true })
+        axios({
+          headers: {
+            accept: 'application/json'},
+            url: rootState.apiPath + '/deals/',
+            data: Agreement,
+            method: 'POST',
+            crossDomain: true,
+        }).then(resp => {
+            commit('STATUS_SUCCESS', null, { root: true })
+            resolve(resp)
+        }).catch(err => {
+            commit('STATUS_ERROR', err.response.data.message, { root: true })
+            reject(err)
+        })
+    })
+   }
   }
 }
