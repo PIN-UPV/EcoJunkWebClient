@@ -3,21 +3,26 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state: {
+        email: localStorage.getItem('user-profile') || '',
         token: localStorage.getItem('user-token') || ''
     },
     getters: {
         isAuthenticated: state => !!state.token
     },
     mutations: {
-        ['AUTH_SUCCESS']: (state, token) => {
+        ['AUTH_LOGIN']: (state, token) => {
             state.token = token
         },
         ['AUTH_LOGOUT']: (state) => {
             state.token = ''
+            state.email = ''
+        },
+        ['AUTH_PROFILE']: (state, email) => {
+            state.email = email
         }
     },
     actions: {
-        ['AUTH_LOGIN']: ({ commit, rootState }, user) => {
+        ['AUTH_LOGIN']: ({ commit, rootState, dispatch}, user) => {
             return new Promise((resolve, reject) => { // The Promise used for router redirect in login
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
@@ -26,14 +31,14 @@ export default {
                     method: 'POST',
                     crossDomain: true,
                 }).then(resp => {
-                    const token = resp.data.token
+                    const token = "JWT "+resp.data.token
                     localStorage.setItem('user-token', token) // store the token in localstorage
                     // Save Authorization header for all futur request
                     axios.defaults.headers.common['Authorization'] = token
-                    commit('AUTH_SUCCESS', token)
-                    commit('STATUS_SUCCESS', null, { root: true })
+                    commit('AUTH_LOGIN', token)
                     // you have your token, now log in your user :)
-                    //dispatch('user/USER_REQUEST', null, { root: true })
+                    dispatch('AUTH_PROFILE', null)
+                    commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
                 }).catch(err => {
                     commit('STATUS_ERROR', err.response.data.message, { root: true })
@@ -42,7 +47,7 @@ export default {
                 })
             })
         },
-        ['AUTH_REGISTER']: ({ commit, rootState }, data) => {
+        ['AUTH_REGISTER']: ({ commit, rootState, dispatch }, data) => {
             return new Promise((resolve, reject) => { // The Promise used for router redirect in login
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
@@ -51,11 +56,12 @@ export default {
                     method: 'POST',
                     crossDomain: true,
                 }).then(resp => {
-                    const token = resp.data.token
+                    const token = "JWT "+resp.data.token
                     localStorage.setItem('user-token', token) // store the token in localstorage
                     // Save Authorization header for all futur request
                     axios.defaults.headers.common['Authorization'] = token
-                    commit('AUTH_SUCCESS', token)
+                    commit('AUTH_LOGIN', token)
+                    dispatch('AUTH_PROFILE', null)
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
                 }).catch(err => {
@@ -65,12 +71,28 @@ export default {
                 })
             })
         },
+        ['AUTH_PROFILE']: ({ commit, rootState }) => {
+            return new Promise((resolve, reject) => {
+                commit('STATUS_LOADING', null, { root: true })
+                axios({
+                    url: rootState.apiPath + '/users/me/',
+                    method: 'GET'
+                }).then(resp => {
+                    localStorage.setItem('user-profile', resp.data.email) // store the token in localstorage
+                    commit('AUTH_PROFILE', resp.data.email)
+                    commit('STATUS_SUCCESS', null, { root: true })
+                    resolve(resp)
+                }).catch(err => {
+                    commit('STATUS_ERROR', err.response.data.message, { root: true })
+                    reject(err)
+                })
+            })
+        },
         ['AUTH_LOGOUT']: ({ commit }) => {
             return new Promise((resolve) => {
                 commit('AUTH_LOGOUT')
-                //commit('user/AUTH_LOGOUT', null, { root: true })
+                localStorage.removeItem('user-profile')
                 localStorage.removeItem('user-token') // clear your user's token from localstorage
-                //localStorage.removeItem('user-profile')
                 resolve()
             })
         }
