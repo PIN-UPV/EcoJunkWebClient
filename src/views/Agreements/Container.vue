@@ -63,6 +63,6 @@ export default {
       store: this.$store.state.agreement,
       showDialog: false
     };
-  }
+  },
 };
 </script>

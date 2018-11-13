@@ -50,7 +50,7 @@ export default {
   methods: {
     openDrawer() {
       this.$emit("input", true);
-    },
+    }
   },
   data() {
     return {
