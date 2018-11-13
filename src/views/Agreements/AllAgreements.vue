@@ -26,7 +26,7 @@
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.customer}}</div>
-          <div class="md-subhead">Acuerdo del usuario: {{ item.customer }}</div>
+          <div class="md-subhead">Acuerdos del usuario: {{ item.customer }}</div>
         </md-card-header-text>
         <md-card-actions>
           <md-button :to="{ name: 'info', params: { customer:item } }" class="md-raised md-primary">
