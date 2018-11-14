@@ -1,4 +1,4 @@
-<style scoped>
+<style lang="scss" scoped>
 .home {
   width: 100%;
   height: 100%;
@@ -28,9 +28,12 @@
 <template>
   <div class="home">
     <md-toolbar class="md-large md-primary">
-        <h1 class="h1">Inicio</h1>
+      <md-button class="md-icon-button" @click="openDrawer">
+          <md-icon>menu</md-icon>
+      </md-button>
+      <h1 class="h1">Inicio</h1>
     </md-toolbar>
-
+    
     <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
     <md-card-content>
       <md-checkbox v-model="filter" value="Eco">EcoParque</md-checkbox>
@@ -41,21 +44,6 @@
       <md-checkbox v-model="filter" value="Plástico">Plástico</md-checkbox>
       <md-checkbox v-model="filter" value="Vidrio">Vidrio</md-checkbox>
       <md-checkbox v-model="filter" value="Rider">Riders</md-checkbox>
-      <table>
-      <tr>
-        <th>EcoParque</th>
-        <th>Aceite</th>
-        <th>Baterias</th>
-        <th>Riders</th>
-      </tr>
-
-      <tr>
-        <td>{{ str4 }}</td>
-        <td>{{ str2 }}</td>
-        <td>{{ str4 }}</td>
-        <td>{{ str8 }}</td>
-      </tr>
-    </table>
     </md-card-content>
 
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
@@ -75,7 +63,7 @@
 </template>
 
 <script>
-import SToolbar from "@/components/SearchToolbar";
+import SToolbar from "@/components/SearchToolbarStandar";
 
 export default {
   name: "home",
@@ -84,14 +72,6 @@ export default {
   },
   data() {
     return {
-     /* str1: null,
-      str2: null,
-      str3: null,
-      str4: null,
-      str5: null,
-      str6: null,
-      str7: null,
-      str8: null,*/
       store: this.$store.state.marker,
       filter: ""
     };
