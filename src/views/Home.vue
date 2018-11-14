@@ -25,7 +25,7 @@
 
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
-      @mousedown="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
+      @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
       <md-card-header>
         <md-card-header-text>

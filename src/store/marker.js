@@ -123,7 +123,7 @@ export default {
     },
     mutations: {
         ['LOAD_MARKS']: (state, marks) => {
-            state.markers = state.markers.concat(marks);
+            state.markers = marks;
         },
         ['CHANGE_MAP']: (state, map) => {
             state.map = map;
