@@ -151,6 +151,7 @@
 <script>
 import LMAP from "@/components/LMap";
 import LMARKER from "@/components/LMarker";
+import axios from 'axios';
 
 export default {
   name: "App",
@@ -167,6 +168,13 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("auth/AUTH_LOGOUT");
+    }
+  },
+  created: function() {
+    const token = localStorage.getItem("user-token");
+    if (token) {
+      // Save Authorization header for all futur request
+      axios.defaults.headers.common["Authorization"] = token;
     }
   }
 };
