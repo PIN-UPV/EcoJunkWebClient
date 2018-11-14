@@ -95,17 +95,34 @@ export default {
                     type: "Point",
                     coordinates: [39.3893925, -0.3979825000000119]
                 },
-                type: {
-                    name: 'rider',
-                    description: 'Ubicación de rider'
-                }
+                type:[
+                    {
+                        name: 'plástico',
+                        description: 'Ubicación de rider'
+                    },
+                    {
+                        name: 'aceite',
+                        description: 'Ubicación de rider'
+                    }
+                ] 
             }
         ]
     },
     getters: {
         filterMarksByName: (state) => (filter) => {
             return state.markers.filter((mark) => {
-                return mark.type.description.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+                return mark.description.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+            });
+        },
+        filterMarksByTags: (state) => (filter) => {
+            return state.markers.filter((mark) => {
+                for (var itemt in mark.type.name) {
+                    for(var itemf in filter){
+                        if(itemt.toLowerCase().indexOf(itemf.toLowerCase()) > -1){
+                            return mark.type
+                        }
+                    }
+                }
             });
         }
     },

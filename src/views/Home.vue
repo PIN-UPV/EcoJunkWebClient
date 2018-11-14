@@ -6,6 +6,9 @@
 .search-toolbar {
   margin: 5%;
 }
+.md-checkbox {
+    display: flex;
+  }
 .md-card {
   margin: 5px;
   border-style: solid;
@@ -22,6 +25,10 @@
 .h1 {
   text-align: center
 }
+.md-card-content {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
 
 </style>
 
@@ -36,17 +43,17 @@
     
     <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
     <md-card-content>
-      <md-checkbox v-model="filter" value="Eco">EcoParque</md-checkbox>
-      <md-checkbox v-model="filter" value="Aceite">Aceite</md-checkbox>
-      <md-checkbox v-model="filter" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
-      <md-checkbox v-model="filter" value="Baterías">Baterias</md-checkbox>
-      <md-checkbox v-model="filter" value="Papel">Papel</md-checkbox>
-      <md-checkbox v-model="filter" value="Plástico">Plástico</md-checkbox>
-      <md-checkbox v-model="filter" value="Vidrio">Vidrio</md-checkbox>
-      <md-checkbox v-model="filter" value="Rider">Riders</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Eco">EcoParque</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Aceite">Aceite</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Baterías">Baterias</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Papel">Papel</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Plástico">Plástico</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Vidrio">Vidrio</md-checkbox>
+      <md-checkbox v-model="filterCB" value="rider">Riders</md-checkbox>
     </md-card-content>
 
-    <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
+    <h2 class="h2" v-if="filteredItems.length == 0 && filteredItemsCB == 0">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
       @mousedown="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
@@ -73,13 +80,17 @@ export default {
   data() {
     return {
       store: this.$store.state.marker,
-      filter: ""
+      filter: "",
+      filterCB:[],
     };
   },
   computed: {
     filteredItems() {
       return this.$store.getters["marker/filterMarksByName"](this.filter);
-    }
+    }, 
+    filteredItemsCB(){
+      return this.$store.getters["marker/filterMarksByTags"](this.filterCB)
+    },
   },
   props: {
     value: Boolean
