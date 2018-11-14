@@ -21,12 +21,25 @@
     }
     .auth {
       background-color: #6b7752;
-      .login, .register {
+      .login,
+      .register {
         text-align: center;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
         color: white;
+      }
+      .logout {
+        text-align: center;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        color: white;
+        i {
+          color: white;
+          width: 40%;
+        }
       }
       .md-list-item-content {
         color: white;
@@ -85,13 +98,20 @@
 
         <md-list @click="showNavigation=false">
           
-          <md-list-item class="auth">
-            <router-link class="md-list-item-text login" to="/login">
-              <span>Iniciar sesión</span>
-            </router-link> |
-            <router-link class="md-list-item-text register" to="/register">
-              <span>Registro</span>
-            </router-link>
+          <md-list-item v-if="!$store.getters['auth/isAuthenticated']" class="auth">
+              <router-link class="md-list-item-text login" to="/login">
+                <span>Iniciar sesión</span>
+              </router-link> |
+              <router-link class="md-list-item-text register" to="/register">
+                <span>Registro</span>
+              </router-link>
+          </md-list-item>
+
+          <md-list-item v-else class="auth">
+              <div class="md-list-item-text logout" @click="logout">
+                <span>{{ $store.state.auth.email }}</span>
+                <md-icon>power_settings_new</md-icon>
+              </div>
           </md-list-item>
 
           <md-list-item to="/">
@@ -131,6 +151,7 @@
 <script>
 import LMAP from "@/components/LMap";
 import LMARKER from "@/components/LMarker";
+import axios from 'axios';
 
 export default {
   name: "App",
@@ -143,6 +164,18 @@ export default {
   components: {
     "l-map": LMAP,
     "l-mark": LMARKER
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/AUTH_LOGOUT");
+    }
+  },
+  created: function() {
+    const token = localStorage.getItem("user-token");
+    if (token) {
+      // Save Authorization header for all futur request
+      axios.defaults.headers.common["Authorization"] = token;
+    }
   }
 };
 </script>
