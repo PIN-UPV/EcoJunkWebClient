@@ -22,7 +22,7 @@ export default {
         }
     },
     actions: {
-        ['AUTH_LOGIN']: ({ commit, rootState, dispatch}, user) => {
+        ['AUTH_LOGIN']: ({ commit, rootState, dispatch }, user) => {
             return new Promise((resolve, reject) => { // The Promise used for router redirect in login
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
@@ -31,12 +31,12 @@ export default {
                     method: 'POST',
                     crossDomain: true,
                 }).then(resp => {
-                    const token = "JWT "+resp.data.token
+                    const token = "JWT " + resp.data.token
                     localStorage.setItem('user-token', token) // store the token in localstorage
-                    // Save Authorization header for all futur request
+                        // Save Authorization header for all futur request
                     axios.defaults.headers.common['Authorization'] = token
                     commit('AUTH_LOGIN', token)
-                    // you have your token, now log in your user :)
+                        // you have your token, now log in your user :)
                     dispatch('AUTH_PROFILE', null)
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
@@ -56,9 +56,9 @@ export default {
                     method: 'POST',
                     crossDomain: true,
                 }).then(resp => {
-                    const token = "JWT "+resp.data.token
+                    const token = "JWT " + resp.data.token
                     localStorage.setItem('user-token', token) // store the token in localstorage
-                    // Save Authorization header for all futur request
+                        // Save Authorization header for all futur request
                     axios.defaults.headers.common['Authorization'] = token
                     commit('AUTH_LOGIN', token)
                     dispatch('AUTH_PROFILE', null)

@@ -5,6 +5,18 @@ export default {
     state: {
         map: null,
         markers: [{
+                street_name: "Calle Falsa 123",
+                description: "Marker de prueba",
+                location: {
+                    type: "Point",
+                    coordinates: [55, 55]
+                },
+                type: {
+                    name: 'baterías',
+                    description: 'Marker de prueba'
+                }
+            },
+            {
                 street_name: "Calle Partida Calvet, 4, 46120 Alboraya, Valencia",
                 description: "Contenedor de baterías",
                 location: {
