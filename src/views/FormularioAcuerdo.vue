@@ -6,21 +6,13 @@
       <md-input v-model="newAgreement.id" md-counter="30"></md-input>
     </md-field>
     <md-field>
-      <label>Usuario</label>
-      <md-input v-model="newAgreement.user.name" md-counter="30"></md-input>
-    </md-field>
-    <md-field>
-      <label>Rider</label>
-      <md-input v-model="newAgreement.rider.name" md-counter="30"></md-input>
-    </md-field>
-    <md-field>
       <label>Residuo</label>
       <md-input v-model="newAgreement.junk.name" md-counter="30"></md-input>
     </md-field>
-    <md-field>
+    <!--<md-field>
       <label>Fecha</label>
       <md-input v-model="newAgreement.date" md-counter="30"></md-input>
-    </md-field>
+    </md-field>-->
     <md-field :md-counter="false">
       <label>Precio (€)</label>
       <md-input v-model="newAgreement.price" maxlength="10"></md-input>
@@ -68,11 +60,7 @@ export default {
     addAgreement: function() {
       if (
         this.newAgreement.id == "" ||
-        this.newAgreement.user == "" ||
-        this.newAgreement.rider.name == "" ||
-        this.newAgreement.user.name == "" ||
         this.newAgreement.junk.name == "" ||
-        this.newAgreement.date == "" ||
         this.newAgreement.location == "" ||
         this.newAgreement.price == ""
       ) {
@@ -85,8 +73,6 @@ export default {
         .then(() => {
           this.$router.push("agreements");
         });
-      //this.ADD_AGREEMENT(this.newAgreement);
-      //this.$router.push('agreements')
     },
     clearForm: function() {
       this.newAgreement.id = "";

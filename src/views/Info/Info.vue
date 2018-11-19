@@ -19,15 +19,13 @@
         </md-card-header>
 
         <md-card-content>
-         <!-- <p>Descripción: {{id.junk.name}}</p>
-          <p>Fecha: {{id.date}}</p>-->
           <p>Precio: {{id.price}}</p>
           <p>Ubicación: {{id.junk_point}}</p>
         </md-card-content>
 
         <md-card-actions>
         <md-button v-if="showAccept" @click="aceptDeal(),date()">Aceptar Acuerdo</md-button>
-        <md-button v-if="showCancel" @click="rejectAgreement">Rechazar Acuerdo</md-button>
+        <md-button v-if="showCancel" @click="declineDeal()">Rechazar Acuerdo</md-button>
       </md-card-actions>
       </md-ripple>
       <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
@@ -39,7 +37,6 @@
 <script>
 import { mapMutations } from "vuex";
 import TIMER from "@/components/CountDown";
-
 export default {
   name: "info",
   data() {
@@ -61,7 +58,6 @@ export default {
     date() {
       var now = new Date();
       now.setTime(now.getTime() + 1000 * 60 * 60 * 24);
-
       this.deadline =
         now.getFullYear() +
         "-" +
@@ -74,7 +70,6 @@ export default {
         now.getMinutes() +
         ":" +
         now.getSeconds();
-
       this.showTimer = true;
       this.showAccept = false;
       this.showCancel = false;
@@ -84,7 +79,7 @@ export default {
       this.$router.go(-1);
     },
     ...mapMutations(["ACEPT_AGREEMENT", "REJECT_AGREEMENT"]),
-    aceptAgreement: function() {
+    /*aceptAgreement: function() {
       this.ACEPT_AGREEMENT(this.id);
       this.showTimer = true;
       this.showAccept = false;
@@ -94,10 +89,16 @@ export default {
       this.REJECT_AGREEMENT(this.id);
       this.showAccept = false;
       this.showCancel = false;
-    },
+    },*/
     aceptDeal(){
       const {id} = this.id
       this.$store.dispatch("agreement/DEAL_ACCEPT" ,{id}).then(() => {
+        this.$router.go(-1);
+      });
+    },
+    declineDeal(){
+      const {id} = this.id
+      this.$store.dispatch("agreement/DEAL_DECLINE" ,{id}).then(() => {
         this.$router.go(-1);
       });
     }

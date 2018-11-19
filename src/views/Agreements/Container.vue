@@ -28,13 +28,12 @@
      <md-tabs md-sync-route>
       <md-tab id="tab-home" md-label="Todos" to="/agreements"></md-tab>
       <md-tab id="tab-pages" md-label="Aceptados" to="/acepted"></md-tab>
-      <md-tab id="tab-posts" md-label="Rechazados" to="/rejected"></md-tab>
+      <!--<md-tab id="tab-posts" md-label="Rechazados" to="/rejected"></md-tab>-->
     </md-tabs>
     <router-view></router-view>
       <md-button to="/form" class="md-fab md-accent fixed-right">
         <md-icon>add</md-icon>
       </md-button>  
-       <md-button @click="refresh">Refresh</md-button>
       </div>
 </template>
 
@@ -51,11 +50,6 @@ export default {
   methods: {
     openDrawer() {
       this.$emit("input", true);
-    },
-    refresh(){
-      this.$store.dispatch("agreement/AGREE_GET").then(() => {
-        this.$router.push("agreements");
-      });
     }
   },
   data() {
@@ -64,5 +58,10 @@ export default {
       showDialog: false
     };
   },
+  created(){
+    this.$store.dispatch("agreement/AGREE_GET").then(() => {
+        this.$router.push("agreements");
+    });
+    }
 };
 </script>
