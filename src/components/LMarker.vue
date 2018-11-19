@@ -24,30 +24,31 @@ export default {
       shadowAnchor: [4, 62], // the same for the shadow
       popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
-    
-    L.marker([this.value.location.coordinates[0], this.value.location.coordinates[1]], { icon: customIcon })
-      .addTo(this.lmap)
-      .on('click', this.changePage)
-  
-  }, 
-  methods: {
-    changePage(){
-      this.$router.push({path:'/markinfo', query: this.value})
-    
-    },
-    selectIcon(){
-      switch(this.value.type.name){
-        case "rider" :
-          return "/icons/" + this.value.type.name + ".png"
-    
-        case "user" :
-          return "/icons/" + this.value.type.name + ".png"
 
-        case "eco_point" :
-          return "/icons/" + this.value.type.name + ".png"
-        
-        default :
-          return "/icons/icon.png"
+    L.marker(
+      [this.value.location.coordinates[0], this.value.location.coordinates[1]],
+      { icon: customIcon }
+    )
+      .addTo(this.lmap)
+      .on("click", this.changePage);
+  },
+  methods: {
+    changePage() {
+      this.$router.push({ path: "/markinfo", query: this.value });
+    },
+    selectIcon() {
+      switch (this.value.type.name) {
+        case "rider":
+          return "/icons/" + this.value.type.name + ".png";
+
+        case "user":
+          return "/icons/" + this.value.type.name + ".png";
+
+        case "eco_point":
+          return "/icons/" + this.value.type.name + ".png";
+
+        default:
+          return "/icons/icon.png";
       }
     }
   }

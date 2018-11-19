@@ -23,6 +23,7 @@
           <p>Fecha: {{id.date}}</p>
           <p>Precio: {{id.price}}</p>
           <p>Ubicación: {{id.location}}</p>
+          <a target="_blank" :href="getUrl(id.location)">¿Cómo llegar?</a>
         </md-card-content>
 
         <md-card-actions>
@@ -94,6 +95,10 @@ export default {
       this.REJECT_AGREEMENT(this.id);
       this.showAccept = false;
       this.showCancel = false;
+    },
+    getUrl(street_name) {
+      //var res = "https://www.google.es/maps/dir/current+location/Plaza del Ayuntamiento,9,46002 Valencia";
+      return "https://www.google.es/maps/dir/current location/" + street_name;
     }
   }
 };

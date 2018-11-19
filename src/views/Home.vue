@@ -5,12 +5,10 @@
 }
 .search-toolbar {
   margin: 5%;
+  color: #448AFF;
 }
 .md-card {
-  margin: 5px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: gray
+  margin: 10px;
 }
 .h2 {
   margin-left: 10px;
@@ -27,7 +25,7 @@
 
     <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
-      @mousedown="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
+      @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
       <md-card-header>
         <md-card-header-text>
@@ -79,7 +77,7 @@ export default {
     }
   },
   created() {
-    //this.$store.dispatch("marker/LOAD_MARKS");
+    this.$store.dispatch("marker/LOAD_MARKS");
   }
 };
 </script>

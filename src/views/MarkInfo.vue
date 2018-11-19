@@ -40,7 +40,6 @@
     methods: {
       returnToMap(){
       this.$router.push('/')
-    
       }
     },
     mounted() {
