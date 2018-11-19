@@ -109,7 +109,7 @@
 
           <md-list-item v-else class="auth">
               <div class="md-list-item-text logout" @click="logout">
-                <span>{{ $store.state.auth.email }}</span>
+                <span>{{ $store.state.auth.profile.email }}</span>
                 <md-icon>power_settings_new</md-icon>
               </div>
           </md-list-item>

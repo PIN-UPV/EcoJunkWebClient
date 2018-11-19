@@ -3,8 +3,8 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state: {
-        email: localStorage.getItem('user-profile') || '',
-        token: localStorage.getItem('user-token') || ''
+        token: localStorage.getItem('user-token') || '',
+        profile: JSON.parse(localStorage.getItem('user-profile')) || {}
     },
     getters: {
         isAuthenticated: state => !!state.token
@@ -15,10 +15,10 @@ export default {
         },
         ['AUTH_LOGOUT']: (state) => {
             state.token = ''
-            state.email = ''
+            state.profile = ''
         },
-        ['AUTH_PROFILE']: (state, email) => {
-            state.email = email
+        ['AUTH_PROFILE']: (state, profile) => {
+            state.profile = profile
         }
     },
     actions: {
@@ -78,8 +78,8 @@ export default {
                     url: rootState.apiPath + '/users/me/',
                     method: 'GET'
                 }).then(resp => {
-                    localStorage.setItem('user-profile', resp.data.email) // store the token in localstorage
-                    commit('AUTH_PROFILE', resp.data.email)
+                    localStorage.setItem('user-profile', JSON.stringify(resp.data) ) // store the token in localstorage
+                    commit('AUTH_PROFILE', resp.data)
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
                 }).catch(err => {
