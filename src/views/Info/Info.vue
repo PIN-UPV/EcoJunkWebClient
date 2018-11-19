@@ -15,18 +15,18 @@
       <md-ripple>
         <md-card-header>
           <div class="md-title">{{id.id}}</div>
-          <div class="md-subhead">User: {{id.user.name}}</div>
+          <div class="md-subhead">User: {{id.customer}}</div>
         </md-card-header>
 
         <md-card-content>
-          <p>Descripción: {{id.junk.name}}</p>
-          <p>Fecha: {{id.date}}</p>
+         <!-- <p>Descripción: {{id.junk.name}}</p>
+          <p>Fecha: {{id.date}}</p>-->
           <p>Precio: {{id.price}}</p>
-          <p>Ubicación: {{id.location}}</p>
+          <p>Ubicación: {{id.junk_point}}</p>
         </md-card-content>
 
         <md-card-actions>
-        <md-button v-if="showAccept" @click="aceptAgreement(),date()">Aceptar Acuerdo</md-button>
+        <md-button v-if="showAccept" @click="aceptDeal(),date()">Aceptar Acuerdo</md-button>
         <md-button v-if="showCancel" @click="rejectAgreement">Rechazar Acuerdo</md-button>
       </md-card-actions>
       </md-ripple>
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       store: this.$store.state.agreement,
-      id: 0,
+      id: null,
       showTimer: false,
       showAccept: true,
       showCancel: true
@@ -94,6 +94,12 @@ export default {
       this.REJECT_AGREEMENT(this.id);
       this.showAccept = false;
       this.showCancel = false;
+    },
+    aceptDeal(){
+      const {id} = this.id
+      this.$store.dispatch("agreement/DEAL_ACCEPT" ,{id}).then(() => {
+        this.$router.go(-1);
+      });
     }
   }
 };

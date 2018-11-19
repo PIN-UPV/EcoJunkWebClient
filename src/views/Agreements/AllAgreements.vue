@@ -22,14 +22,14 @@
 
 <template>
   <div class="allAgreements">
-    <md-card v-for="item in store.results" :key="item.customer" v-bind:index="item.customer">
+    <md-card v-for="item in store.results" :key="item.id" v-bind:index="item.id">
       <md-card-header>
         <md-card-header-text>
-          <div class="md-title">{{item.customer}}</div>
-          <div class="md-subhead">Acuerdos del usuario: {{ item.customer }}</div>
+          <div class="md-title">{{item.id}}</div>
+          <div class="md-subhead">Acuerdos del usuario: {{ item.id }}</div>
         </md-card-header-text>
         <md-card-actions>
-          <md-button :to="{ name: 'info', params: { customer:item } }" class="md-raised md-primary">
+          <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
            info
           </md-button>
         </md-card-actions>  

@@ -168,6 +168,21 @@ export default {
             reject(err)
         })
     })
-   }
+   },
+   ['DEAL_ACCEPT']: ({commit, rootState}, Id ) => {
+    return new Promise((resolve, reject) => { 
+      commit('STATUS_LOADING', null, { root: true })
+      axios({
+          url: rootState.apiPath + '/deals/'+Id+'/accept_deal/',
+          method: 'POST'
+      }).then(resp => {
+          commit('STATUS_SUCCESS', null, { root: true })
+          resolve(resp)
+      }).catch(err => {
+          commit('STATUS_ERROR', err.response.data.message, { root: true })
+          reject(err)
+      })
+  })
+ }
   }
 }
