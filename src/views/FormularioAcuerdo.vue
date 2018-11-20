@@ -6,13 +6,13 @@
       <md-input v-model="newDeal.junk" md-counter="30"></md-input>
     </md-field>
     <md-field :md-counter="false">
-      <label>Precio €)</label>
+      <label>Precio (€)</label>
       <md-input v-model="newDeal.price" maxlength="10"></md-input>
     </md-field>
-    <md-field>
-      <label>Ubicación</label>
-      <md-input v-model="newDeal.location" maxlength="30"></md-input>
-    </md-field>
+    <h2>{{newDeal.location}}</h2>
+      <!--<label>Ubicación</label>
+      <md-input v-model="newDeal.location" maxlength="30"></md-input>-->
+    
     <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
     <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
     </form>
@@ -23,34 +23,34 @@
 
 
 <script>
-import { mapMutations } from "vuex";
+import { store } from "@/store/index.js";
 
 export default {
+  store,
   name: "Counters",
-  data: () => ({
+  data () {
+    return{
     newDeal: {
       junk:"",
       price:"",
-      location:""
+      location: this.$store.state.auth.location
     },
-    textarea: "",
-    deadline: "",
-    countDown: "2018-12-1 9:19:18"
-  }),
+    
+    }
+  },
   methods: {
-    ...mapMutations(["ADD_AGREEMENT"]),
     addAgreement: function() {
       if (
-        this.newDeal.junk.name == "" ||
+        this.newDeal.junk == "" ||
         this.newDeal.location == "" ||
         this.newDeal.price == ""
       ) {
         alert("Campos vacíos");
         return;
       }
-      const { id, user, raider, location, price } = this.newAgreement;
+      const { junk, location, price } = this.newDeal;
       this.$store
-        .dispatch("agreement/AGREE_ADD", { id, user, raider, location, price })
+        .dispatch("agreement/AGREE_ADD", { junk, location, price })
         .then(() => {
           this.$router.push("agreements");
         });

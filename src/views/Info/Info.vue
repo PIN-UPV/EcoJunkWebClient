@@ -14,13 +14,13 @@
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
-          <div class="md-title">{{deal.id}}</div>
-          <div class="md-subhead">User: {{deal.customer.email}}</div>
+          <div class="md-title">{{id.id}}</div>
+          <div class="md-subhead">User: {{id.customer.email}}</div>
         </md-card-header>
 
         <md-card-content>
-          <p>Precio: {{deal.price}}</p>
-          <p>Ubicación: {{deal.junk_point.location.coordinates}}</p>
+          <p>Precio: {{id.price}}</p>
+          <p>Ubicación: {{id.junk_point.location.coordinates}}</p>
         </md-card-content>
 
         <md-card-actions>
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       store: this.$store.state.agreement,
-      deal: null,
+      id: null,
       showTimer: false,
       showAccept: true,
       showCancel: true
@@ -52,7 +52,7 @@ export default {
     timer: TIMER
   },
   created() {
-    this.deal = this.$route.params.id;
+    this.id = this.$route.params.id;
   },
   methods: {
     date() {
@@ -91,14 +91,14 @@ export default {
       this.showCancel = false;
     },*/
     aceptDeal(){
-      const {deal} = this.deal
-      this.$store.dispatch("agreement/DEAL_ACCEPT" ,{deal}).then(() => {
+      const {id} = this.id
+      this.$store.dispatch("agreement/DEAL_ACCEPT" ,{id}).then(() => {
         this.$router.go(-1);
       });
     },
     declineDeal(){
-      const {deal} = this.deal
-      this.$store.dispatch("agreement/DEAL_DECLINE" ,{deal}).then(() => {
+      const {id} = this.id
+      this.$store.dispatch("agreement/DEAL_DECLINE" ,{id}).then(() => {
         this.$router.go(-1);
       });
     }

@@ -7,8 +7,8 @@ export default {
   },
   getters:{
     dealsWithoutRider: (state) => () => {
-      return state.results.filter((result) => {
-          return result.rider.email == "";
+      return state.results.filter((deal) => {
+          return deal.rider.email.equals("");
       });
     }
   },
