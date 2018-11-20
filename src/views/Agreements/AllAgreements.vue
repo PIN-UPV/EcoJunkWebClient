@@ -26,7 +26,7 @@
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>
-          <div class="md-subhead">Acuerdo del usuario: {{ item.customer }}</div>
+          <div class="md-subhead">Acuerdo del usuario: {{ item.customer.email }}</div>
         </md-card-header-text>
         <md-card-actions>
           <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
@@ -57,6 +57,11 @@ export default {
       store: this.$store.state.agreement,
       showDialog: false
     };
+  },
+  computed: {
+     dealsWithoutRider() {
+      return this.$store.getters["agreement/dealsWithoutRider"];
+    }
   }
 };
 </script>

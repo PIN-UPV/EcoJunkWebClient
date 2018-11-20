@@ -1,10 +1,10 @@
 <template>
   <div id = "form">
     <form>
-    <md-field>
+    <!--<md-field>
       <label>Nombre</label>
       <md-input v-model="newAgreement.id" md-counter="30"></md-input>
-    </md-field>
+    </md-field>-->
     <md-field>
       <label>Residuo</label>
       <md-input v-model="newAgreement.junk.name" md-counter="30"></md-input>

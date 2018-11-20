@@ -15,12 +15,12 @@
       <md-ripple>
         <md-card-header>
           <div class="md-title">{{deal.id}}</div>
-          <div class="md-subhead">User: {{deal.customer}}</div>
+          <div class="md-subhead">User: {{deal.customer.email}}</div>
         </md-card-header>
 
         <md-card-content>
           <p>Precio: {{deal.price}}</p>
-          <p>Ubicación: {{deal.junk_point}}</p>
+          <p>Ubicación: {{deal.junk_point.location.coordinates}}</p>
         </md-card-content>
 
         <md-card-actions>
