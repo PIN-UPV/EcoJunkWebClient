@@ -5,18 +5,20 @@
 }
 .search-toolbar {
   margin: 5%;
+  color: #448aff;
 }
 .md-card {
-  margin: 5px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: gray
+  margin: 10px;
 }
 .h2 {
   margin-left: 10px;
 }
 .cursor {
-  cursor: pointer
+  cursor: pointer;
+}
+.loadDiv {
+  height: auto;
+  text-align: center;
 }
 
 .h1 {
@@ -49,7 +51,7 @@
 
     <h2 class="h2" v-if="filteredItems.length == 0 && filteredItemsCB == 0">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
-      @mousedown="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
+      @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
       <md-card-header>
         <md-card-header-text>
@@ -60,6 +62,13 @@
     </md-card>
     </div>
 
+    <div id="loadDiv" class="loadDiv" v-if="filteredItems.length > 0 && filteredItems.length == store.markers.length && filteredItems.length % 20 == 0"
+      v-observe-visibility="{
+        callback: loadMoreMarks,
+      }" 
+      
+      >CARGANDO...
+    </div>
   </div>
 </template>
 
@@ -84,7 +93,7 @@ export default {
     },
     filteredItemsCB(){
       return this.$store.getters["marker/filterMarksByType"](this.filterCB);
-    }
+    },
   },
   props: {
     value: Boolean
@@ -94,18 +103,25 @@ export default {
       this.$emit("input", true); 
     },
     setView(lat, long) {
-
       this.store.map.setView([lat, long]);
     },
     imageSrc(type) {
       return "icons/" + type + ".png";
     },
-    changePage(item){
-      this.$router.push({path:'/markinfo', query: item})
+    changePage(item) {
+      this.$router.push({ path: "/markinfo", query: item });
+    },
+    loadMoreMarks() {
+      this.visibility = !this.visibility;
+      if (!this.visibility) {
+        var page = this.filteredItems.length / 20 + 1;
+        this.$store.dispatch("marker/LOAD_MARKS", page);
+      }
     }
   },
   created() {
-    //this.$store.dispatch("marker/LOAD_MARKS");
+    if (this.filteredItems.length == 0)
+      this.$store.dispatch("marker/LOAD_MARKS", 1);
   }
 };
 </script>

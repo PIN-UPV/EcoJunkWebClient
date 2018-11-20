@@ -67,6 +67,7 @@ export default {
       .on("locationfound", e => {
         if (this.currentLocationMarker != null) {
           this.currentLocationMarker.setLatLng([e.latitude,e.longitude]);
+          this.$store.commit("auth/ADD_USER_LOCATION", { lat: e.latitude, long: e.longitude })
         } else {
           this.currentLocationMarker = L.marker([e.latitude, e.longitude], {
             icon: userIcon

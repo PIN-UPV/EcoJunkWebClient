@@ -28,7 +28,7 @@
      <md-tabs md-sync-route>
       <md-tab id="tab-home" md-label="Todos" to="/agreements"></md-tab>
       <md-tab id="tab-pages" md-label="Aceptados" to="/acepted"></md-tab>
-      <md-tab id="tab-posts" md-label="Rechazados" to="/rejected"></md-tab>
+      <!--<md-tab id="tab-posts" md-label="Rechazados" to="/rejected"></md-tab>-->
     </md-tabs>
     <router-view></router-view>
       <md-button to="/form" class="md-fab md-accent fixed-right">
@@ -57,6 +57,11 @@ export default {
       store: this.$store.state.agreement,
       showDialog: false
     };
-  }
+  },
+  created(){
+    this.$store.dispatch("agreement/AGREE_GET").then(() => {
+        this.$router.push("agreements");
+    });
+    }
 };
 </script>
