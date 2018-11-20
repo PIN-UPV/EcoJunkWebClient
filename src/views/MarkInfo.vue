@@ -15,9 +15,9 @@
         <md-card-content>
           <b>Nombre</b> 
           <p>{{query.description}}</p>
-          <b>Descripción </b> 
           <b>Localización </b>
           <p>{{query.street_name}}</p> 
+          <a target="_blank" :href="getUrl(query.location.coordinates)">¿Cómo llegar?</a>
         </md-card-content>
 
       </md-ripple>
@@ -38,6 +38,10 @@
     methods: {
       returnToMap(){
       this.$router.push('/')
+      },
+      getUrl(coordinates) {
+      var coords = coordinates[0] + ',' + coordinates[1];
+      return "https://www.google.es/maps/dir/current+location/" + coords;
       }
     },
     mounted() {
