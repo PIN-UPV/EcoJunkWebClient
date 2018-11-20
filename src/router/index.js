@@ -18,13 +18,14 @@ const routes = [{
     {
         path: '/markinfo',
         name: 'markInfo',
+        meta: { requiresAuth: true }, // Example to private access
         component: () =>
             import('../views/MarkInfo.vue')
     },
     {
         path: '/agreements',
         name: 'agreements',
-        //meta: { requiresAuth: true }, // Example to private access
+        meta: { requiresAuth: true }, // Example to private access
         component: () =>
             import('../views/Agreements/Container.vue'),
         children: [{
@@ -50,27 +51,18 @@ const routes = [{
     {
         path: '/form',
         name: 'form',
+        meta: { requiresAuth: true }, 
         component: () =>
             import('../views/FormularioAcuerdo.vue')
     },
     {
         path: '/info/:id',
         name: 'info',
+        meta: { requiresAuth: true }, 
         component: () =>
             import('../views/Info/Info.vue')
     },
     {
-        path: '/infoAR/:id',
-        name: 'infoAR',
-        component: () =>
-            import('../views/Info/InfoAR.vue')
-    },
-    {
-        path: '/infoR/:id',
-        name: 'infoR',
-        component: () =>
-            import('../views/Info/InfoR.vue')
-    }, {
         path: '/login',
         name: 'Login',
         component: () =>

@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     var customIcon = L.icon({
-      iconUrl: this.selectIcon(),
+      iconUrl: '/icons/icon.png',
       iconSize: [35, 40], // size of the icon
       shadowSize: [50, 64], // size of the shadow
       iconAnchor: [17, 40], // point of the icon which will correspond to marker's location
@@ -35,21 +35,6 @@ export default {
   methods: {
     changePage() {
       this.$router.push({ path: "/markinfo", query: this.value });
-    },
-    selectIcon() {
-      switch (this.value.type.name) {
-        case "rider":
-          return "/icons/" + this.value.type.name + ".png";
-
-        case "user":
-          return "/icons/" + this.value.type.name + ".png";
-
-        case "eco_point":
-          return "/icons/" + this.value.type.name + ".png";
-
-        default:
-          return "/icons/icon.png";
-      }
     }
   }
 };
