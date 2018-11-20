@@ -15,19 +15,22 @@
       <md-ripple>
         <md-card-header>
           <div class="md-title">{{id.id}}</div>
-          <div class="md-subhead">User: {{id.customer.email}}</div>
+          <div class="md-subhead">Rider: {{id.customer.email}}</div>
         </md-card-header>
 
         <md-card-content>
           <p>Precio: {{id.price}}</p>
           <p>Ubicación: {{id.junk_point.location.coordinates}}</p>
+          <a target="_blank" :href="getUrl(id.junk_point.location.coordinates)">¿Cómo llegar?</a>
         </md-card-content>
 
         <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
 
         <md-card-actions>
-          <md-button v-if="showAccept && $store.getters['auth/isRider']" @click="aceptDeal(),date()">Aceptar Acuerdo</md-button>
-          <md-button v-if="$store.getters['auth/isRider']" @click="declineDeal()">Rechazar Acuerdo</md-button>
+          <md-button v-if="showAccept && $store.getters['auth/isRider'] && id.customer.email=='' "
+          @click="aceptDeal()">Aceptar Acuerdo</md-button>
+          <md-button v-if="$store.getters['auth/isRider'] && id.customer.email == $store.state.auth.profile.email"
+           @click="declineDeal()">Rechazar Acuerdo</md-button>
         </md-card-actions>
 
       </md-ripple>
@@ -101,6 +104,10 @@ export default {
       this.$store.dispatch("agreement/DEAL_DECLINE" ,{id}).then(() => {
         this.$router.go(-1);
       });
+    },
+    getUrl(coordinates) {
+      var coords = coordinates[0]+","+coordinates[1]
+      return "https://www.google.es/maps/dir/current+location/" + coords;
     }
   }
 };

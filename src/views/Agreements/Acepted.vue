@@ -63,6 +63,11 @@ export default {
      myDeals() {
       return this.$store.getters["agreement/myDeals"];
     }
+  },
+  created(){
+    this.$store.dispatch("agreement/AGREE_GET").then(() => {
+        this.$router.push("acepted");
+    });
   }
 };
 </script>

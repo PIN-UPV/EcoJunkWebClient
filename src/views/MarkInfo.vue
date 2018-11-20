@@ -16,7 +16,6 @@
           <b>Nombre</b> 
           <p>{{query.description}}</p>
           <b>Descripción </b> 
-          <b>Localización </b>
           <p>{{query.street_name}}</p> 
         </md-card-content>
 

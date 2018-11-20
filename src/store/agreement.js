@@ -9,12 +9,12 @@ export default {
   getters: {
       dealsWithoutRider: (state) => {
           return state.results.filter((result) => {
-              return result.rider.email == "";
+              return result.customer.email == "";
           });
       },
       myDeals: (state, getters, rootState) => {
         return state.results.filter((result) => {
-            return result.rider.email == rootState.auth.profile.email;
+            return result.customer.email == rootState.auth.profile.email;
         });
     }
   },
