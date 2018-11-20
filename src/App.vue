@@ -62,6 +62,13 @@
     background-color: whitesmoke;
   }
 }
+body .md-snackbar {
+  z-index: 1001;
+}
+.md-progress-bar {
+  width: 100%;
+  z-index: 1001;
+}
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
@@ -86,6 +93,11 @@
 
 <template>
   <div id="app">
+    <md-progress-bar 
+      v-if="ifLoading" 
+      md-mode="indeterminate" 
+    />
+      
     <div class="page-container md-layout-column">
 
       <md-drawer :md-active.sync="showNavigation">
@@ -144,6 +156,15 @@
         <l-mark v-for="item in store.markers" :key="item.street_name" :value="item"></l-mark>
       </l-map>
 
+      <md-snackbar 
+      md-position="center" 
+      :md-duration="snack.duration" 
+      :md-active.sync="ifError && snack.showSnackbar" 
+      md-persistent>
+        <span>{{ $store.state.errorMsg || "Error" }}</span>
+        <md-button class="md-primary" @click="snack.showSnackbar = false">Retry</md-button>
+      </md-snackbar>
+
     </div>
   </div>
 </template>
@@ -151,12 +172,16 @@
 <script>
 import LMAP from "@/components/LMap";
 import LMARKER from "@/components/LMarker";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "App",
   data() {
     return {
+      snack: {
+        showSnackbar: false,
+        duration: 6000
+      },
       showNavigation: false,
       store: this.$store.state.marker
     };
@@ -164,6 +189,17 @@ export default {
   components: {
     "l-map": LMAP,
     "l-mark": LMARKER
+  },
+  computed: {
+    ifLoading: function() {
+      // computed properties reevaluate result when vars change
+      return this.$store.state.status == "loading";
+    },
+    ifError: function() {
+      // eslint-disable-next-line
+      this.snack.showSnackbar = true;
+      return this.$store.state.status == "error";
+    }
   },
   methods: {
     logout() {
