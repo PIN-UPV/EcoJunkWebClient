@@ -28,37 +28,26 @@
 <template>
   <div class="home">
     <md-toolbar class="md-large md-primary">
+      <md-button class="md-icon-button" @click="openDrawer">
+            <md-icon>menu</md-icon>
+        </md-button>
         <h1 class="h1">Inicio</h1>
     </md-toolbar>
 
-    <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
-    <md-card-content>
-      <md-checkbox v-model="filter" value="Eco">EcoParque</md-checkbox>
-      <md-checkbox v-model="filter" value="Aceite">Aceite</md-checkbox>
-      <md-checkbox v-model="filter" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
-      <md-checkbox v-model="filter" value="Baterías">Baterias</md-checkbox>
-      <md-checkbox v-model="filter" value="Papel">Papel</md-checkbox>
-      <md-checkbox v-model="filter" value="Plástico">Plástico</md-checkbox>
-      <md-checkbox v-model="filter" value="Vidrio">Vidrio</md-checkbox>
-      <md-checkbox v-model="filter" value="Rider">Riders</md-checkbox>
-      <table>
-      <tr>
-        <th>EcoParque</th>
-        <th>Aceite</th>
-        <th>Baterias</th>
-        <th>Riders</th>
-      </tr>
+    <s-toolbar v-model="filter" msg="Buscar contenedor"/>
 
-      <tr>
-        <td>{{ str4 }}</td>
-        <td>{{ str2 }}</td>
-        <td>{{ str4 }}</td>
-        <td>{{ str8 }}</td>
-      </tr>
-    </table>
+    <md-card-content>
+      <md-checkbox v-model="filterCB" value="Eco">EcoParque</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Aceite">Aceite</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Baterías">Baterias</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Papel">Papel</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Plástico">Plástico</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Vidrio">Vidrio</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Rider">Riders</md-checkbox>
     </md-card-content>
 
-    <h2 class="h2" v-if="filteredItems.length == 0">NO HAY RESULTADOS</h2>
+    <h2 class="h2" v-if="filteredItems.length == 0 && filteredItemsCB == 0">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
       @mousedown="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
@@ -75,7 +64,7 @@
 </template>
 
 <script>
-import SToolbar from "@/components/SearchToolbar";
+import SToolbar from "@/components/StandarSearchToolbar";
 
 export default {
   name: "home",
@@ -84,21 +73,17 @@ export default {
   },
   data() {
     return {
-     /* str1: null,
-      str2: null,
-      str3: null,
-      str4: null,
-      str5: null,
-      str6: null,
-      str7: null,
-      str8: null,*/
       store: this.$store.state.marker,
-      filter: ""
+      filter: "",
+      filterCB: []
     };
   },
   computed: {
     filteredItems() {
       return this.$store.getters["marker/filterMarksByName"](this.filter);
+    },
+    filteredItemsCB(){
+      return this.$store.getters["marker/filterMarksByType"](this.filterCB);
     }
   },
   props: {

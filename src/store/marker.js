@@ -107,6 +107,15 @@ export default {
             return state.markers.filter((mark) => {
                 return mark.type.description.toLowerCase().indexOf(filter.toLowerCase()) > -1;
             });
+        },
+        filterMarksByType: (state) => (filter) => {
+            return state.markers.filter((mark) => {
+                for(var i = 0; i < filter.length; i++){
+                    for(var j = 0; j < mark.types.lenght; j++){
+                        return mark.type[j].toLowerCase().indexOf(filter[i].toLowerCase()) > -1;
+                    }
+                }  
+            });
         }
     },
     mutations: {
