@@ -1,15 +1,21 @@
 import axios from 'axios'
 
+
 export default {
   namespaced: true,
   state: {
     results: []
   },
-  getters:{
-    dealsWithoutRider: (state) => () => {
-      return state.results.filter((deal) => {
-          return deal.rider.email.equals("");
-      });
+  getters: {
+      dealsWithoutRider: (state) => {
+          return state.results.filter((result) => {
+              return result.rider.email == "";
+          });
+      },
+      myDeals: (state, getters, rootState) => {
+        return state.results.filter((result) => {
+            return result.rider.email == rootState.auth.profile.email;
+        });
     }
   },
   mutations: {

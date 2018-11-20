@@ -86,14 +86,14 @@ export default {
     },
     loadMoreMarks() {
       this.visibility = !this.visibility;
-      if (!this.visibility) {
+      if (!this.visibility && this.$store.getters['auth/isAuthenticated']) {
         var page = this.filteredItems.length / 20 + 1;
         this.$store.dispatch("marker/LOAD_MARKS", page);
       }
     }
   },
   created() {
-    if (this.filteredItems.length == 0)
+    if (this.filteredItems.length == 0 && this.$store.getters['auth/isAuthenticated'])
       this.$store.dispatch("marker/LOAD_MARKS", 1);
   }
 };

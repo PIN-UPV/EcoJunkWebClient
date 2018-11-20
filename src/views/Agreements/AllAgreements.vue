@@ -22,7 +22,7 @@
 
 <template>
   <div class="allAgreements">
-    <md-card v-for="item in store.results" :key="item.id" v-bind:index="item.id">
+    <md-card v-for="item in dealsWithoutRider" :key="item.id" v-bind:index="item.id">
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>

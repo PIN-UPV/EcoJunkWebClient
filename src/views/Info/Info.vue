@@ -23,12 +23,14 @@
           <p>Ubicación: {{id.junk_point.location.coordinates}}</p>
         </md-card-content>
 
+        <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
+
         <md-card-actions>
-        <md-button v-if="showAccept" @click="aceptDeal(),date()">Aceptar Acuerdo</md-button>
-        <md-button v-if="showCancel" @click="declineDeal()">Rechazar Acuerdo</md-button>
-      </md-card-actions>
+          <md-button v-if="showAccept && $store.getters['auth/isRider']" @click="aceptDeal(),date()">Aceptar Acuerdo</md-button>
+          <md-button v-if="$store.getters['auth/isRider']" @click="declineDeal()">Rechazar Acuerdo</md-button>
+        </md-card-actions>
+
       </md-ripple>
-      <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
     </md-card>
 
   </div>
@@ -44,8 +46,7 @@ export default {
       store: this.$store.state.agreement,
       id: null,
       showTimer: false,
-      showAccept: true,
-      showCancel: true
+      showAccept: true
     };
   },
   components: {
@@ -72,7 +73,6 @@ export default {
         now.getSeconds();
       this.showTimer = true;
       this.showAccept = false;
-      this.showCancel = false;
       this.id.countDown = this.deadline;
     },
     goBack() {

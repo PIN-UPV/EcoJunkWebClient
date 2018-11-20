@@ -23,25 +23,19 @@
 
 <template>
   <div class="acepted">
-    
-
-    <md-card v-for="item in store.agreementsAcepted" :key="item.id" v-bind:index="item.id">
-      
+    <md-card v-for="item in myDeals" :key="item.id" v-bind:index="item.id">
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>
-          <div class="md-subhead">Acuerdo del usuario: {{ item.user.name }}</div>
+          <div class="md-subhead">Acuerdo del usuario: {{ item.customer.email }}</div>
         </md-card-header-text>
         <md-card-actions>
-          <md-button :to="{ name: 'infoAR', params: { id:item } }" class="md-raised md-primary">
+          <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
            info
           </md-button>
         </md-card-actions>  
       </md-card-header>
     </md-card>
-
-
-
   </div>
 </template>
 
@@ -64,6 +58,11 @@ export default {
       store: this.$store.state.agreement,
       showDialog: false
     };
+  },
+  computed: {
+     myDeals() {
+      return this.$store.getters["agreement/myDeals"];
+    }
   }
 };
 </script>

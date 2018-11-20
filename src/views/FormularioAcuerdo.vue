@@ -5,12 +5,16 @@
       <label>Residuo</label>
       <md-input v-model="newDeal.junk" md-counter="30"></md-input>
     </md-field>
+    <md-field>
+      <label>Junk Point</label>
+      <md-input v-model="newDeal.junk_point" md-counter="30"></md-input>
+    </md-field>
     <md-field :md-counter="false">
       <label>Precio (€)</label>
       <md-input v-model="newDeal.price" maxlength="10"></md-input>
     </md-field>
-    <h2>{{newDeal.location}}</h2>
-      <!--<label>Ubicación</label>
+    <!--<h2>{{newDeal.location}}</h2>
+      <label>Ubicación</label>
       <md-input v-model="newDeal.location" maxlength="30"></md-input>-->
     
     <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
@@ -33,7 +37,7 @@ export default {
     newDeal: {
       junk:"",
       price:"",
-      location: this.$store.state.auth.location
+      junk_point: ""
     },
     
     }
@@ -42,15 +46,15 @@ export default {
     addAgreement: function() {
       if (
         this.newDeal.junk == "" ||
-        this.newDeal.location == "" ||
+        this.newDeal.junk_point == "" ||
         this.newDeal.price == ""
       ) {
         alert("Campos vacíos");
         return;
       }
-      const { junk, location, price } = this.newDeal;
+      const { junk, junk_point, price } = this.newDeal;
       this.$store
-        .dispatch("agreement/AGREE_ADD", { junk, location, price })
+        .dispatch("agreement/AGREE_ADD", { junk, junk_point, price })
         .then(() => {
           this.$router.push("agreements");
         });
