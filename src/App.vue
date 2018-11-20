@@ -153,7 +153,7 @@ body .md-snackbar {
       </md-content>
       
       <l-map >
-        <l-mark v-for="item in store.markers" :key="item.street_name" :value="item"></l-mark>
+        <l-mark v-for="item in store.markers" :key="item.id" :value="item"></l-mark>
       </l-map>
 
       <md-snackbar 
