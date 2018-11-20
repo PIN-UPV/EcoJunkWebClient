@@ -4,7 +4,11 @@ export default {
     namespaced: true,
     state: {
         token: localStorage.getItem('user-token') || '',
-        profile: JSON.parse(localStorage.getItem('user-profile')) || {}
+        profile: JSON.parse(localStorage.getItem('user-profile')) || {},
+        location: {
+            lat: null,
+            long: null
+        }
     },
     getters: {
         isAuthenticated: state => !!state.token
@@ -19,7 +23,11 @@ export default {
         },
         ['AUTH_PROFILE']: (state, profile) => {
             state.profile = profile
-        }
+        },
+        ['ADD_USER_LOCATION']: (state, location) => {
+            state.location.lat = location.lat;
+            state.location.long = location.long;
+        },
     },
     actions: {
         ['AUTH_LOGIN']: ({ commit, rootState, dispatch }, user) => {
@@ -78,7 +86,7 @@ export default {
                     url: rootState.apiPath + '/users/me/',
                     method: 'GET'
                 }).then(resp => {
-                    localStorage.setItem('user-profile', JSON.stringify(resp.data) ) // store the token in localstorage
+                    localStorage.setItem('user-profile', JSON.stringify(resp.data)) // store the token in localstorage
                     commit('AUTH_PROFILE', resp.data)
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
