@@ -62,6 +62,13 @@
     background-color: whitesmoke;
   }
 }
+body .md-snackbar {
+  z-index: 1001;
+}
+.md-progress-bar {
+  width: 100%;
+  z-index: 1001;
+}
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
@@ -86,6 +93,11 @@
 
 <template>
   <div id="app">
+    <md-progress-bar 
+      v-if="ifLoading" 
+      md-mode="indeterminate" 
+    />
+      
     <div class="page-container md-layout-column">
 
       <md-drawer :md-active.sync="showNavigation">
@@ -109,7 +121,7 @@
 
           <md-list-item v-else class="auth">
               <div class="md-list-item-text logout" @click="logout">
-                <span>{{ $store.state.auth.email }}</span>
+                <span>{{ $store.state.auth.profile.email }}</span>
                 <md-icon>power_settings_new</md-icon>
               </div>
           </md-list-item>
@@ -141,8 +153,17 @@
       </md-content>
       
       <l-map >
-        <l-mark v-for="item in store.markers" :key="item.street_name" :value="item"></l-mark>
+        <l-mark v-for="item in store.markers" :key="item.id" :value="item"></l-mark>
       </l-map>
+
+      <md-snackbar 
+      md-position="center" 
+      :md-duration="snack.duration" 
+      :md-active.sync="ifError && snack.showSnackbar" 
+      md-persistent>
+        <span>{{ $store.state.errorMsg || "Error" }}</span>
+        <md-button class="md-primary" @click="snack.showSnackbar = false">Retry</md-button>
+      </md-snackbar>
 
     </div>
   </div>
@@ -151,11 +172,16 @@
 <script>
 import LMAP from "@/components/LMap";
 import LMARKER from "@/components/LMarker";
+import axios from "axios";
 
 export default {
   name: "App",
   data() {
     return {
+      snack: {
+        showSnackbar: false,
+        duration: 6000
+      },
       showNavigation: false,
       store: this.$store.state.marker
     };
@@ -164,9 +190,27 @@ export default {
     "l-map": LMAP,
     "l-mark": LMARKER
   },
+  computed: {
+    ifLoading: function() {
+      // computed properties reevaluate result when vars change
+      return this.$store.state.status == "loading";
+    },
+    ifError: function() {
+      // eslint-disable-next-line
+      this.snack.showSnackbar = true;
+      return this.$store.state.status == "error";
+    }
+  },
   methods: {
     logout() {
       this.$store.dispatch("auth/AUTH_LOGOUT");
+    }
+  },
+  created: function() {
+    const token = localStorage.getItem("user-token");
+    if (token) {
+      // Save Authorization header for all futur request
+      axios.defaults.headers.common["Authorization"] = token;
     }
   }
 };

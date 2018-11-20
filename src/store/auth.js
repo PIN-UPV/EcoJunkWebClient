@@ -3,8 +3,12 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state: {
-        email: localStorage.getItem('user-profile') || '',
-        token: localStorage.getItem('user-token') || ''
+        token: localStorage.getItem('user-token') || '',
+        profile: JSON.parse(localStorage.getItem('user-profile')) || {},
+        location: {
+            lat: null,
+            long: null
+        }
     },
     getters: {
         isAuthenticated: state => !!state.token
@@ -15,14 +19,18 @@ export default {
         },
         ['AUTH_LOGOUT']: (state) => {
             state.token = ''
-            state.email = ''
+            state.profile = ''
         },
-        ['AUTH_PROFILE']: (state, email) => {
-            state.email = email
-        }
+        ['AUTH_PROFILE']: (state, profile) => {
+            state.profile = profile
+        },
+        ['ADD_USER_LOCATION']: (state, location) => {
+            state.location.lat = location.lat;
+            state.location.long = location.long;
+        },
     },
     actions: {
-        ['AUTH_LOGIN']: ({ commit, rootState, dispatch}, user) => {
+        ['AUTH_LOGIN']: ({ commit, rootState, dispatch }, user) => {
             return new Promise((resolve, reject) => { // The Promise used for router redirect in login
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
@@ -31,12 +39,12 @@ export default {
                     method: 'POST',
                     crossDomain: true,
                 }).then(resp => {
-                    const token = "JWT "+resp.data.token
+                    const token = "JWT " + resp.data.token
                     localStorage.setItem('user-token', token) // store the token in localstorage
-                    // Save Authorization header for all futur request
+                        // Save Authorization header for all futur request
                     axios.defaults.headers.common['Authorization'] = token
                     commit('AUTH_LOGIN', token)
-                    // you have your token, now log in your user :)
+                        // you have your token, now log in your user :)
                     dispatch('AUTH_PROFILE', null)
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
@@ -56,9 +64,9 @@ export default {
                     method: 'POST',
                     crossDomain: true,
                 }).then(resp => {
-                    const token = "JWT "+resp.data.token
+                    const token = "JWT " + resp.data.token
                     localStorage.setItem('user-token', token) // store the token in localstorage
-                    // Save Authorization header for all futur request
+                        // Save Authorization header for all futur request
                     axios.defaults.headers.common['Authorization'] = token
                     commit('AUTH_LOGIN', token)
                     dispatch('AUTH_PROFILE', null)
@@ -78,8 +86,8 @@ export default {
                     url: rootState.apiPath + '/users/me/',
                     method: 'GET'
                 }).then(resp => {
-                    localStorage.setItem('user-profile', resp.data.email) // store the token in localstorage
-                    commit('AUTH_PROFILE', resp.data.email)
+                    localStorage.setItem('user-profile', JSON.stringify(resp.data)) // store the token in localstorage
+                    commit('AUTH_PROFILE', resp.data)
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
                 }).catch(err => {
