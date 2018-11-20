@@ -1,25 +1,17 @@
 <template>
   <div id = "form">
     <form>
-    <!--<md-field>
-      <label>Nombre</label>
-      <md-input v-model="newAgreement.id" md-counter="30"></md-input>
-    </md-field>-->
     <md-field>
       <label>Residuo</label>
-      <md-input v-model="newAgreement.junk.name" md-counter="30"></md-input>
+      <md-input v-model="newDeal.junk" md-counter="30"></md-input>
     </md-field>
-    <!--<md-field>
-      <label>Fecha</label>
-      <md-input v-model="newAgreement.date" md-counter="30"></md-input>
-    </md-field>-->
     <md-field :md-counter="false">
       <label>Precio (€)</label>
-      <md-input v-model="newAgreement.price" maxlength="10"></md-input>
+      <md-input v-model="newDeal.price" maxlength="10"></md-input>
     </md-field>
     <md-field>
       <label>Ubicación</label>
-      <md-input v-model="newAgreement.location" maxlength="30"></md-input>
+      <md-input v-model="newDeal.location" maxlength="30"></md-input>
     </md-field>
     <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
     <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
@@ -36,20 +28,10 @@ import { mapMutations } from "vuex";
 export default {
   name: "Counters",
   data: () => ({
-    newAgreement: {
-      id: "",
-      user: {
-        name: ""
-      },
-      rider: {
-        name: ""
-      },
-      junk: {
-        name: ""
-      },
-      date: "",
-      location: "",
-      price: ""
+    newDeal: {
+      junk:"",
+      price:"",
+      location:""
     },
     textarea: "",
     deadline: "",
@@ -59,10 +41,9 @@ export default {
     ...mapMutations(["ADD_AGREEMENT"]),
     addAgreement: function() {
       if (
-        this.newAgreement.id == "" ||
-        this.newAgreement.junk.name == "" ||
-        this.newAgreement.location == "" ||
-        this.newAgreement.price == ""
+        this.newDeal.junk.name == "" ||
+        this.newDeal.location == "" ||
+        this.newDeal.price == ""
       ) {
         alert("Campos vacíos");
         return;
@@ -75,14 +56,7 @@ export default {
         });
     },
     clearForm: function() {
-      this.newAgreement.id = "";
-      this.newAgreement.user = "";
-      this.newAgreement.rider.name = "";
-      this.newAgreement.user.name = "";
-      this.newAgreement.junk.name = "";
-      this.newAgreement.date = "";
-      this.newAgreement.location = "";
-      this.newAgreement.price = "";
+     
     }
   }
 };

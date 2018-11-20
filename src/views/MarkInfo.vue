@@ -9,15 +9,13 @@
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
-          <div class="md-title">Punto de Recogida {{query.name}}</div>
+          <div class="md-title">Punto de Recogida {{query.description}}</div>
         </md-card-header>
 
         <md-card-content>
           <b>Nombre</b> 
           <p>{{query.description}}</p>
           <b>Descripción </b> 
-          <p v-if="query.type.name != 'rider'">Este punto recoge y procesa {{query.type.name}}</p> 
-          <p v-if="query.type.name == 'rider'"> Este punto muestra la ubicación actual de un rider </p>
           <b>Localización </b>
           <p>{{query.street_name}}</p> 
         </md-card-content>

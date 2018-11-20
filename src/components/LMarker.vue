@@ -37,7 +37,7 @@ export default {
       this.$router.push({ path: "/markinfo", query: this.value });
     },
     selectIcon() {
-      switch (this.value.type.name) {
+     /* switch (this.value.type.name) {
         case "rider":
           return "/icons/" + this.value.type.name + ".png";
 
@@ -47,9 +47,9 @@ export default {
         case "eco_point":
           return "/icons/" + this.value.type.name + ".png";
 
-        default:
+        default:*/
           return "/icons/icon.png";
-      }
+      //}
     }
   }
 };
