@@ -6,7 +6,7 @@
       <md-input v-model="newDeal.junk" md-counter="30"></md-input>
     </md-field>
     <md-field :md-counter="false">
-      <label>Precio (€)</label>
+      <label>Precio €)</label>
       <md-input v-model="newDeal.price" maxlength="10"></md-input>
     </md-field>
     <md-field>
