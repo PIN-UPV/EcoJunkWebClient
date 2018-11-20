@@ -131,7 +131,7 @@ body .md-snackbar {
             <span class="md-list-item-text">Inicio</span>
           </md-list-item>
 
-          <md-list-item to="/agreements">
+          <md-list-item v-if="$store.getters['auth/isAuthenticated']" to="/agreements">
             <md-icon>assignment</md-icon>
             <span class="md-list-item-text">Acuerdos</span>
           </md-list-item>
