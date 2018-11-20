@@ -1,4 +1,4 @@
-<style scoped>
+<style lang="scss" scoped>
 .home {
   width: 100%;
   height: 100%;
@@ -7,6 +7,9 @@
   margin: 5%;
   color: #448aff;
 }
+.md-checkbox {
+    display: flex;
+  }
 .md-card {
   margin: 10px;
 }
@@ -24,6 +27,10 @@
 .h1 {
   text-align: center
 }
+.md-card-content {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
 
 </style>
 
@@ -31,6 +38,7 @@
   <div class="home">
     <md-toolbar class="md-large md-primary">
       <md-button class="md-icon-button" @click="openDrawer">
+<<<<<<< HEAD
             <md-icon>menu</md-icon>
         </md-button>
         <h1 class="h1">Inicio</h1>
@@ -38,6 +46,14 @@
 
     <s-toolbar v-model="filter" msg="Buscar contenedor"/>
 
+=======
+          <md-icon>menu</md-icon>
+      </md-button>
+      <h1 class="h1">Inicio</h1>
+    </md-toolbar>
+    
+    <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
+>>>>>>> d403b46e2444e65588474e6483d9e7680143f6ba
     <md-card-content>
       <md-checkbox v-model="filterCB" value="Eco">EcoParque</md-checkbox>
       <md-checkbox v-model="filterCB" value="Aceite">Aceite</md-checkbox>
@@ -46,7 +62,11 @@
       <md-checkbox v-model="filterCB" value="Papel">Papel</md-checkbox>
       <md-checkbox v-model="filterCB" value="Plástico">Plástico</md-checkbox>
       <md-checkbox v-model="filterCB" value="Vidrio">Vidrio</md-checkbox>
+<<<<<<< HEAD
       <md-checkbox v-model="filterCB" value="Rider">Riders</md-checkbox>
+=======
+      <md-checkbox v-model="filterCB" value="rider">Riders</md-checkbox>
+>>>>>>> d403b46e2444e65588474e6483d9e7680143f6ba
     </md-card-content>
 
     <h2 class="h2" v-if="filteredItems.length == 0 && filteredItemsCB == 0">NO HAY RESULTADOS</h2>
@@ -73,7 +93,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import SToolbar from "@/components/StandarSearchToolbar";
+=======
+import SToolbar from "@/components/SearchToolbarStandar";
+>>>>>>> d403b46e2444e65588474e6483d9e7680143f6ba
 
 export default {
   name: "home",
@@ -84,15 +108,25 @@ export default {
     return {
       store: this.$store.state.marker,
       filter: "",
+<<<<<<< HEAD
       filterCB: []
+=======
+      filterCB:[],
+>>>>>>> d403b46e2444e65588474e6483d9e7680143f6ba
     };
   },
   computed: {
     filteredItems() {
       return this.$store.getters["marker/filterMarksByName"](this.filter);
+<<<<<<< HEAD
     },
     filteredItemsCB(){
       return this.$store.getters["marker/filterMarksByType"](this.filterCB);
+=======
+    }, 
+    filteredItemsCB(){
+      return this.$store.getters["marker/filterMarksByTags"](this.filterCB)
+>>>>>>> d403b46e2444e65588474e6483d9e7680143f6ba
     },
   },
   props: {
