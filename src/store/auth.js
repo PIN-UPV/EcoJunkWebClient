@@ -11,7 +11,15 @@ export default {
         }
     },
     getters: {
-        isAuthenticated: state => !!state.token
+        isAuthenticated: state => !!state.token,
+        isRider: state => { 
+            try {
+               return !!state.profile.permissions.find(perm => perm.rol == "rider") 
+            }
+            catch(err) {
+                return false
+            }
+        }
     },
     mutations: {
         ['AUTH_LOGIN']: (state, token) => {
