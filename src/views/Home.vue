@@ -57,6 +57,18 @@
     </md-card-content>
 
     <h2 class="h2" v-if="filteredItems.length == 0 && filteredItemsCB == 0">NO HAY RESULTADOS</h2>
+      <div class="cursor" v-for="item in totalFilteredItems" :key="item.id"
+      @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
+    <md-card>
+      <md-card-header>
+        <md-card-header-text>
+          <div class="md-title">{{ item.description }}</div>
+          <div class="md-subhead">{{ item.street_name }}</div>
+        </md-card-header-text>
+      </md-card-header>
+    </md-card>
+    </div>
+
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
       @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
@@ -101,6 +113,13 @@ export default {
     filteredItemsCB(){
       return this.$store.getters["marker/filterMarksByType"](this.filterCB);
     },
+    totalFilteredItems(){
+      if(this.filterCB.length == 0)
+        return this.filteredItems
+      else {
+        return this.filteredItemsCB.concat(this.filteredItems)
+      }
+    }
   },
   props: {
     value: Boolean
