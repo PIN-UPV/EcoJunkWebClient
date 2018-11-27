@@ -28,7 +28,7 @@
      <md-tabs md-sync-route>
       <md-tab id="tab-home" md-label="Todos" to="/agreements"></md-tab>
       <md-tab id="tab-pages" md-label="Aceptados" to="/acepted"></md-tab>
-      <!--<md-tab id="tab-posts" md-label="Rechazados" to="/rejected"></md-tab>-->
+      <md-tab id="tab-posts" md-label="Finalizados" to="/finalized"></md-tab>
     </md-tabs>
     <router-view></router-view>
       <md-button to="/form" class="md-fab md-accent fixed-right">

@@ -5,10 +5,10 @@
       <label>Residuo</label>
       <md-input v-model="newDeal.junk" md-counter="30"></md-input>
     </md-field>
-    <md-field>
+    <!--<md-field>
       <label>Junk Point</label>
       <md-input v-model="newDeal.junk_point" md-counter="30"></md-input>
-    </md-field>
+    </md-field>-->
     <md-field :md-counter="false">
       <label>Precio (€)</label>
       <md-input v-model="newDeal.price" maxlength="10"></md-input>
@@ -46,7 +46,7 @@ export default {
     addAgreement: function() {
       if (
         this.newDeal.junk == "" ||
-        this.newDeal.junk_point == "" ||
+        //this.newDeal.junk_point == "" ||
         this.newDeal.price == ""
       ) {
         alert("Campos vacíos");

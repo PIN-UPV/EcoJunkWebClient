@@ -41,10 +41,10 @@ const routes = [{
                     import('../views/Agreements/Acepted.vue')
             },
             {
-                path: '/rejected',
-                name: 'rejected',
+                path: '/finalized',
+                name: 'finalized',
                 component: () =>
-                    import('../views/Agreements/Rejected.vue')
+                    import('../views/Agreements/Finalized.vue')
             }
         ]
     },
