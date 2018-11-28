@@ -69,19 +69,7 @@
     </md-card>
     </div>
 
-    <div class="cursor" v-for="item in filteredItems" :key="item.id"
-      @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
-    <md-card>
-      <md-card-header>
-        <md-card-header-text>
-          <div class="md-title">{{ item.description }}</div>
-          <div class="md-subhead">{{ item.street_name }}</div>
-        </md-card-header-text>
-      </md-card-header>
-    </md-card>
-    </div>
-
-    <div id="loadDiv" class="loadDiv" v-if="filteredItems.length > 0 && filteredItems.length == store.markers.length && filteredItems.length % 20 == 0"
+    <div id="loadDiv" class="loadDiv" v-if="totalFilteredItems.length > 0 && totalFilteredItems.length == store.markers.length && totalFilteredItems.length % 20 == 0"
       v-observe-visibility="{
         callback: loadMoreMarks,
       }" 
