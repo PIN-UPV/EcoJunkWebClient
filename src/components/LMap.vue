@@ -28,14 +28,9 @@ export default {
   mounted() {
     this.lmap = L.map("lmap", {
       zoomControl: false,
-      minZoom: 5,
+      minZoom: 13,
       zoom: this.zoom
     }).setView([39.4520498, -0.440134]);
-
-    /* L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.lmap);*/
 
     //https://leafletjs.com/examples/map-panes/
     this.lmap.createPane("labels");
