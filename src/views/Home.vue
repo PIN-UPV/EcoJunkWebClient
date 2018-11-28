@@ -93,7 +93,7 @@ export default {
     }
   },
   created() {
-    if (this.filteredItems.length == 0 && this.$store.getters['auth/isAuthenticated'])
+    if (this.filteredItems.length == 0)
       this.$store.dispatch("marker/LOAD_MARKS", 1);
   }
 };
