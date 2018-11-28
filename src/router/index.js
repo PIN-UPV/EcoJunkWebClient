@@ -70,9 +70,9 @@ const routes = [{
     },
     {
         path: '/register',
-        name: 'Login',
+        name: 'Register',
         component: () =>
-            import('../views/Auth/Login.vue')
+            import('../views/Auth/Register.vue')
     }
 ]
 

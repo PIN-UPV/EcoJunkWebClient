@@ -84,18 +84,6 @@ export default {
         this.$router.go(-1);
       });
     },
-    register: function() {
-      if (this.validateRegisterForm()) {
-        const { username, password, email } = this.registerForm;
-        this.$store
-          .dispatch("auth/AUTH_REGISTER", { username, password, email })
-          .then(() => {
-            this.clearForm(this.registerForm);
-            alert("See your inbox!");
-            //this.$router.push("/intranet");
-          });
-      }
-    },
     // New Actions
     getValidationClass(form, fieldName) {
       const field = this.$v[form][fieldName];
