@@ -12,14 +12,21 @@ export default {
                 return mark.description.toLowerCase().indexOf(filter.toLowerCase()) > -1;
             });
         },
-        filterMarksByType: (state) => (filter) => {
+        filterMarksByType: (state) => (jpList) => {
             return state.markers.filter((mark) => {
-                for(var i = 0; i < filter.length; i++){
-                    for(var j = 0; j < mark.types.lenght; j++){
-                        return mark.type[j].toLowerCase().indexOf(filter[i].toLowerCase()) > -1;
+                for(var i = 0; i < jpList.length; i++){
+                    for(var j = 0; j < mark.types.length; j++){
+                        return mark.types[j].toLowerCase().indexOf(jpList[i].toLowerCase()) > -1;
                     }
                 }  
             });
+        },
+        filterMarks: (filter, jpList) => {
+            if(jpList.length == 0){
+                return filterMarksByName(filter)
+            } else {
+                return filterMarksByType(jpList).concat(filterMarksByName(filter))
+            }
         }
     },
     mutations: {

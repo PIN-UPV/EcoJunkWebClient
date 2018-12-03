@@ -56,7 +56,7 @@
       <md-checkbox v-model="filterCB" value="Rider">Riders</md-checkbox>
     </md-card-content>
 
-    <h2 class="h2" v-if="filteredItems.length == 0 && filteredItemsCB == 0">NO HAY RESULTADOS</h2>
+    <h2 class="h2" v-if="filteredItems.length == 0 ">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
       @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
@@ -67,14 +67,6 @@
         </md-card-header-text>
       </md-card-header>
     </md-card>
-    </div>
-
-    <div id="loadDiv" class="loadDiv" v-if="filteredItems.length > 0 && filteredItems.length == store.markers.length && filteredItems.length % 20 == 0"
-      v-observe-visibility="{
-        callback: loadMoreMarks,
-      }" 
-      
-      >CARGANDO...
     </div>
   </div>
 </template>
@@ -96,11 +88,8 @@ export default {
   },
   computed: {
     filteredItems() {
-      return this.$store.getters["marker/filterMarksByName"](this.filter);
-    },
-    filteredItemsCB(){
-      return this.$store.getters["marker/filterMarksByType"](this.filterCB);
-    },
+      return this.$store.getters["marker/filterMarks"](this.filter, this.filterCB);
+    }
   },
   props: {
     value: Boolean
@@ -117,18 +106,12 @@ export default {
     },
     changePage(item) {
       this.$router.push({ path: "/markinfo", query: item });
-    },
-    loadMoreMarks() {
-      this.visibility = !this.visibility;
-      if (!this.visibility && this.$store.getters['auth/isAuthenticated']) {
-        var page = this.filteredItems.length / 20 + 1;
-        this.$store.dispatch("marker/LOAD_MARKS", page);
-      }
     }
   },
   created() {
-    if (this.filteredItems.length == 0 && this.$store.getters['auth/isAuthenticated'])
-      this.$store.dispatch("marker/LOAD_MARKS", 1);
+    if (this.filteredItems.length == 0 && this.$store.getters['auth/isAuthenticated']) {
+      this.$store.dispatch("marker/LOAD_MARKS", this.$store.state.apiPath + '/junk_points/');
+    }
   }
 };
 </script>

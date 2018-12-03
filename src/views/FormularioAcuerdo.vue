@@ -2,25 +2,21 @@
   <div id = "form">
     <form>
     <md-field>
-      <label>Nombre</label>
-      <md-input v-model="newAgreement.id" md-counter="30"></md-input>
+      <label>Residuo</label>
+      <md-input v-model="newDeal.junk" md-counter="30"></md-input>
     </md-field>
     <md-field>
-      <label>Residuo</label>
-      <md-input v-model="newAgreement.junk.name" md-counter="30"></md-input>
+      <label>Junk Point</label>
+      <md-input v-model="newDeal.junk_point" md-counter="30"></md-input>
     </md-field>
-    <!--<md-field>
-      <label>Fecha</label>
-      <md-input v-model="newAgreement.date" md-counter="30"></md-input>
-    </md-field>-->
     <md-field :md-counter="false">
       <label>Precio (€)</label>
-      <md-input v-model="newAgreement.price" maxlength="10"></md-input>
+      <md-input v-model="newDeal.price" maxlength="10"></md-input>
     </md-field>
-    <md-field>
+    <!--<h2>{{newDeal.location}}</h2>
       <label>Ubicación</label>
-      <md-input v-model="newAgreement.location" maxlength="30"></md-input>
-    </md-field>
+      <md-input v-model="newDeal.location" maxlength="30"></md-input>-->
+    
     <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
     <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
     </form>
@@ -31,58 +27,39 @@
 
 
 <script>
-import { mapMutations } from "vuex";
-
+import { store } from "@/store/index.js";
 export default {
+  store,
   name: "Counters",
-  data: () => ({
-    newAgreement: {
-      id: "",
-      user: {
-        name: ""
-      },
-      rider: {
-        name: ""
-      },
-      junk: {
-        name: ""
-      },
-      date: "",
-      location: "",
-      price: ""
+  data () {
+    return{
+    newDeal: {
+      junk:"",
+      price:"",
+      junk_point: ""
     },
-    textarea: "",
-    deadline: "",
-    countDown: "2018-12-1 9:19:18"
-  }),
+    
+    }
+  },
   methods: {
-    ...mapMutations(["ADD_AGREEMENT"]),
     addAgreement: function() {
       if (
-        this.newAgreement.id == "" ||
-        this.newAgreement.junk.name == "" ||
-        this.newAgreement.location == "" ||
-        this.newAgreement.price == ""
+        this.newDeal.junk == "" ||
+        this.newDeal.junk_point == "" ||
+        this.newDeal.price == ""
       ) {
         alert("Campos vacíos");
         return;
       }
-      const { id, user, raider, location, price } = this.newAgreement;
+      const { junk, junk_point, price } = this.newDeal;
       this.$store
-        .dispatch("agreement/AGREE_ADD", { id, user, raider, location, price })
+        .dispatch("agreement/AGREE_ADD", { junk, junk_point, price })
         .then(() => {
           this.$router.push("agreements");
         });
     },
     clearForm: function() {
-      this.newAgreement.id = "";
-      this.newAgreement.user = "";
-      this.newAgreement.rider.name = "";
-      this.newAgreement.user.name = "";
-      this.newAgreement.junk.name = "";
-      this.newAgreement.date = "";
-      this.newAgreement.location = "";
-      this.newAgreement.price = "";
+     
     }
   }
 };

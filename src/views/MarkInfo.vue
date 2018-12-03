@@ -15,7 +15,7 @@
         <md-card-content>
           <b>Nombre</b> 
           <p>{{query.description}}</p>
-          <b>Localización </b>
+          <b>Descripción </b> 
           <p>{{query.street_name}}</p> 
           <a target="_blank" :href="getUrl(query.location.coordinates)">¿Cómo llegar?</a>
         </md-card-content>

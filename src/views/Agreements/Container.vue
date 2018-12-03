@@ -62,6 +62,6 @@ export default {
     this.$store.dispatch("agreement/AGREE_GET").then(() => {
         this.$router.push("agreements");
     });
-    }
+  }
 };
 </script>
