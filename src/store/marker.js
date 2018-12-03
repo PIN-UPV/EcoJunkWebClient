@@ -14,9 +14,8 @@ export default {
         }
     },
     mutations: {
-        ['LOAD_MARKS']: (state, obj) => {
-            if (obj.page == 1) state.markers = obj.data;
-            else state.markers = state.markers.concat(obj.data);
+        ['LOAD_MARKS']: (state, data) => {
+            state.markers = state.markers.concat(data);
         },
         ['CHANGE_MAP']: (state, map) => {
             state.map = map;
@@ -26,16 +25,17 @@ export default {
         ['CHANGE_MAP']: ({ commit }, map) => {
             commit('CHANGE_MAP', map);
         },
-        ['LOAD_MARKS']: ({ commit, rootState }, page) => {
+        ['LOAD_MARKS']: ({ commit, dispatch, rootState }, newUrl) => {
             {
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
-                        url: rootState.apiPath + '/junk_points/?page=' + page,
+                        url: newUrl,
                         method: 'GET'
                     })
                     .then(resp => {
                         commit('STATUS_SUCCESS', null, { root: true })
-                        commit('LOAD_MARKS', { data: resp.data.results, page: page })
+                        commit('LOAD_MARKS', resp.data.results)
+                        if (resp.data.next != null) dispatch('LOAD_MARKS', resp.data.next)
                     })
                     .catch(err => {
                         commit('STATUS_ERROR', err, { root: true })

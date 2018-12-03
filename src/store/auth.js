@@ -53,7 +53,7 @@ export default {
                     axios.defaults.headers.common['Authorization'] = token
                     commit('AUTH_LOGIN', token)
                         // you have your token, now log in your user :)
-                    dispatch('AUTH_PROFILE', null)
+                    dispatch('AUTH_PROFILE')
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
                 }).catch(err => {
@@ -63,26 +63,25 @@ export default {
                 })
             })
         },
-        ['AUTH_REGISTER']: ({ commit, rootState, dispatch }, data) => {
+        ['AUTH_REGISTER']: ({ commit, rootState, dispatch }, user) => {
             return new Promise((resolve, reject) => { // The Promise used for router redirect in login
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
-                    url: rootState.apiPath + '/auth/register',
-                    data: data,
+                    url: rootState.apiPath + '/users/register/',
+                    data: user,
                     method: 'POST',
                     crossDomain: true,
                 }).then(resp => {
                     const token = "JWT " + resp.data.token
                     localStorage.setItem('user-token', token) // store the token in localstorage
-                        // Save Authorization header for all futur request
+                    // Save Authorization header for all futur request
                     axios.defaults.headers.common['Authorization'] = token
                     commit('AUTH_LOGIN', token)
-                    dispatch('AUTH_PROFILE', null)
+                    dispatch('AUTH_PROFILE')
                     commit('STATUS_SUCCESS', null, { root: true })
                     resolve(resp)
                 }).catch(err => {
-                    commit('STATUS_ERROR', err.response.data.message, { root: true })
-                    localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
+                    commit('STATUS_ERROR', err.response.data.error, { root: true })
                     reject(err)
                 })
             })
