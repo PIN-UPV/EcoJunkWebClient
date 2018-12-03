@@ -35,7 +35,6 @@
     </md-card>
   </div>
 </template>
-
 <script>
 import { store } from "@/store/index.js";
 
