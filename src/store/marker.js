@@ -14,9 +14,15 @@ export default {
         },
         filterMarksByType: (state) => (jpList) => {
             return state.markers.filter((mark) => {
+<<<<<<< HEAD
                 for(var i = 0; i < jpList.length; i++){
                     for(var j = 0; j < mark.types.length; j++){
                         return mark.types[j].toLowerCase().indexOf(jpList[i].toLowerCase()) > -1;
+=======
+                for(var i = 0; i < filter.length; i++){
+                    for(var j = 0; j < mark.types.lenght; j++){
+                        return mark.types[j].toLowerCase().indexOf(filter[i].toLowerCase()) > -1;
+>>>>>>> fe4101504bf2e2bb976e555c0d9c24304cdfc1db
                     }
                 }  
             });

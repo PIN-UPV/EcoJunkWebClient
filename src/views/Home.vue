@@ -56,8 +56,13 @@
       <md-checkbox v-model="filterCB" value="Rider">Riders</md-checkbox>
     </md-card-content>
 
+<<<<<<< HEAD
     <h2 class="h2" v-if="filteredItems.length == 0 ">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
+=======
+    <h2 class="h2" v-if="filteredItems.length == 0 && filteredItemsCB == 0">NO HAY RESULTADOS</h2>
+      <div class="cursor" v-for="item in totalFilteredItems" :key="item.id"
+>>>>>>> fe4101504bf2e2bb976e555c0d9c24304cdfc1db
       @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
       <md-card-header>
@@ -68,6 +73,17 @@
       </md-card-header>
     </md-card>
     </div>
+<<<<<<< HEAD
+=======
+
+    <div id="loadDiv" class="loadDiv" v-if="totalFilteredItems.length > 0 && totalFilteredItems.length == store.markers.length && totalFilteredItems.length % 20 == 0"
+      v-observe-visibility="{
+        callback: loadMoreMarks,
+      }" 
+      
+      >CARGANDO...
+    </div>
+>>>>>>> fe4101504bf2e2bb976e555c0d9c24304cdfc1db
   </div>
 </template>
 
@@ -88,7 +104,21 @@ export default {
   },
   computed: {
     filteredItems() {
+<<<<<<< HEAD
       return this.$store.getters["marker/filterMarks"](this.filter, this.filterCB);
+=======
+      return this.$store.getters["marker/filterMarksByName"](this.filter);
+    },
+    filteredItemsCB(){
+      return this.$store.getters["marker/filterMarksByType"](this.filterCB);
+    },
+    totalFilteredItems(){
+      if(this.filterCB.length == 0)
+        return this.filteredItems
+      else {
+        return this.filteredItemsCB.concat(this.filteredItems)
+      }
+>>>>>>> fe4101504bf2e2bb976e555c0d9c24304cdfc1db
     }
   },
   props: {
