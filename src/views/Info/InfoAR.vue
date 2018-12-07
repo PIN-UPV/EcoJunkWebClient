@@ -12,19 +12,19 @@
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
-          <div class="md-title">{{id.id}}</div>
-          <div class="md-subhead">User: {{id.user.name}}</div>
+          <div class="md-title">{{deal.id}}</div>
+          <div class="md-subhead">User: {{deal.user.name}}</div>
         </md-card-header>
         <md-card-content>
-          <p>Descripción: {{id.junk.name}}</p>
-          <p>Fecha: {{id.date}}</p>
-          <p>Precio: {{id.price}}</p>
-          <p>Ubicación: {{id.location}}</p>
-          <a target="_blank" :href="getUrl(id.location)">¿Cómo llegar?</a>
+          <p>Descripción: {{deal.junk.name}}</p>
+          <p>Fecha: {{deal.date}}</p>
+          <p>Precio: {{deal.price}}</p>
+          <p>Ubicación: {{deal.pick_up_point.coordinates}}</p>
+          <a target="_blank" :href="getUrl(deal.pick_up_point.coordinates)">¿Cómo llegar?</a>
         </md-card-content>
       </md-ripple>
 
-      <timer v-if="showTimer" v-bind:deadline="id.countDown"></timer>
+      <timer v-if="showTimer" v-bind:deadline="deal.countDown"></timer>
     </md-card>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       store: this.$store.state.agreement,
-      id: 0,
+      deal: 0,
       showTimer: true
     };
   },
@@ -46,7 +46,7 @@ export default {
     timer: TIMER
   },
   created() {
-    this.id = this.$route.params.id;
+    this.deal = this.$route.params.id;
   },
   methods: {
     goBack() {
@@ -54,13 +54,13 @@ export default {
     },
     ...mapMutations(["ACEPT_AGREEMENT", "REJECT_AGREEMENT"]),
     aceptAgreement: function() {
-      this.ACEPT_AGREEMENT(this.id);
+      this.ACEPT_AGREEMENT(this.deal);
       this.showTimer = true;
       this.showAccept = false;
       this.showCancel = false;
     },
     rejectAgreement: function() {
-      this.REJECT_AGREEMENT(this.id);
+      this.REJECT_AGREEMENT(this.deal);
       this.showAccept = false;
       this.showCancel = false;
     },
