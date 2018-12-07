@@ -25,7 +25,7 @@ export default {
         ['CHANGE_MAP']: ({ commit }, map) => {
             commit('CHANGE_MAP', map);
         },
-        ['LOAD_MARKS']: ({ commit, dispatch, rootState }, newUrl) => {
+        ['LOAD_MARKS']: ({ commit, dispatch }, newUrl) => {
             {
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
