@@ -5,17 +5,14 @@
       <label>Residuo</label>
       <md-input v-model="newDeal.junk" md-counter="30"></md-input>
     </md-field>
-    <!--<md-field>
-      <label>Junk Point</label>
-      <md-input v-model="newDeal.junk_point" md-counter="30"></md-input>
-    </md-field>-->
     <md-field :md-counter="false">
       <label>Precio (€)</label>
       <md-input v-model="newDeal.price" maxlength="10"></md-input>
     </md-field>
-    <!--<h2>{{newDeal.location}}</h2>
+    <md-field>
       <label>Ubicación</label>
-      <md-input v-model="newDeal.location" maxlength="30"></md-input>-->
+      <md-input v-model="newDeal.pick_up_point" readonly></md-input>
+    </md-field>
     
     <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
     <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
@@ -36,7 +33,7 @@ export default {
     newDeal: {
       junk:"",
       price:"",
-      junk_point: ""
+      pick_up_point:  [this.$store.state.auth.location.lat, this.$store.state.auth.location.long]
     },
     
     }
@@ -45,15 +42,16 @@ export default {
     addAgreement: function() {
       if (
         this.newDeal.junk == "" ||
-        //this.newDeal.junk_point == "" ||
         this.newDeal.price == ""
       ) {
         alert("Campos vacíos");
         return;
       }
-      const { junk, junk_point, price } = this.newDeal;
+      this.newDeal.pick_up_point = 'POINT(' + this.newDeal.pick_up_point[0] + ' ' + this.newDeal.pick_up_point[1] + ')'
+      alert(this.newDeal.pick_up_point)
+      const { junk, price, pick_up_point } = this.newDeal;
       this.$store
-        .dispatch("agreement/AGREE_ADD", { junk, junk_point, price })
+        .dispatch("agreement/AGREE_ADD", { junk, price, pick_up_point })
         .then(() => {
           this.$router.push("agreements");
         });

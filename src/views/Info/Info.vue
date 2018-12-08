@@ -20,8 +20,8 @@
 
         <md-card-content>
           <p>Precio: {{deal.price}}</p>
-          <!--<p>Ubicación: {{id.junk_point.location.coordinates}}</p>-->
-          <!--<a target="_blank" :href="getUrl(id.junk_point.location.coordinates)">¿Cómo llegar?</a>-->
+          <!--<p>Ubicación: {{deal.pick_up_point.coordinates}}</p>-->
+          <!--<a target="_blank" :href="getUrl(deal.pick_up_point.coordinates)">¿Cómo llegar?</a>-->
         </md-card-content>
 
         <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
