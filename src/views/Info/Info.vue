@@ -27,10 +27,14 @@
         <timer v-if="showTimer" v-bind:deadline="deadline"></timer>
 
         <md-card-actions>
-          <md-button v-if="showAccept && $store.getters['auth/isRider'] && deal.customer.email=='' "
+          <md-button v-if="showAccept && $store.getters['auth/isRider'] && deal.customer.email=='' 
+          && deal.state == 'P'"
           @click="aceptDeal()">Aceptar Acuerdo</md-button>
-          <md-button v-if="$store.getters['auth/isRider'] && deal.customer.email == $store.state.auth.profile.email"
-           @click="declineDeal()">Rechazar Acuerdo</md-button>
+          <md-button v-if="$store.getters['auth/isRider'] && deal.customer.email == $store.state.auth.profile.email 
+          && deal.state == 'A'" 
+          @click="declineDeal()">Rechazar Acuerdo</md-button>
+          <md-button v-if="deal.state == 'A'"
+          @click="finalizeDeal()">Finalizar Acuerdo</md-button>
         </md-card-actions>
 
       </md-ripple>
@@ -82,17 +86,6 @@ export default {
       this.$router.go(-1);
     },
     ...mapMutations(["ACEPT_AGREEMENT", "REJECT_AGREEMENT"]),
-    /*aceptAgreement: function() {
-      this.ACEPT_AGREEMENT(this.id);
-      this.showTimer = true;
-      this.showAccept = false;
-      this.showCancel = false;
-    },
-    rejectAgreement: function() {
-      this.REJECT_AGREEMENT(this.id);
-      this.showAccept = false;
-      this.showCancel = false;
-    },*/
     aceptDeal(){
       const {id} = this.deal
       this.$store.dispatch("agreement/DEAL_ACCEPT" ,{id}).then(() => {
@@ -102,6 +95,12 @@ export default {
     declineDeal(){
       const {id} = this.deal
       this.$store.dispatch("agreement/DEAL_DECLINE" ,{id}).then(() => {
+        this.$router.go(-1);
+      });
+    },
+    finalizeDeal(){
+      const {id} = this.deal
+      this.$store.dispatch("agreement/DEAL_FINALIZE" ,{id}).then(() => {
         this.$router.go(-1);
       });
     },
