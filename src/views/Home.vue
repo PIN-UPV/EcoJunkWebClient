@@ -24,8 +24,26 @@
 
 <template>
   <div class="home">
+    <md-toolbar class="md-large md-primary">
+      <md-button class="md-icon-button" @click="openDrawer">
+            <md-icon>menu</md-icon>
+        </md-button>
+        <h1 class="h1">Inicio</h1>
+    </md-toolbar>
     <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
 
+    <md-card-content>
+      <md-checkbox v-model="filterCB" value="Eco">EcoParque</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Aceite">Aceite</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Baterías">Baterias</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Papel">Papel</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Plástico">Plástico</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Vidrio">Vidrio</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Rider">Riders</md-checkbox>
+    </md-card-content>
+
+    <h2 class="h2" v-if="filteredItems.length == 0 ">NO HAY RESULTADOS</h2>
     <div class="cursor" v-for="item in filteredItems" :key="item.id"
       @click="setView(item.location.coordinates[0],item.location.coordinates[1]); changePage(item);">
     <md-card>
@@ -37,11 +55,14 @@
       </md-card-header>
     </md-card>
     </div>
+    <div id="loadDiv" class="loadDiv" v-if="filteredItems.length > 0 && filteredItems.length == store.markers.length && filteredItems.length % 20 == 0"
+      >CARGANDO...
+    </div>
   </div>
 </template>
 
 <script>
-import SToolbar from "@/components/SearchToolbar";
+import SToolbar from "@/components/StandarSearchToolbar";
 
 export default {
   name: "home",
@@ -51,12 +72,13 @@ export default {
   data() {
     return {
       store: this.$store.state.marker,
-      filter: ""
+      filter: "",
+      filterCB: [],
     };
   },
-  computed: {
-    filteredItems() {
-      return this.$store.getters["marker/filterMarksByName"](this.filter);
+  computed: { 
+     filteredItems() {
+      return this.$store.getters["marker/filterMarks"](this.filter, this.filterCB);
     }
   },
   props: {
