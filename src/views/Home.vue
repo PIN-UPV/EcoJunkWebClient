@@ -24,7 +24,7 @@
 
 <template>
   <div class="home">
-    <md-toolbar class="md-large md-primary">
+    <md-toolbar class="md-medium md-primary">
       <md-button class="md-icon-button" @click="openDrawer">
             <md-icon>menu</md-icon>
         </md-button>
@@ -36,7 +36,7 @@
       <md-checkbox v-model="filterCB" value="Eco">EcoParque</md-checkbox>
       <md-checkbox v-model="filterCB" value="Aceite">Aceite</md-checkbox>
       <md-checkbox v-model="filterCB" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
-      <md-checkbox v-model="filterCB" value="Baterías">Baterias</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Baterias">Baterias</md-checkbox>
       <md-checkbox v-model="filterCB" value="Papel">Papel</md-checkbox>
       <md-checkbox v-model="filterCB" value="Plástico">Plástico</md-checkbox>
       <md-checkbox v-model="filterCB" value="Vidrio">Vidrio</md-checkbox>

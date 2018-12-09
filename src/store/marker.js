@@ -30,7 +30,9 @@ export default {
                     for(var i = 0; i < jpList.length; i++){
                         for(var j = 0; j < mark.types.length; j++){
                             result = mark.types[j].name.toLowerCase().indexOf(jpList[i].toLowerCase()) > -1;
+                            if(result){
                             return (result && (mark.description.toLowerCase().indexOf(filter.toLowerCase()) > -1))
+                            }
                         }
                     }  
                    
