@@ -27,12 +27,12 @@
     </md-toolbar>
      <md-tabs md-sync-route>
       <md-tab id="tab-home" md-label="Todos" to="/agreements"></md-tab>
-      <md-tab id="tab-pages" md-label="Aceptados" to="/acepted"></md-tab>
-      <!--<md-tab id="tab-posts" md-label="Rechazados" to="/rejected"></md-tab>-->
+      <md-tab id="tab-pages" md-label="Aceptados"  to="/acepted" v-if="$store.getters['auth/isRider']"></md-tab>
+      <md-tab id="tab-posts" md-label="Finalizados" to="/finalized" v-if="$store.getters['auth/isRider']"></md-tab>
     </md-tabs>
     <router-view></router-view>
-      <md-button to="/form" class="md-fab md-accent fixed-right">
-        <md-icon>add</md-icon>
+      <md-button to="/form" class="md-fab md-accent fixed-right" v-if="!$store.getters['auth/isRider']">
+        <md-icon >add</md-icon>
       </md-button>  
       </div>
 </template>

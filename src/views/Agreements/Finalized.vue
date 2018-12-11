@@ -1,7 +1,7 @@
 <style scoped>
-.rejected {
+.acepted {
   width: 100%;
-  height: 95%;
+
 }
 .md-dialog {
   position: fixed;
@@ -10,24 +10,27 @@
   width: 100%;
   height: 100%;
 }
-.rejected .fixed-right {
-  float: right;
+.search-toolbar {
+  margin: 5%;
 }
 .md-card {
   margin: 5px;
 }
+.acepted .fixed-right {
+  float: right;
+}
 </style>
 
 <template>
-  <div>
-    <md-card v-for="item in store.agreementsRejected" :key="item.id" v-bind:index="item.id">
+  <div class="acepted">
+    <md-card v-for="item in finalizedDeals" :key="item.id" v-bind:index="item.id">
       <md-card-header>
         <md-card-header-text>
           <div class="md-title">{{item.id}}</div>
-          <div class="md-subhead">Acuerdo del usuario: {{ item.user.name }}</div>
+          <div class="md-subhead">Acuerdo del usuario: {{ item.customer.email }}</div>
         </md-card-header-text>
         <md-card-actions>
-          <md-button :to="{ name: 'infoR', params: { id:item } }" class="md-raised md-primary">
+          <md-button :to="{ name: 'info', params: { id:item } }" class="md-raised md-primary">
            info
           </md-button>
         </md-card-actions>  
@@ -41,7 +44,7 @@ import { store } from "@/store/index.js";
 
 export default {
   store,
-  name: "rejected",
+  name: "finalized",
   props: {
     index: Number
   },
@@ -55,6 +58,11 @@ export default {
       store: this.$store.state.agreement,
       showDialog: false
     };
-  }
+  },
+  computed: {
+     finalizedDeals() {
+      return this.$store.getters["agreement/finalizedDeals"];
+    }
+  },
 };
 </script>

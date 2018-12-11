@@ -9,12 +9,21 @@ export default {
     getters: {
         dealsWithoutRider: (state) => {
             return state.results.filter((result) => {
-                return result.customer.email == "";
+                return result.state == "P";
             });
         },
         myDeals: (state, getters, rootState) => {
             return state.results.filter((result) => {
-                return result.customer.email == rootState.auth.profile.email;
+                if(result.customer.email == rootState.auth.profile.email && result.state == "A"){
+                return result;
+                }
+            });
+        },
+        finalizedDeals: (state, getters,rootState) => {
+            return state.results.filter((result) => {
+                if(result.customer.email == rootState.auth.profile.email && result.state == "F"){
+                    return result;
+                    }
             });
         }
     },
@@ -97,6 +106,21 @@ export default {
                 commit('STATUS_LOADING', null, { root: true })
                 axios({
                     url: rootState.apiPath + '/deals/' + Deal.id + '/decline_deal/',
+                    method: 'POST'
+                }).then(resp => {
+                    commit('STATUS_SUCCESS', null, { root: true })
+                    resolve(resp)
+                }).catch(err => {
+                    commit('STATUS_ERROR', err.response.data.message, { root: true })
+                    reject(err)
+                })
+            })
+        },
+        ['DEAL_FINALIZE']: ({ commit, rootState }, Deal) => {
+            return new Promise((resolve, reject) => {
+                commit('STATUS_LOADING', null, { root: true })
+                axios({
+                    url: rootState.apiPath + '/deals/' + Deal.id + '/finalize_deal/',
                     method: 'POST'
                 }).then(resp => {
                     commit('STATUS_SUCCESS', null, { root: true })
