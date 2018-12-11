@@ -37,14 +37,6 @@
       </md-card-header>
     </md-card>
     </div>
-
-    <div id="loadDiv" class="loadDiv" v-if="filteredItems.length > 0 && filteredItems.length == store.markers.length && filteredItems.length % 20 == 0"
-      v-observe-visibility="{
-        callback: loadMoreMarks,
-      }" 
-      
-      >CARGANDO...
-    </div>
   </div>
 </template>
 
@@ -59,8 +51,7 @@ export default {
   data() {
     return {
       store: this.$store.state.marker,
-      filter: "",
-      visibility: false
+      filter: ""
     };
   },
   computed: {
@@ -83,18 +74,12 @@ export default {
     },
     changePage(item) {
       this.$router.push({ path: "/markinfo", query: item });
-    },
-    loadMoreMarks() {
-      this.visibility = !this.visibility;
-      if (!this.visibility && this.$store.getters['auth/isAuthenticated']) {
-        var page = this.filteredItems.length / 20 + 1;
-        this.$store.dispatch("marker/LOAD_MARKS", page);
-      }
     }
   },
   created() {
-    if (this.filteredItems.length == 0)
-      this.$store.dispatch("marker/LOAD_MARKS", 1);
+    if (this.filteredItems.length == 0 && this.$store.getters['auth/isAuthenticated']) {
+      this.$store.dispatch("marker/LOAD_MARKS", this.$store.state.apiPath + '/junk_points/');
+    }
   }
 };
 </script>
