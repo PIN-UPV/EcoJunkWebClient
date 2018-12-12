@@ -19,8 +19,9 @@
         </md-card-header>
 
         <md-card-content>
+          <p>Residuo: {{deal.junk}}</p>
           <p>Precio: {{deal.price}}</p>
-          <p>Ubicación: {{deal.pick_up_point.coordinates}}</p>
+          <!--<p>Ubicación: {{deal.pick_up_point.coordinates}}</p>-->
           <p>Estado: {{deal.state}}</p>
           <a target="_blank" :href="getUrl(deal.pick_up_point.coordinates)">¿Cómo llegar?</a>
         </md-card-content>

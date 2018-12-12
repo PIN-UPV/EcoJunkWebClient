@@ -24,23 +24,23 @@
 
 <template>
   <div class="home">
-    <md-toolbar class="md-medium md-primary">
+    <md-toolbar class="md-small md-primary">
       <md-button class="md-icon-button" @click="openDrawer">
             <md-icon>menu</md-icon>
         </md-button>
-        <h1 class="h1">Inicio</h1>
+        <h2 class="h2">Inicio</h2>
     </md-toolbar>
     <s-toolbar v-model="filter" @openDrawer="openDrawer" msg="Buscar contenedor"/>
 
     <md-card-content>
       <md-checkbox v-model="filterCB" value="Eco">EcoParque</md-checkbox>
       <md-checkbox v-model="filterCB" value="Aceite">Aceite</md-checkbox>
-      <md-checkbox v-model="filterCB" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
-      <md-checkbox v-model="filterCB" value="Baterias">Baterias</md-checkbox>
       <md-checkbox v-model="filterCB" value="Papel">Papel</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Baterias">Baterias</md-checkbox>
+      <md-checkbox v-model="filterCB" value="Electrónicos">Aparatos Electrónicos</md-checkbox>
       <md-checkbox v-model="filterCB" value="Plástico">Plástico</md-checkbox>
       <md-checkbox v-model="filterCB" value="Vidrio">Vidrio</md-checkbox>
-      <md-checkbox v-model="filterCB" value="Rider">Riders</md-checkbox>
+      <!--<md-checkbox v-model="filterCB" value="Rider">Riders</md-checkbox>-->
     </md-card-content>
 
     <h2 class="h2" v-if="filteredItems.length == 0 ">NO HAY RESULTADOS</h2>

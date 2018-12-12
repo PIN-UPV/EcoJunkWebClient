@@ -1,6 +1,6 @@
 <template>
   <div>
-      <md-toolbar class="md-medium md-primary">
+      <md-toolbar class="md-small md-primary">
         <md-button class="md-icon-button  md-primary" @click="returnToMap">
           <md-icon>arrow_back</md-icon>
         </md-button>
@@ -9,13 +9,13 @@
     <md-card md-with-hover>
       <md-ripple>
         <md-card-header>
-          <div class="md-title">Punto de Recogida {{query.description}}</div>
+          <div class="md-title">{{query.description}}</div>
         </md-card-header>
 
         <md-card-content>
           <b>Nombre</b> 
           <p>{{query.description}}</p>
-          <b>Descripción </b> 
+          <b>Calle </b> 
           <p>{{query.street_name}}</p> 
           <a target="_blank" :href="getUrl(query.location.coordinates)">¿Cómo llegar?</a>
         </md-card-content>
