@@ -3,16 +3,16 @@
     <form>
     <md-field>
       <label>Residuo</label>
-      <md-input v-model="newDeal.junk" md-counter="30"></md-input>
+      <md-textarea v-model="newDeal.junk" md-autogrow></md-textarea>
     </md-field>
     <md-field :md-counter="false">
       <label>Precio (€)</label>
       <md-input v-model="newDeal.price" maxlength="10"></md-input>
     </md-field>
-    <md-field>
+    <!--<md-field>
       <label>Ubicación</label>
       <md-input v-model="newDeal.pick_up_point" readonly></md-input>
-    </md-field>
+    </md-field>-->
     
     <md-button class="md-raised md-primary" @click="addAgreement">Aceptar</md-button>
     <md-button to ='/agreements' class="md-raised md-accent">Cancelar</md-button>
@@ -48,7 +48,6 @@ export default {
         return;
       }
       this.newDeal.pick_up_point = 'POINT(' + this.newDeal.pick_up_point[0] + ' ' + this.newDeal.pick_up_point[1] + ')'
-      alert(this.newDeal.pick_up_point)
       const { junk, price, pick_up_point } = this.newDeal;
       this.$store
         .dispatch("agreement/AGREE_ADD", { junk, price, pick_up_point })
